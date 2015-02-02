@@ -7,47 +7,47 @@
  */
 
 /**
- * Description of JenisSMasuk
+ * Description of SuratMasuk
  *
  * @author Ganteng Imut
  */
-class JenisSMasuk {
+class M_SuratMasuk extends CI_Model{
     //put your code here
     function __construct(){
         parent::__construct();
     }
     
     function insert($data){
-        $this->db->insert('t_jenis_surat_masuk', $data);
+        $this->db->insert('t_surat_msk', $data);
     }
     
     function selectAll(){
         $this->db->select('*');
-        $this->db->from('t_jenis_surat_masuk');
+        $this->db->from('t_surat_msk');
         $this->db->order_by('date_modified', 'desc');
         return $this->db->get();
     }
     function selectById($id){
         $this->db->select('*');
-        $this->db->from('t_jenis_surat_masuk');
-        $this->db->where('id_jns', $id);
+        $this->db->from('t_surat_msk');
+        $this->db->where('id', $id);
         return $this->db->get();
     }
      
     function update($id, $data){
-        $this->db->where('id_jns', $id);
-        $this->db->update('t_jenis_surat_masuk', $data);
+        $this->db->where('id', $id);
+        $this->db->update('t_surat_msk', $data);
     }
     
     function delete($id){
-        $this->db->where('id_jns', $id);
-        $this->db->delete('t_jenis_surat_masuk');
+        $this->db->where('id', $id);
+        $this->db->delete('t_surat_msk');
     }
     
     // function yang digunakan oleh paginationsample
     function selectAllPaging($limit=array()){
         $this->db->select('*');
-        $this->db->from('t_jenis_surat_masuk');
+        $this->db->from('t_surat_msk');
         $this->db->order_by('date_modified', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);

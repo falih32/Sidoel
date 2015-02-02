@@ -7,10 +7,10 @@
  */
 
 /**
- * Description of Admin
+ * Description of Disposisi
  *
  * @author Ganteng Imut
  */
-class Admin {
+class M_Disposisi extends CI_Model{
     //put your code here
 }
