@@ -7,11 +7,11 @@
  */
 
 /**
- * Description of Disposisi
+ * Description of M_Instruksi
  *
  * @author Ganteng Imut
  */
-class M_Disposisi extends CI_Model{
+class M_Instruksi {
     //put your code here
     //put your code here
     function __construct(){
@@ -19,36 +19,36 @@ class M_Disposisi extends CI_Model{
     }
     
     function insert($data){
-        $this->db->insert('t_form_disposisi', $data);
+        $this->db->insert('t_instruksi', $data);
     }
     
     function selectAll(){
         $this->db->select('*');
-        $this->db->from('t_form_disposisi');
+        $this->db->from('t_instruksi');
         $this->db->order_by('date_modified', 'desc');
         return $this->db->get();
     }
     function selectById($id){
         $this->db->select('*');
-        $this->db->from('t_form_disposisi');
-        $this->db->where('id', $id);
+        $this->db->from('t_instruksi');
+        $this->db->where('id_instruksi', $id);
         return $this->db->get();
     }
      
     function update($id, $data){
-        $this->db->where('id', $id);
-        $this->db->update('t_form_disposisi', $data);
+        $this->db->where('id_instruksi', $id);
+        $this->db->update('t_instruksi', $data);
     }
     
     function delete($id){
-        $this->db->where('id', $id);
-        $this->db->delete('t_form_disposisi');
+        $this->db->where('id_instruksi', $id);
+        $this->db->delete('t_instruksi');
     }
     
     // function yang digunakan oleh paginationsample
     function selectAllPaging($limit=array()){
         $this->db->select('*');
-        $this->db->from('t_form_disposisi');
+        $this->db->from('t_instruksi');
         $this->db->order_by('date_modified', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);

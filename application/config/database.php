@@ -65,9 +65,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => 'FRAGARACH',
+	'username' => 'user',
+	'password' => 'password',
 	'database' => 'sidoel',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

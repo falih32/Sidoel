@@ -7,48 +7,48 @@
  */
 
 /**
- * Description of Disposisi
+ * Description of M_UnitTerusan
  *
  * @author Ganteng Imut
  */
-class M_Disposisi extends CI_Model{
-    //put your code here
+class M_UnitTerusan {
+        //put your code here
     //put your code here
     function __construct(){
         parent::__construct();
     }
     
     function insert($data){
-        $this->db->insert('t_form_disposisi', $data);
+        $this->db->insert('t_unit_terusan', $data);
     }
     
     function selectAll(){
         $this->db->select('*');
-        $this->db->from('t_form_disposisi');
+        $this->db->from('t_unit_terusan');
         $this->db->order_by('date_modified', 'desc');
         return $this->db->get();
     }
     function selectById($id){
         $this->db->select('*');
-        $this->db->from('t_form_disposisi');
-        $this->db->where('id', $id);
+        $this->db->from('t_unit_terusan');
+        $this->db->where('id_diteruskan', $id);
         return $this->db->get();
     }
      
     function update($id, $data){
-        $this->db->where('id', $id);
-        $this->db->update('t_form_disposisi', $data);
+        $this->db->where('id_diteruskan', $id);
+        $this->db->update('t_unit_terusan', $data);
     }
     
     function delete($id){
-        $this->db->where('id', $id);
-        $this->db->delete('t_form_disposisi');
+        $this->db->where('id_diteruskan', $id);
+        $this->db->delete('t_unit_terusan');
     }
     
     // function yang digunakan oleh paginationsample
     function selectAllPaging($limit=array()){
         $this->db->select('*');
-        $this->db->from('t_form_disposisi');
+        $this->db->from('t_unit_terusan');
         $this->db->order_by('date_modified', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
