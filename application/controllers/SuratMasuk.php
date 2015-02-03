@@ -18,18 +18,43 @@ class SuratMasuk extends CI_Controller{
         $this->load->helper('url');
         $this->load->database();
         $this->load->library('input');
-        $this->load->model('C_User');
         $this->load->model('M_SuratMasuk');
+        $this->load->model('M_UnitTujuan');
+        $this->load->model('M_JenisSMasuk');
     }
     
-    public function index(){
+    public function index($offset=0){
               //load the surat model
-                
-              //call the model function to get the surat data
-              $suratmasukresult = $this->M_SuratMasukl->selectAll();          
-              $data['suratlist'] = $suratmasukresult;
-              //load the department_view
-              $this->load->view('SuratMasuk',$data);
+//                
+//              //call the model function to get the surat data
+//              $suratmasukresult = $this->M_SuratMasukl->selectAll();          
+//              $data['suratList'] = $suratmasukresult;
+//              //load the department_view
+//              $this->load->view('SuratMasuk',$data);
+        // tentukan jumlah data per halaman
+        $perpage = 3;
+        // load library pagination
+        $this->load->library('pagination');
+        // konfigurasi tampilan paging
+        $config = array('base_url' => site_url('suratmasuk/page'),
+                        'total_rows' => count($this->M_SuratMasukl->selectAll()->result()),
+                        'per_page' => $perpage,);
+        // inisialisasi pagination dan config
+        $this->pagination->initialize($config);
+        $limit['perpage'] = $perpage;
+        $limit['offset'] = $offset;
+        $data['suratList'] = $this->agenda_model->select_all_paging($limit)->result();
+        $this->load->view('SuratMasuk',$data);
+    }
+    
+    public function getAllUnitTujuan(){
+        $unitTujuanResult = $this->M_UnitTujuan->selectAll();          
+        $data['unitList'] = $unitTujuanResult;
+    }
+    
+    public function getAllJenisSurat(){
+        $jenisSuratList = $this->M_UnitTujuan->selectAll();          
+        $data['jenisList'] = $jenisSuratList;
     }
     
     function postVariabel(){
@@ -51,6 +76,8 @@ class SuratMasuk extends CI_Controller{
         
         return $data;
     }
+    
+    
      
     public function tambah_surat_masuk(){
         $this->load->view('SuratMasuk/tambahSrtMasuk');
