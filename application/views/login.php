@@ -7,7 +7,6 @@
 <?php echo validation_errors(); ?>
 <p style="color:red;"><?php echo $this->session->flashdata('notification')?></p>
 
-<!--<?php echo $username?> -->
     <div class="panel-body">
         <form role="form" action="<?=base_URL()?>index.php/login/do_login" method="post">
             <fieldset>

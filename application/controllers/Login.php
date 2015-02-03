@@ -33,19 +33,19 @@ class Login extends CI_Controller{
     
     // memeriksa keberadaan akun username
     public function do_login(){
-        $username = $this->input->post('username', 'true');
-        $password = $this->input->post('password', 'true');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
         $temp_account = $this->M_User->check_user_account($username, $password)->row();
         // check account
         $num_account = count($temp_account);
-//        $this->form_validation->set_rules('username', 'Username', 'required');
-//        $this->form_validation->set_rules('password', 'Password', 'required');
-//        if ($this->form_validation->run() == FALSE){
-//            $this->pageLogin();
-//        }else{
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        if ($this->form_validation->run() == FALSE){
+            $this->pageLogin();
+        }else{
             if ($num_account > 0){
             // kalau ada set session
-                $array_items = array('id_user' => $temp_account->id_user,
+                $array_items = array('id_user' => $temp_account->id,
                                       'username' => $temp_account->username,
                                       'logged_in' => true);
                 $this->session->set_userdata($array_items);
@@ -57,10 +57,10 @@ class Login extends CI_Controller{
             else {
             // kalau ga ada diredirect lagi ke halaman login
                 $this->session->set_flashdata('notification', 'Peringatan : Username dan Password
-                tidak cocok' + $username);
+                tidak cocok '.$username);
                 redirect(site_url('index.php/login'));
             }
-//        }
+        }
     }
     // keluar dari sistem
     public function logout(){

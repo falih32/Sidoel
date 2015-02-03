@@ -22,7 +22,7 @@ class M_User extends CI_Model{
         $this->db->select('*');
         $this->db->from('t_user');
         $this->db->where('username', $username);
-        $this->db->where('password', $password);
+        $this->db->where('password', md5($password));
         return $this->db->get();
     }
     // mengambil data user tertentu
