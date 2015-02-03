@@ -18,8 +18,9 @@ class SuratMasuk extends CI_Controller{
         $this->load->helper('url');
         $this->load->database();
         $this->load->library('input');
-        $this->load->model('C_User');
         $this->load->model('M_SuratMasuk');
+        $this->load->model('M_UnitTujuan');
+        $this->load->model('M_JenisSMasuk');
     }
     
     public function index(){
@@ -27,9 +28,19 @@ class SuratMasuk extends CI_Controller{
                 
               //call the model function to get the surat data
               $suratmasukresult = $this->M_SuratMasukl->selectAll();          
-              $data['suratlist'] = $suratmasukresult;
+              $data['suratList'] = $suratmasukresult;
               //load the department_view
               $this->load->view('SuratMasuk',$data);
+    }
+    
+    public function getAllUnitTujuan(){
+        $unitTujuanResult = $this->M_UnitTujuan->selectAll();          
+        $data['unitList'] = $unitTujuanResult;
+    }
+    
+    public function getAllJenisSurat(){
+        $jenisSuratList = $this->M_UnitTujuan->selectAll();          
+        $data['jenisList'] = $jenisSuratList;
     }
     
     function postVariabel(){
@@ -51,6 +62,8 @@ class SuratMasuk extends CI_Controller{
         
         return $data;
     }
+    
+    
      
     public function tambah_surat_masuk(){
         $this->load->view('SuratMasuk/tambahSrtMasuk');
