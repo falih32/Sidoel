@@ -16,8 +16,20 @@ class SuratMasuk extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
+        $this->load->database();
         $this->load->library('input');
         $this->load->model('C_User');
     }
+    
+    public function index()
+         {
+              //load the surat model
+              $this->load->model('M_SuratMasuk');  
+              //call the model function to get the surat data
+              $suratmasukresult = $this->M_SuratMasukl->selectAll();          
+              $data['suratlist'] = $suratmasukresult;
+              //load the department_view
+              $this->load->view('V_SuratMasuk',$data);
+     }
     
 }
