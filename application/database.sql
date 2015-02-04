@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-02-04 12:01:06
+Date: 2015-02-04 12:10:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -411,6 +411,12 @@ AUTO_INCREMENT=2
 BEGIN;
 INSERT INTO `tr_instansi` VALUES ('1', 'Kementerian Kelautan dan Perikanan', 'Jl. Thamrin', 'Drs. KURDIYANTO', '196402051993031003', 'logokelautan.jpg');
 COMMIT;
+
+-- ----------------------------
+-- View structure for `tf_surat_masuk`
+-- ----------------------------
+DROP VIEW IF EXISTS `tf_surat_masuk`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tf_surat_masuk` AS select `a`.`id` AS `id`,`a`.`nomor_surat` AS `nomor_surat`,`a`.`tgl_srt` AS `tgl_srt`,`a`.`tgl_srt_diterima` AS `tgl_srt_diterima`,`a`.`tgl_srt_dtlanjut` AS `tgl_srt_dtlanjut`,`a`.`tenggat_wkt` AS `tenggat_wkt`,`a`.`perihal` AS `perihal`,`a`.`jenis_surat` AS `jenis_surat`,`a`.`no_agenda` AS `no_agenda`,`a`.`unit_tujuan` AS `unit_tujuan`,`a`.`keterangan` AS `keterangan`,`a`.`edited_by` AS `edited_by`,`a`.`status_terkirim` AS `status_terkirim`,`a`.`file` AS `file`,`a`.`pengirim` AS `pengirim`,`c`.`unit_tujuan` AS `unit_name`,`b`.`nama_jenis` AS `nama_jenis`,`d`.`username` AS `username` from (((`t_surat_msk` `a` join `t_jenis_surat_masuk` `b`) join `t_unit_tujuan` `c`) join `t_user` `d`) where ((`a`.`jenis_surat` = `b`.`id_jns`) and (`a`.`unit_tujuan` = `c`.`id_unit`) and (`a`.`edited_by` = `d`.`id`) and (`a`.`deleted` = '0')) ;
 
 -- ----------------------------
 -- Auto increment value for `ref_klasifikasi`
