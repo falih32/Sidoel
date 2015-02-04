@@ -23,13 +23,13 @@ class M_SuratMasuk extends CI_Model{
     
     function selectAll(){
         $this->db->select('*');
-        $this->db->from('t_surat_msk');
-        $this->db->order_by('date_modified', 'desc');
+        $this->db->from('tf_surat_masuk');
+		$this->db->order_by('id', 'desc');
         return $this->db->get();
     }
     function selectById($id){
         $this->db->select('*');
-        $this->db->from('t_surat_msk');
+        $this->db->from('tf_surat_masuk');
         $this->db->where('id', $id);
         return $this->db->get();
     }
@@ -40,15 +40,16 @@ class M_SuratMasuk extends CI_Model{
     }
     
     function delete($id){
+		$data['deleted'] = '1';
         $this->db->where('id', $id);
-        $this->db->delete('t_surat_msk');
+        $this->db->update('t_surat_msk', $data);
     }
     
     // function yang digunakan oleh paginationsample
     function selectAllPaging($limit=array()){
         $this->db->select('*');
-        $this->db->from('t_surat_msk');
-        $this->db->order_by('date_modified', 'desc');
+        $this->db->from('tf_surat_masuk');
+        $this->db->order_by('id', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();

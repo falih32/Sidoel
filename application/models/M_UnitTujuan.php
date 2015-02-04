@@ -24,7 +24,7 @@ class M_UnitTujuan extends CI_Model{
     function selectAll(){
         $this->db->select('*');
         $this->db->from('t_unit_tujuan');
-        $this->db->order_by('date_modified', 'desc');
+        $this->db->order_by('id_unit', 'desc');
         return $this->db->get();
     }
     function selectById($id){

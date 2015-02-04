@@ -24,7 +24,7 @@ class M_JenisSMasuk extends CI_Model{
     function selectAll(){
         $this->db->select('*');
         $this->db->from('t_jenis_surat_masuk');
-        $this->db->order_by('date_modified', 'desc');
+        $this->db->order_by('id_jns', 'desc');
         return $this->db->get();
     }
     function selectById($id){
@@ -48,7 +48,7 @@ class M_JenisSMasuk extends CI_Model{
     function selectAllPaging($limit=array()){
         $this->db->select('*');
         $this->db->from('t_jenis_surat_masuk');
-        $this->db->order_by('date_modified', 'desc');
+        $this->db->order_by('id_jns', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();

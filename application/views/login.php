@@ -9,7 +9,7 @@
                     <h3 class="panel-title">Sign In</h3>
                 </div>
                 <div class="panel-body">
-                    <form role="form" action="<?=base_URL()?>index.php/login/do_login" method="post">
+                    <form role="form" action="<?=base_URL()?>login/do_login" method="post">
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" id="username" placeholder="username" name="username" value="<?php echo set_value('username')?>"  type="text" autofocus="">

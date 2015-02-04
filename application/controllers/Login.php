@@ -22,7 +22,14 @@ class Login extends CI_Controller{
     }
         // melihat halam qqan login
     public function index(){
-        $this->pageLogin();
+		if($this->session->userdata('id_user') == ''){
+			$this->pageLogin();
+		}
+		else{
+			$data['title'] = 'SIDOEL';
+			$data['content'] = 'dashboard';
+			$this->load->view('layout', $data);
+		}		
     }
     
     public function pageLogin(){
@@ -51,20 +58,22 @@ class Login extends CI_Controller{
                 $this->session->set_userdata($array_items);
                 $data['content'] = 'dashboard';
                 $data['title'] = 'Dashboard';       
-                $this->load->view('layout', $data);
-                //redirect(site_url('account/view_success_page'));
             }
             else {
             // kalau ga ada diredirect lagi ke halaman login
                 $this->session->set_flashdata('notification', 'Peringatan : Username dan Password
                 tidak cocok '.$username);
-                redirect(site_url('index.php/login'));
             }
+			redirect(site_url('login'));
         }
     }
     // keluar dari sistem
     public function logout(){
+        $this->session->unset_userdata('id_user');
+        $this->session->unset_userdata('username');
+        $this->session->unset_userdata('logged_in');
         $this->session->sess_destroy();
-        redirect(site_url('login'));
+        redirect('login');
     }
 }
+?>
