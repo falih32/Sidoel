@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Mysql_local
+Source Server         : local
 Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : sidoel
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-02-03 21:34:54
+Date: 2015-02-04 12:01:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -249,17 +249,18 @@ CREATE TABLE `t_surat_msk` (
 `status_terkirim`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT '' ,
 `file`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
 `pengirim`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`deleted`  int(11) NULL DEFAULT 0 ,
 PRIMARY KEY (`id`),
 FOREIGN KEY (`jenis_surat`) REFERENCES `t_jenis_surat_masuk` (`id_jns`) ON DELETE NO ACTION ON UPDATE CASCADE,
 FOREIGN KEY (`unit_tujuan`) REFERENCES `t_unit_tujuan` (`id_unit`) ON DELETE NO ACTION ON UPDATE CASCADE,
-FOREIGN KEY (`edited_by`) REFERENCES `t_admin` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (`edited_by`) REFERENCES `t_user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 INDEX `jenis_surat_fk` (`jenis_surat`) USING BTREE ,
 INDEX `unit_tujuan_fk` (`unit_tujuan`) USING BTREE ,
 INDEX `user_fk` (`edited_by`) USING BTREE 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=6
+AUTO_INCREMENT=27
 
 ;
 
@@ -267,7 +268,7 @@ AUTO_INCREMENT=6
 -- Records of t_surat_msk
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_surat_msk` VALUES ('2', 'BAAA1', '2015-02-24', '2015-01-28', '2015-01-29', '0', 'Testimoni', '2', '667', '2', 'jkkljhlkjhlkhl', '1', '', null, 'Junno'), ('4', '123', '0000-00-00', '2015-02-19', '2015-02-04', '1', 'per', '1', '0', '2', 'ket', '1', '', '10666083_1485349628381481_913245954_a.jpg', 'Tantra'), ('5', '1234', '0000-00-00', '2015-02-24', '2015-02-26', '0', 'hal', '2', '1', '2', 'ket', '1', '', null, 'Saya');
+INSERT INTO `t_surat_msk` VALUES ('2', 'BAAA1', '2015-02-24', '2015-01-28', '2015-01-29', '0', 'Testimoni', '2', '667', '2', 'jkkljhlkjhlkhl', '1', '', null, 'Junno', '0'), ('4', '123', '0000-00-00', '2015-02-19', '2015-02-04', '1', 'per', '1', '0', '2', 'ket', '1', '', '10666083_1485349628381481_913245954_a.jpg', 'Tantra', '0'), ('5', '1234', '0000-00-00', '2015-02-24', '2015-02-26', '0', 'hal', '2', '1', '2', 'ket', '1', '', null, 'Saya', '0'), ('6', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', '1', 'ket', null, null, null, 'Saya', '0'), ('7', '2', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'per', null, '1', '1', 'asasa', null, null, null, 'Saya', '0'), ('8', '23', '2015-02-04', '2015-02-04', '2015-02-04', null, '', null, '0', null, '', null, null, null, '23', '0'), ('9', '23', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', null, 'frvvd', null, null, null, '23', '0'), ('10', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', '2', 'poiu', null, null, null, 'Saya', '0'), ('11', '1', '2015-02-04', '2015-02-04', '2015-02-04', '1', '', '2', '0', '2', '', null, null, null, '1', '0'), ('12', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'lalala', null, null, null, 'Saya', '0'), ('13', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'lelele', null, null, null, 'Saya', '0'), ('14', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'popopo', null, null, null, 'Saya', '0'), ('16', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'lolilo', '1', null, null, 'Saya', '1'), ('17', '28', '2015-02-04', '2015-02-05', '2015-02-06', null, 'Perihal', '2', '2', '1', 'Keterangan', '1', null, null, 'Junno', '1'), ('18', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '0'), ('19', '1', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'up', '1', null, null, 'Saya', '0'), ('20', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'up lagi', '1', null, null, 'Saya', '1'), ('21', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '0'), ('22', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('23', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('24', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('25', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, '20110902_blady_11.jpg', '', '1'), ('26', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'ahahahaha', '1', null, '20110902_blady_12.jpg', 'Saya', '0');
 COMMIT;
 
 -- ----------------------------
@@ -444,7 +445,7 @@ ALTER TABLE `t_surat_masuk` AUTO_INCREMENT=3;
 -- ----------------------------
 -- Auto increment value for `t_surat_msk`
 -- ----------------------------
-ALTER TABLE `t_surat_msk` AUTO_INCREMENT=6;
+ALTER TABLE `t_surat_msk` AUTO_INCREMENT=27;
 
 -- ----------------------------
 -- Auto increment value for `t_unit_tujuan`
