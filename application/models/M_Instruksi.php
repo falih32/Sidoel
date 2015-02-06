@@ -25,23 +25,23 @@ class M_Instruksi {
     function selectAll(){
         $this->db->select('*');
         $this->db->from('t_instruksi');
-        $this->db->order_by('date_modified', 'desc');
+        $this->db->order_by('ins_id', 'desc');
         return $this->db->get();
     }
     function selectById($id){
         $this->db->select('*');
         $this->db->from('t_instruksi');
-        $this->db->where('id_instruksi', $id);
+        $this->db->where('ins_id', $id);
         return $this->db->get();
     }
      
     function update($id, $data){
-        $this->db->where('id_instruksi', $id);
+        $this->db->where('ins_id', $id);
         $this->db->update('t_instruksi', $data);
     }
     
     function delete($id){
-        $this->db->where('id_instruksi', $id);
+        $this->db->where('ins_id', $id);
         $this->db->delete('t_instruksi');
     }
     
@@ -49,7 +49,7 @@ class M_Instruksi {
     function selectAllPaging($limit=array()){
         $this->db->select('*');
         $this->db->from('t_instruksi');
-        $this->db->order_by('date_modified', 'desc');
+        $this->db->order_by('ins_id', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();

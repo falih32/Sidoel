@@ -49,13 +49,13 @@ class SuratMasuk extends CI_Controller{
         $this->load->library('pagination');
         // konfigurasi tampilan paging
         $config = array('base_url' => site_url('suratmasuk/page/'),
-                        'total_rows' => count($this->M_SuratMasuk->selectAll()->result()),
+                        'total_rows' => count($this->M_SuratMasuk->selectAll()),
                         'per_page' => $perpage,);
         // inisialisasi pagination dan config
         $this->pagination->initialize($config);
         $limit['perpage'] = $perpage;
         $limit['offset'] = $offset;
-        $data['suratList'] = $this->M_SuratMasuk->selectAllPaging($limit)->result();
+        $data['suratList'] = $this->M_SuratMasuk->selectAllPaging($limit);
         $data['content'] = 'l_suratmasuk';
 		$data['title']= 'Daftar surat masuk';
 		$data['unit_tujuan'] = $this->M_UnitTujuan->selectAll();
@@ -71,20 +71,20 @@ class SuratMasuk extends CI_Controller{
     }
     
     function postVariabel(){
-	$data['nomor_surat']        = $this->input->post('nomor_surat');
-	$data['tgl_srt']            = $this->input->post('tgl_srt');
-	$data['tgl_srt_diterima']   = $this->input->post('tgl_srt_diterima');
-	$data['tgl_srt_dtlanjut']   = $this->input->post('tgl_srt_dtlanjut');
-	$data['tenggat_wkt']        = $this->input->post('tenggat_wkt');
-	$data['perihal']            = $this->input->post('perihal');
-	$data['jenis_surat']        = $this->input->post('jenis_surat');
-	$data['no_agenda']          = $this->input->post('no_agenda');
-	$data['unit_tujuan']        = $this->input->post('unit_tujuan');
-	$data['keterangan']         = $this->input->post('keterangan');
-	$data['edited_by']          = $this->session->userdata('id_user');
-	$data['status_terkirim']    = $this->input->post('status_terkirim');
-	$data['file']               = $this->input->post('file');
-	$data['pengirim']           = $this->input->post('pengirim');
+	$data['sms_nomor_surat']        = $this->input->post('sms_nomor_surat');
+	$data['sms_tgl_srt']            = $this->input->post('sms_tgl_srt');
+	$data['sms_tgl_srt_diterima']   = $this->input->post('sms_tgl_srt_diterima');
+	$data['sms_tgl_srt_dtlanjut']   = $this->input->post('sms_tgl_srt_dtlanjut');
+	$data['sms_tenggat_wkt']        = $this->input->post('sms_tenggat_wkt');
+	$data['sms_perihal']            = $this->input->post('sms_perihal');
+	$data['sms_jenis_surat']        = $this->input->post('sms_jenis_surat');
+	$data['sms_no_agenda']          = $this->input->post('sms_no_agenda');
+	$data['sms_unit_tujuan']        = $this->input->post('sms_unit_tujuan');
+	$data['sms_keterangan']         = $this->input->post('sms_keterangan');
+	$data['sms_edited_by']          = $this->session->userdata('usr_id');
+	$data['sms_status_terkirim']    = $this->input->post('sms_status_terkirim');
+	$data['sms_file']               = $this->input->post('sms_file');
+	$data['sms_pengirim']           = $this->input->post('sms_pengirim');
         
         return $data;
     }
@@ -109,20 +109,20 @@ class SuratMasuk extends CI_Controller{
     public function proses_tambah_smasuk(){      
         $data = $this->postVariabel();
 		$this->upload_config();
-		if($this->upload->do_upload('file_upload')){
+		if($this->upload->do_upload('sms_file')){
 			$updata = $this->upload->data();
-			$data['file'] = $updata['file_name'];
+			$data['sms_file'] = $updata['file_name'];
 		}
         $this->M_SuratMasuk->insert($data);
         redirect(site_url('SuratMasuk'));
     }
     
     public function edit_surat_masuk($id){
-        $data['dataSurat'] = $this->M_SuratMasuk->selectById($id)->row();
+        $data['dataSurat'] = $this->M_SuratMasuk->selectById($id);
 		$data['id'] = $id;
 		$data['mode'] = 'edit';
 		$data['content'] = 'f_suratmasuk';
-		$data['titile'] = 'Edit surat masuk';
+		$data['title'] = 'Edit surat masuk';
         $data['jenisList'] = $this->getAllJenisSurat();
         $data['unitList'] = $this->getAllUnitTujuan();
         $this->load->view('layout', $data);
@@ -130,6 +130,11 @@ class SuratMasuk extends CI_Controller{
     
     public function proses_edit_smasuk(){
         $data = $this->postVariabel();
+        $this->upload_config();
+		if($this->upload->do_upload('sms_file')){
+			$updata = $this->upload->data();
+			$data['sms_file'] = $updata['file_name'];
+		}
         $id_edit=$this->input->post('id');
         $this->M_SuratMasuk->update($id_edit, $data);
         redirect(site_url('SuratMasuk'));

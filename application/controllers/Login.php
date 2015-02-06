@@ -52,8 +52,8 @@ class Login extends CI_Controller{
         }else{
             if ($num_account > 0){
             // kalau ada set session
-                $array_items = array('id_user' => $temp_account->id,
-                                      'username' => $temp_account->username,
+                $array_items = array('id_user' => $temp_account->usr_id,
+                                      'username' => $temp_account->usr_username,
                                       'logged_in' => true);
                 $this->session->set_userdata($array_items);
                 $data['content'] = 'dashboard';

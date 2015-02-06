@@ -96,7 +96,16 @@ class CI_DB_mysqli_driver extends CI_DB {
 	protected $_escape_char = '`';
 
 	// --------------------------------------------------------------------
-
+        function free_db_resource()
+    {
+        while(mysqli_next_result($this->conn_id))
+        {
+            if($l_result = mysqli_store_result($this->conn_id))
+            {
+                mysqli_free_result($l_result);
+            }
+        }
+    }
 	/**
 	 * Database connection
 	 *

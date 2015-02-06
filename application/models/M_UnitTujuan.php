@@ -24,23 +24,23 @@ class M_UnitTujuan extends CI_Model{
     function selectAll(){
         $this->db->select('*');
         $this->db->from('t_unit_tujuan');
-        $this->db->order_by('id_unit', 'desc');
+        $this->db->order_by('utj_id', 'desc');
         return $this->db->get();
     }
     function selectById($id){
         $this->db->select('*');
         $this->db->from('t_unit_tujuan');
-        $this->db->where('id_unit', $id);
+        $this->db->where('utj_id', $id);
         return $this->db->get();
     }
      
     function update($id, $data){
-        $this->db->where('id_unit', $id);
+        $this->db->where('utj_id', $id);
         $this->db->update('t_unit_tujuan', $data);
     }
     
     function delete($id){
-        $this->db->where('id_unit', $id);
+        $this->db->where('utj_id', $id);
         $this->db->delete('t_unit_tujuan');
     }
     
@@ -48,7 +48,7 @@ class M_UnitTujuan extends CI_Model{
     function selectAllPaging($limit=array()){
         $this->db->select('*');
         $this->db->from('t_unit_tujuan');
-        $this->db->order_by('date_modified', 'desc');
+        $this->db->order_by('utj_id', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();

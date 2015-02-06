@@ -24,23 +24,23 @@ class M_JenisSMasuk extends CI_Model{
     function selectAll(){
         $this->db->select('*');
         $this->db->from('t_jenis_surat_masuk');
-        $this->db->order_by('id_jns', 'desc');
+        $this->db->order_by('jsm_id', 'desc');
         return $this->db->get();
     }
     function selectById($id){
         $this->db->select('*');
         $this->db->from('t_jenis_surat_masuk');
-        $this->db->where('id_jns', $id);
+        $this->db->where('jsm_id', $id);
         return $this->db->get();
     }
      
     function update($id, $data){
-        $this->db->where('id_jns', $id);
+        $this->db->where('jsm_id', $id);
         $this->db->update('t_jenis_surat_masuk', $data);
     }
     
     function delete($id){
-        $this->db->where('id_jns', $id);
+        $this->db->where('jsm_id', $id);
         $this->db->delete('t_jenis_surat_masuk');
     }
     
@@ -48,7 +48,7 @@ class M_JenisSMasuk extends CI_Model{
     function selectAllPaging($limit=array()){
         $this->db->select('*');
         $this->db->from('t_jenis_surat_masuk');
-        $this->db->order_by('id_jns', 'desc');
+        $this->db->order_by('jsm_id', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();
