@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-02-07 13:35:06
+Date: 2015-02-07 14:34:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -92,16 +92,40 @@ INSERT INTO `t_jenis_surat_masuk` VALUES ('1', 'Sangat Rahasia'), ('2', 'Rahasia
 COMMIT;
 
 -- ----------------------------
+-- Table structure for `t_log`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_log`;
+CREATE TABLE `t_log` (
+`log_id`  bigint(20) NOT NULL AUTO_INCREMENT ,
+`log_nama_tabel`  varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`log_aksi`  varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`log_tanggal`  datetime NULL DEFAULT NULL ,
+PRIMARY KEY (`log_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=1
+
+;
+
+-- ----------------------------
+-- Records of t_log
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for `t_role`
 -- ----------------------------
 DROP TABLE IF EXISTS `t_role`;
 CREATE TABLE `t_role` (
-`rle_id`  int(11) NOT NULL DEFAULT 0 ,
+`rle_id`  int(11) NOT NULL AUTO_INCREMENT ,
 `rle_role_name`  varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
 PRIMARY KEY (`rle_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=1
 
 ;
 
@@ -380,6 +404,16 @@ ALTER TABLE `t_instruksi` AUTO_INCREMENT=14;
 -- Auto increment value for `t_jenis_surat_masuk`
 -- ----------------------------
 ALTER TABLE `t_jenis_surat_masuk` AUTO_INCREMENT=3;
+
+-- ----------------------------
+-- Auto increment value for `t_log`
+-- ----------------------------
+ALTER TABLE `t_log` AUTO_INCREMENT=1;
+
+-- ----------------------------
+-- Auto increment value for `t_role`
+-- ----------------------------
+ALTER TABLE `t_role` AUTO_INCREMENT=1;
 
 -- ----------------------------
 -- Auto increment value for `t_surat_msk`
