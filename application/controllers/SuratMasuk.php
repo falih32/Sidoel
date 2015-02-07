@@ -81,7 +81,7 @@ class SuratMasuk extends CI_Controller{
 	$data['sms_no_agenda']          = $this->input->post('sms_no_agenda');
 	$data['sms_unit_tujuan']        = $this->input->post('sms_unit_tujuan');
 	$data['sms_keterangan']         = $this->input->post('sms_keterangan');
-	$data['sms_edited_by']          = $this->session->userdata('usr_id');
+	$data['sms_edited_by']          = $this->session->userdata('id_user');
 	$data['sms_status_terkirim']    = $this->input->post('sms_status_terkirim');
 	$data['sms_file']               = $this->input->post('sms_file');
 	$data['sms_pengirim']           = $this->input->post('sms_pengirim');

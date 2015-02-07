@@ -12,8 +12,8 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-        <li><a href="<?php echo base_url()."SuratMasuk/"; ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat Masuk</a></li>
-        <li><a href="#contact"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi</a></li>
+        <li><a href="<?php echo site_url("SuratMasuk"); ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat Masuk</a></li>
+        <li><a href="<?php echo site_url("Disposisi"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

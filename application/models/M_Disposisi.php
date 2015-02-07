@@ -19,6 +19,12 @@ class M_Disposisi extends CI_Model{
         $this->load->model('M_DisposisiInstruksi');
         $this->load->model('M_DisposisiUnitTerusan');
     }
+	
+	function autoInc(){
+		$ai = $this->db->query("SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'sidoel2' AND TABLE_NAME = 't_form_disposisi'")->row()->AUTO_INCREMENT;
+		$i = $ai-1;
+		return $i;
+	}
     
     function insert($data){
         $this->db->insert('t_form_disposisi', $data);

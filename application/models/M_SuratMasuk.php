@@ -77,7 +77,7 @@ class M_SuratMasuk extends CI_Model{
     }
     
     function delete($id){
-	$data['deleted'] = '1';
+		$data['sms_deleted'] = '1';
         $this->db->where('sms_id', $id);
         $this->db->update('t_surat_msk', $data);
     }
