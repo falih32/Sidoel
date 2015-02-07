@@ -34,7 +34,7 @@ class User extends CI_Controller{
 		}
 		else{
 			$data['title'] = 'SIDOEL';
-			$data['content'] = 'dashboard';
+			$data['content'] = 'f_user';
 			$this->load->view('layout', $data);
 		}		
     }

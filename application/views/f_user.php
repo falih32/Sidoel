@@ -1,32 +1,24 @@
 <?php
 	if($this->uri->segment(2) == "edit_surat_masuk"){
 		$mode = 'edit';
-		$nama = $dataSurat-> nama;
-		$username = $dataSurat-> username;
-		$NIP = $dataSurat-> NIP;
-		$NIP_diterima = $dataSurat-> NIP_diterima;
-		$NIP_dtlanjut = $dataSurat-> NIP_dtlanjut;
-		$tenggat_wkt = $dataSurat-> tenggat_wkt;
-		$perihal = $dataSurat-> perihal;
-		$jenis_surat = $dataSurat-> jenis_surat;
-		$agenda = $dataSurat-> no_agenda;
-		$unit_tujuan = $dataSurat-> unit_tujuan;
-		$keterangan = $dataSurat-> keterangan;
-	}
+		$nama = $userlist-> nama;
+		$username = $userlist-> username;
+		$NIP = $dataSuSrat-> NIP;
+		$nomorhp = $userlist-> nomorhp;
+                $level = $userlist->level;
+                $password = $userlist->password;
+                $konfirm = $userlist->konfirm;
+			}
 	else{
 		$mode = 'add';
 		$nama = "";
 		$username = "";
 		$NIP = "";
-		$NIP_diterima = "";
-		$NIP_dtlanjut = "";
-		$tenggat_wkt = "";
-		$perihal = "";
-		$jenis_surat = "";
-		$agenda = "";
-		$unit_tujuan = "";
-		$keterangan = "";
-	}
+		$nomorhp = "";
+                $level = "";
+                $password ="";
+                $konfirm ="";
+			}
 ?>
 <div class="container-fluid">
     <div class="row-fluid">
@@ -52,9 +44,10 @@
                     </div>
                     <div class="form-group">
                         <label for="NIP" class="col-sm-2 control-label text-left">NIP</label>
-                        <div class="col-sm-3">
+                        <div class="col-sm-10">
 	                        <input type="text" class="form-control" id="NIP" name="NIP" placeholder="Nomor Induk Pegawai" value="<?php echo $NIP; ?>">
                              </div>
+                    </div>
                <div class="form-group">
                         <label for="nomorhp" class="col-sm-2 control-label text-left">Nomor Handphone</label>
                         <div class="col-sm-10">
@@ -62,17 +55,25 @@
                         </div>
                     </div>
                        
-                        <div class="col-sm-3">
-	                   		 <p class="help-block">Level</p>       <input type="text" class="form-control" id="level" name="level" placeholder="User Level" value="<?php echo $level; ?>">
-                            <p class="help-block">Password</p>
+                    <div class="form-group">
+                        <label for="level" class="col-sm-2 control-label text-left">User Level</label>
+                        <div class="col-sm-10">
+	                   		 <input type="text" class="form-control" id="level" name="level" placeholder="User Level" value="<?php echo $level; ?>">
+                            
                         </div>
-                        
-                        <div class="col-sm-3">
-	                        <input type="text" class="form-control" id="password" name="password" placeholder="Password" value="<?php echo $password; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-2 control-label text-left">Password</label>
+                        <div class="col-sm-10">
+	                   		 <input type="text" class="form-control" id="password" name="password" placeholder="User Password" value="<?php echo $password; ?>">
+                            
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="konfirm" class="col-sm-2 control-label text-left">Konfirmasi Password</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="konfirm" name="konfirm" placeholder="Password" value="<?php echo $konfirm; ?>">
+	                   		 <input type="text" class="form-control" id="konfirm" name="konfirm" placeholder="User Password" value="<?php echo $konfirm; ?>">
+                            
                         </div>
                     </div>
                 </div>
