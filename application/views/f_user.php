@@ -1,23 +1,26 @@
 <?php
-	if($this->uri->segment(2) == "edit_surat_masuk"){
-		$mode = 'edit';
-		$nama = $userlist-> nama;
-		$username = $userlist-> username;
-		$NIP = $dataSuSrat-> NIP;
-		$nomorhp = $userlist-> nomorhp;
-                $level = $userlist->level;
-                $password = $userlist->password;
-                $konfirm = $userlist->konfirm;
+	if($mode == 'edit'){
+		
+		$usr_nama = $userlist-> usr_nama;
+		$usr_username = $userlist-> usr_username;
+		$usr_nip = $userlist-> usr_nip;
+		$usr_no_telp = $userlist-> usr_no_telp;
+                $usr_role = $userlist->usr_role;
+                $usr_password = $userlist->usr_password;
+                $konfirm = "";
+                $usr_email = $userlist->usr_email;
+                
 			}
 	else{
-		$mode = 'add';
-		$nama = "";
-		$username = "";
-		$NIP = "";
-		$nomorhp = "";
-                $level = "";
-                $password ="";
+		
+		$usr_nama = "";
+		$usr_username = "";
+		$usr_nip = "";
+		$usr_no_telp = "";
+                $usr_role = "";
+                $usr_password ="";
                 $konfirm ="";
+                $usr_email ="";
 			}
 ?>
 <div class="container-fluid">
@@ -27,52 +30,61 @@
                 <h3>Register User</h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."suratmasuk/proses_edit_smasuk";}else{echo base_url()."suratmasuk/proses_tambah_smasuk";}?>" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."user/proses_editUser";}else{echo base_url()."user/proses_addUser";}?>" class="form-horizontal" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="" class="col-sm-2 control-label text-left">Nama</label>
+                        <label for="usr_nama" class="col-sm-2 control-label text-left">Nama</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" value="<?php echo $nama; ?>">
+	                        <input type="text" class="form-control" id="usr_nama" name="usr_nama" placeholder="Nama" value="<?php echo $usr_nama; ?>">
                         </div>
                     </div>
               <div class="form-group">
-                        <label for="username" class="col-sm-2 control-label text-left">Username</label>
+                        <label for="usr_username" class="col-sm-2 control-label text-left">Username</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="username" name="username" placeholder="username" value="<?php echo $username; ?>">
+	                        <input type="text" class="form-control" id="usr_username" name="usr_username" placeholder="Username" value="<?php echo $usr_username; ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="NIP" class="col-sm-2 control-label text-left">NIP</label>
+                        <label for="usr_nip" class="col-sm-2 control-label text-left">NIP</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="NIP" name="NIP" placeholder="Nomor Induk Pegawai" value="<?php echo $NIP; ?>">
+	                        <input type="text" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>">
                              </div>
                     </div>
                <div class="form-group">
-                        <label for="nomorhp" class="col-sm-2 control-label text-left">Nomor Handphone</label>
+                        <label for="usr_nomorhp" class="col-sm-2 control-label text-left">Nomor Handphone</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="nomorhp" name="nomorhp" placeholder="Nomor Handphone" value="<?php echo $nomorhp; ?>">
+	                        <input type="text" class="form-control" id="nomorhp" name="usr_nomorhp" placeholder="Nomor Handphone" value="<?php echo $usr_no_telp; ?>">
                         </div>
                     </div>
-                       
-                    <div class="form-group">
-                        <label for="level" class="col-sm-2 control-label text-left">User Level</label>
+                 <div class="form-group">
+                        <label for="usr_email" class="col-sm-2 control-label text-left">E-mail</label>
                         <div class="col-sm-10">
-	                   		 <input type="text" class="form-control" id="level" name="level" placeholder="User Level" value="<?php echo $level; ?>">
+	                        <input type="text" class="form-control" id="usr_email" name="usr_email" placeholder="Alamat E-mail" value="<?php echo $usr_email; ?>">
+                        </div>
+                    </div>       
+                    <div class="form-group">
+                        <label for="usr_role" class="col-sm-2 control-label text-left">User Level</label>
+                        <div class="col-sm-10">
+	                   		 <select class="form-control" id="usr_role" name="usr_role">
+                            	<?php foreach ($rolelist as $row) {?>
+                            	<option value="<?php echo $row->rle_id; ?>" <?php if($row->rle_id == $usr_role){echo "selected";}?>><?php echo $row->rle_role_name; ?></option>
+                                <?php } ?>
+                            </select>
                             
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="col-sm-2 control-label text-left">Password</label>
+                        <label for="usr_password" class="col-sm-2 control-label text-left">Password</label>
                         <div class="col-sm-10">
-	                   		 <input type="text" class="form-control" id="password" name="password" placeholder="User Password" value="<?php echo $password; ?>">
+                            <input type="password" class="form-control" id="usr_password" name="usr_password" placeholder="User Password" value="<?php echo $usr_password; ?>">
                             
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="konfirm" class="col-sm-2 control-label text-left">Konfirmasi Password</label>
                         <div class="col-sm-10">
-	                   		 <input type="text" class="form-control" id="konfirm" name="konfirm" placeholder="User Password" value="<?php echo $konfirm; ?>">
+                            <input type="password" class="form-control" id="konfirm" name="konfirm" placeholder="User Password" value="<?php echo $konfirm; ?>">
                             
                         </div>
                     </div>

@@ -11,7 +11,7 @@
  *
  * @author Ganteng Imut
  */
-class M_Role {
+class M_Role extends CI_Model{
     function __construct(){
         parent::__construct();
     }
