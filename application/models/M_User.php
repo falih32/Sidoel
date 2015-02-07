@@ -22,7 +22,7 @@ class M_User extends CI_Model{
     }
     
     function delete($id){
-	$data['user_deleted'] = '1';
+	$data['usr_deleted'] = '1';
         $this->db->where('usr_id', $id);
         $this->db->update('t_user', $data);
     }
@@ -54,11 +54,17 @@ class M_User extends CI_Model{
         return $this->db->get();
     }
     
+    
+    function update($id, $data){
+        $this->db->where('usr_id', $id);
+        $this->db->update('t_user', $data);
+    }
     function selectAllPaging($limit=array()){
         $this->db->select('*');
         $this->db->from('t_user');
-        $this->db->join('t_role','t_role.rle_id=t_user.usr_role');
-        $this->db->order_by('usr_id', 'desc');
+        $this->db->join('t_role','t_role.rle_id=t_user.usr_role', 'left');
+         $this->db->where('usr_deleted', '0');
+        $this->db->order_by('usr_id', 'asc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();

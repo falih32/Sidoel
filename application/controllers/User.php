@@ -101,6 +101,13 @@ class User extends CI_Controller{
         $this->load->view('layout', $data);
     }
     
+    public function proses_editUser(){
+        $data = $this->postVariabel();
+        $id_edit=$this->input->post('id');
+        $this->M_User->update($id_edit, $data);
+        redirect(site_url('User'));
+    }
+ 
     public function deleteUser($id){
         $this->M_User->delete($id);
         redirect('User');

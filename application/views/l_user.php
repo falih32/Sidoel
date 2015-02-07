@@ -43,7 +43,7 @@ function confirmation() {
                             <div class="btn-group" role="group" aria-label="...">
                                 <a class="btn btn-danger confirmation" href="<?php echo base_url()."User/deleteUser/".$row->usr_id;?>" onclick="confirmation()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                 <a class="btn btn-info" href="<?php echo base_url()."User/editUser/".$row->usr_id; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                <a class="btn btn-success" href="#"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+                                
                             </div>
                         </div>
                         </form>
