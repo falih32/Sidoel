@@ -25,24 +25,29 @@ class Disposisi extends CI_Controller{
     }
     
 	public function page(){
-        // tentukan jumlah data per halaman
-		$offset = $this->uri->segment(3);
-		$offset = (empty($offset))?0:$offset;
-        $perpage = 10;
-        // load library pagination
-        $this->load->library('pagination');
-        // konfigurasi tampilan paging
-        $config = array('base_url' => site_url(base_url().'disposisi/page/'),
-                        'total_rows' => count($this->M_Disposisi->selectAll()->result()),
-                        'per_page' => $perpage,);
-        // inisialisasi pagination dan config
-        $this->pagination->initialize($config);
-        $limit['perpage'] = $perpage;
-        $limit['offset'] = $offset;
-        $data['suratList'] = $this->M_Disposisi->selectAllPaging($limit)->result();
-        $data['content'] = 'l_disposisi';
-		$data['title']= 'Daftar disposisi';
-        $this->load->view('layout',$data);
+		if($this->session->userdata('id_user') == ''){
+			$this->pageLogin();
+		}
+		else{
+			// tentukan jumlah data per halaman
+			$offset = $this->uri->segment(3);
+			$offset = (empty($offset))?0:$offset;
+			$perpage = 10;
+			// load library pagination
+			$this->load->library('pagination');
+			// konfigurasi tampilan paging
+			$config = array('base_url' => site_url('disposisi/page/'),
+							'total_rows' => count($this->M_Disposisi->selectAll()->result()),
+							'per_page' => $perpage);
+			// inisialisasi pagination dan config
+			$this->pagination->initialize($config);
+			$limit['perpage'] = $perpage;
+			$limit['offset'] = $offset;
+			$data['suratList'] = $this->M_Disposisi->selectAllPaging($limit)->result();
+			$data['content'] = 'l_disposisi';
+			$data['title']= 'Daftar disposisi';
+			$this->load->view('layout',$data);
+		}
 	}
 	
     public function getAllUnitTerusan(){       
@@ -72,13 +77,29 @@ class Disposisi extends CI_Controller{
 		return $this->input->post('utr_unitTerusan');
 	}
      
-    public function tambah_disposisi($id){
+    public function buat_disposisi($id){
         $data['content'] = 'f_disposisi';
 		$data['title'] = 'Tambah disposisi';
 		$data['mode'] = 'add';          
-		$data['id'] = $id;
+		$data['id_surat'] = $id;
 		$data['unitTerusan'] = $this->getAllUnitTerusan();
 		$data['instruksi'] = $this->getAllInstruksi();
+		$data['disposisiInstruksi'] = '';
+		$data['disposisiUnitTerusan'] = '';
+		$data['fds_id_parent'] = -99;
+        $this->load->view('layout',$data);
+    }
+	
+    public function tambah_disposisi($id){
+		$data['id_surat'] = $this->M_Disposisi->selectById($id)->row()->fds_id_surat;
+        $data['content'] = 'f_disposisi';
+		$data['title'] = 'Tambah disposisi';
+		$data['mode'] = 'add';
+		$data['unitTerusan'] = $this->getAllUnitTerusan();
+		$data['instruksi'] = $this->getAllInstruksi();
+		$data['disposisiInstruksi'] = '';
+		$data['disposisiUnitTerusan'] = '';
+		$data['fds_id_parent'] = $id;
         $this->load->view('layout',$data);
     }
 	
@@ -144,8 +165,9 @@ class Disposisi extends CI_Controller{
         redirect(site_url('Disposisi'));
     }
     
-    public function delete_smasuk($id){
-        $this->M_Disposisi->delete($id);
+    public function hapus_disposisi($id){
+		$data['deleted'] = 1;
+        $this->M_Disposisi->update($id, $data);
         redirect('Disposisi');
     }
     

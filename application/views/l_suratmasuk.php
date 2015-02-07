@@ -1,21 +1,20 @@
-<script type="text/javascript">
-<!--
-function confirmation() {
-	var answer = confirm("Hapus data?")
-	if (answer){
-		alert("Data akan dihapus!")
-	}
-	else{
-		die();
-	}
-}
-//-->
-</script>
 <div class="container-fluid">
     <div class="row-fluid">
     	<div class="panel panel-primary">
             <div class="panel-heading">
                 <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat masuk <a class="btn btn-success" href="<?php echo base_url()."SuratMasuk/";?>tambah_surat_masuk"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
+            </div>
+            <div class="panel-body" style="background: #CCC;">
+                <div class="col-md-6 col-md-offset-6 text-right">
+                	<form class="form-inline" method="post" action="<?php echo site_url('suratmasuk/search'); ?>">
+                    	<div class="form-group">
+                        	<input type="text" class="form-control" name="s_keyword" placeholder="Search">
+                        	<input type="date" class="form-control tgl" name="s_date_awal" placeholder="yyyy-mm-dd">
+                        	<input type="date" class="form-control tgl" name="s_date_akhir" placeholder="yyy-mm-dd">
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <table class="table table-responsive table-hover table-striped">
             	<thead>
@@ -44,9 +43,9 @@ function confirmation() {
 						<form>
                         <div class="form-group">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a class="btn btn-danger confirmation" href="<?php echo base_url()."suratmasuk/delete_smasuk/".$row->sms_id;?>" onclick="confirmation()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                <a class="btn btn-danger delete" data-confirm="Are you sure to delete this item?" href="<?php echo base_url()."suratmasuk/delete_smasuk/".$row->sms_id;?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                 <a class="btn btn-info" href="<?php echo base_url()."suratmasuk/edit_surat_masuk/".$row->sms_id; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                <a class="btn btn-success" href="<?php echo base_url()."disposisi/tambah_disposisi/".$row->sms_id; ?>"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+                                <a class="btn btn-success" href="<?php echo base_url()."disposisi/buat_disposisi/".$row->sms_id; ?>"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
                             </div>
                         </div>
                         </form>
@@ -59,3 +58,19 @@ function confirmation() {
         <center><nav><?php echo $this->pagination->create_links(); ?></nav></center>
     </div>
 </div>
+<script type="text/javascript">
+<!--
+var deleteLinks = document.querySelectorAll('.delete');
+for (var i = 0, length = deleteLinks.length; i < length; i++) {
+deleteLinks[i].addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var choice = confirm(this.getAttribute('data-confirm'));
+
+    if (choice) {
+        window.location.href = this.getAttribute('href');
+    }
+});
+}
+//-->
+</script>

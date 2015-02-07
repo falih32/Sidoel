@@ -34,6 +34,7 @@ class M_Disposisi extends CI_Model{
         //pake procedure
         $this->db->select('*');
         $this->db->from('t_form_disposisi');
+		$this->db->where('deleted', '0');
         $this->db->order_by('fds_id', 'desc');
         return $this->db->get();
     }
@@ -65,6 +66,9 @@ class M_Disposisi extends CI_Model{
         //pake procedure
         $this->db->select('*');
         $this->db->from('t_form_disposisi');
+		$this->db->join('t_surat_msk', 't_surat_msk.sms_id = t_form_disposisi.fds_id_surat', 'left');
+		$this->db->join('t_user', 't_user.usr_id = t_form_disposisi.fds_pengirim', 'left');
+		$this->db->where('deleted', '0');
         $this->db->order_by('fds_id', 'desc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);

@@ -34,32 +34,30 @@ class SuratMasuk extends CI_Controller{
     }
     
 	public function page(){
-              //load the surat model
-//                
-//              //call the model function to get the surat data
-//              $suratmasukresult = $this->M_SuratMasukl->selectAll();          
-//              $data['suratList'] = $suratmasukresult;
-//              //load the department_view
-//              $this->load->view('SuratMasuk',$data);
-        // tentukan jumlah data per halaman
-		$offset = $this->uri->segment(3);
-		$offset = (empty($offset))?0:$offset;
-        $perpage = 10;
-        // load library pagination
-        $this->load->library('pagination');
-        // konfigurasi tampilan paging
-        $config = array('base_url' => site_url('suratmasuk/page/'),
-                        'total_rows' => count($this->M_SuratMasuk->selectAll()),
-                        'per_page' => $perpage,);
-        // inisialisasi pagination dan config
-        $this->pagination->initialize($config);
-        $limit['perpage'] = $perpage;
-        $limit['offset'] = $offset;
-        $data['suratList'] = $this->M_SuratMasuk->selectAllPaging($limit);
-        $data['content'] = 'l_suratmasuk';
-		$data['title']= 'Daftar surat masuk';
-		$data['unit_tujuan'] = $this->M_UnitTujuan->selectAll();
-        $this->load->view('layout',$data);
+		if($this->session->userdata('id_user') == ''){
+			$this->pageLogin();
+		}
+		else{
+			// tentukan jumlah data per halaman
+			$offset = $this->uri->segment(3);
+			$offset = (empty($offset))?0:$offset;
+			$perpage = 10;
+			// load library pagination
+			$this->load->library('pagination');
+			// konfigurasi tampilan paging
+			$config = array('base_url' => site_url('suratmasuk/page/'),
+							'total_rows' => count($this->M_SuratMasuk->selectAll()),
+							'per_page' => $perpage,);
+			// inisialisasi pagination dan config
+			$this->pagination->initialize($config);
+			$limit['perpage'] = $perpage;
+			$limit['offset'] = $offset;
+			$data['suratList'] = $this->M_SuratMasuk->selectAllPaging($limit);
+			$data['content'] = 'l_suratmasuk';
+			$data['title']= 'Daftar surat masuk';
+			$data['unit_tujuan'] = $this->M_UnitTujuan->selectAll();
+			$this->load->view('layout',$data);
+		}
 	}
 	
     public function getAllUnitTujuan(){       
@@ -145,5 +143,19 @@ class SuratMasuk extends CI_Controller{
         redirect('SuratMasuk');
     }
     
+	public function search(){
+		$s_key = $this->input->post('s_key');
+		$s_date_awal = $this->input->post('s_date_awal');
+		$s_date_akhir = $this->input->post('s_date_akhir');
+		
+		$limit['perpage'] = 100;
+		$limit['offset'] = 0;
+		$data['suratList'] = $this->M_SuratMasuk->searchSuratMasuk($s_key, $s_date_awal, $s_date_akhir, $limit);
+		
+		$data['content'] = 'l_suratmasuk';
+		$data['title']= 'Daftar surat masuk';
+		$data['unit_tujuan'] = $this->M_UnitTujuan->selectAll();
+		$this->load->view('layout',$data);
+	}
 }
 ?>

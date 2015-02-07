@@ -133,15 +133,15 @@ class M_SuratMasuk extends CI_Model{
 	ON t_surat_msk.sms_unit_tujuan = t_unit_tujuan.utj_id
 	LEFT JOIN t_user
 	ON t_surat_msk.sms_pengirim = t_user.usr_id
-	WHERE t_surat_msk.sms_id like CONCAT('%',UPPER($search),'%')
-	OR UPPER(t_surat_msk.sms_nomor_surat) like CONCAT('%',UPPER($search),'%')
+	WHERE UPPER(t_surat_msk.sms_id) like CONCAT('%',UPPER('$search'),'%')
+	OR UPPER(t_surat_msk.sms_nomor_surat) like CONCAT('%',UPPER('$search'),'%')
 	OR UPPER(t_surat_msk.sms_perihal) like CONCAT('%',UPPER('$search'),'%')
-	OR UPPER(t_surat_msk.sms_no_agenda) like CONCAT('%',UPPER($search),'%')
+	OR UPPER(t_surat_msk.sms_no_agenda) like CONCAT('%',UPPER('$search'),'%')
 	OR UPPER(t_surat_msk.sms_keterangan) like CONCAT('%',UPPER('$search'),'%')
-	OR UPPER(t_user.usr_username) like CONCAT('%',UPPER($search),'%')
-	OR UPPER(t_surat_msk.sms_pengirim) like CONCAT('%',UPPER($search),'%')
-	OR t_surat_msk.sms_tgl_srt_diterima >= $dateAwal
-	OR t_surat_msk.sms_tgl_srt_dtlanjut <= $dateAkhir
+	OR UPPER(t_user.usr_username) like CONCAT('%',UPPER('$search'),'%')
+	OR UPPER(t_surat_msk.sms_pengirim) like CONCAT('%',UPPER('$search'),'%')
+	AND t_surat_msk.sms_tgl_srt_diterima >= '$dateAwal'
+	AND t_surat_msk.sms_tgl_srt_dtlanjut <= '$dateAkhir'
 	AND t_surat_msk.sms_deleted = '0'
         ORDER BY t_surat_msk.sms_id DESC
 	LIMIT $ofs, $lmt")->result();
