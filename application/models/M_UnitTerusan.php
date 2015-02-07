@@ -11,7 +11,7 @@
  *
  * @author Ganteng Imut
  */
-class M_UnitTerusan {
+class M_UnitTerusan extends CI_Model{
         //put your code here
     //put your code here
     function __construct(){

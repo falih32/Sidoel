@@ -11,7 +11,7 @@
  *
  * @author Ganteng Imut
  */
-class M_DisposisiInstruksi {
+class M_DisposisiInstruksi extends CI_Model{
     //put your code here
     function __construct(){
         parent::__construct();
@@ -33,6 +33,13 @@ class M_DisposisiInstruksi {
         $this->db->where('din_id', $id);
         return $this->db->get();
     }
+	
+	function selectByDisposisi($id){
+        $this->db->select('*');
+        $this->db->from('tr_disposisi_instruksi');
+        $this->db->where('din_id_disposisi', $id);
+        return $this->db->get();
+    }
      
     function update($id, $data){
         $this->db->where('din_id', $id);
@@ -44,6 +51,11 @@ class M_DisposisiInstruksi {
         $this->db->delete('tr_disposisi_instruksi');
     }
     
+    function deleteByDisposisi($id){
+        $this->db->where('din_id_disposisi', $id);
+        $this->db->delete('tr_disposisi_instruksi');
+    }
+	
     // function yang digunakan oleh paginationsample
     function selectAllPaging($limit=array()){
         $this->db->select('*');

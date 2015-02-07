@@ -11,7 +11,7 @@
  *
  * @author Ganteng Imut
  */
-class M_Instruksi {
+class M_Instruksi extends CI_Model{
     //put your code here
     //put your code here
     function __construct(){

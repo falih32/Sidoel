@@ -11,7 +11,7 @@
  *
  * @author Ganteng Imut
  */
-class M_DisposisiUnitTerusan {
+class M_DisposisiUnitTerusan extends CI_Model{
     function __construct(){
         parent::__construct();
     }
@@ -26,6 +26,14 @@ class M_DisposisiUnitTerusan {
         $this->db->order_by('dut_id', 'desc');
         return $this->db->get();
     }
+	
+	function selectByDisposisi($id){
+        $this->db->select('*');
+        $this->db->from('tr_disposisi_unit_terusan');
+        $this->db->where('dut_id_disposisi', $id);
+        return $this->db->get();
+    }
+	
     function selectById($id){
         $this->db->select('*');
         $this->db->from('tr_disposisi_unit_terusan');
@@ -43,6 +51,11 @@ class M_DisposisiUnitTerusan {
         $this->db->delete('tr_disposisi_unit_terusan');
     }
     
+    function deleteByDisposisi($id){
+        $this->db->where('dut_id_disposisi', $id);
+        $this->db->delete('tr_disposisi_unit_terusan');
+    }
+	
     // function yang digunakan oleh paginationsample
     function selectAllPaging($limit=array()){
         $this->db->select('*');
