@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
+Source Server         : Mysql_local
 Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : sidoel2
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-02-07 11:41:50
+Date: 2015-02-07 13:35:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -89,6 +89,26 @@ AUTO_INCREMENT=3
 -- ----------------------------
 BEGIN;
 INSERT INTO `t_jenis_surat_masuk` VALUES ('1', 'Sangat Rahasia'), ('2', 'Rahasia');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for `t_role`
+-- ----------------------------
+DROP TABLE IF EXISTS `t_role`;
+CREATE TABLE `t_role` (
+`rle_id`  int(11) NOT NULL DEFAULT 0 ,
+`rle_role_name`  varchar(200) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+PRIMARY KEY (`rle_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+
+;
+
+-- ----------------------------
+-- Records of t_role
+-- ----------------------------
+BEGIN;
 COMMIT;
 
 -- ----------------------------
@@ -185,10 +205,14 @@ CREATE TABLE `t_user` (
 `usr_id`  int(2) NOT NULL AUTO_INCREMENT ,
 `usr_username`  varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
 `usr_password`  varchar(75) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
-`usr_nama`  varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
-`usr_nip`  varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
-`usr_level`  enum('Super Admin','Admin') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
-PRIMARY KEY (`usr_id`)
+`usr_nama`  varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`usr_nip`  varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`usr_role`  int(11) NULL DEFAULT NULL ,
+`usr_no_telp`  varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`usr_email`  varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+PRIMARY KEY (`usr_id`),
+FOREIGN KEY (`usr_role`) REFERENCES `t_role` (`rle_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `user_role_fk` (`usr_role`) USING BTREE 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
@@ -200,7 +224,7 @@ AUTO_INCREMENT=3
 -- Records of t_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', 'Super Admin'), ('2', 'umum', 'adfab9c56b8b16d6c067f8d3cff8818e', 'Nur Akhwan', '19900326 201401 1 002', 'Admin');
+INSERT INTO `t_user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', null, null, null), ('2', 'umum', 'adfab9c56b8b16d6c067f8d3cff8818e', 'Nur Akhwan', '19900326 201401 1 002', null, null, null);
 COMMIT;
 
 -- ----------------------------
@@ -256,6 +280,91 @@ AUTO_INCREMENT=10
 BEGIN;
 INSERT INTO `tr_disposisi_unit_terusan` VALUES ('4', '34', '1');
 COMMIT;
+
+-- ----------------------------
+-- Procedure structure for `selectAllSuratMasuk`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `selectAllSuratMasuk`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectAllSuratMasuk`()
+BEGIN
+	SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
+			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
+			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat, 
+			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan, 
+			t_surat_msk.sms_edited_by, t_surat_msk.sms_status_terkirim, t_surat_msk.sms_file, 
+			t_surat_msk.sms_pengirim, t_surat_msk.sms_deleted,
+			t_unit_tujuan.utj_unit_tujuan, t_jenis_surat_masuk.jsm_nama_jenis, 
+			t_user.usr_userName		
+	FROM t_surat_msk
+	LEFT JOIN t_jenis_surat_masuk
+	ON t_surat_msk.sms_jenis_surat = t_jenis_surat_masuk.jsm_id
+	LEFT JOIN t_unit_tujuan
+	ON t_surat_msk.sms_unit_tujuan = t_unit_tujuan.utj_id
+	LEFT JOIN t_user
+	ON t_surat_msk.sms_unit_tujuan = t_user.usr_id
+	WHERE t_surat_msk.sms_deleted = '0'
+	ORDER BY t_surat_msk.sms_id;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `selectByIdSuratMasuk`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `selectByIdSuratMasuk`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectByIdSuratMasuk`(IN id BIGINT)
+BEGIN
+	SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
+			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
+			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat, 
+			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan, 
+			t_surat_msk.sms_edited_by, t_surat_msk.sms_status_terkirim, t_surat_msk.sms_file, 
+			t_surat_msk.sms_pengirim, t_surat_msk.sms_deleted,
+			t_unit_tujuan.utj_unit_tujuan, t_jenis_surat_masuk.jsm_nama_jenis, 
+			t_user.usr_userName		
+	FROM t_surat_msk
+	LEFT JOIN t_jenis_surat_masuk
+	ON t_surat_msk.sms_jenis_surat = t_jenis_surat_masuk.jsm_id
+	LEFT JOIN t_unit_tujuan
+	ON t_surat_msk.sms_unit_tujuan = t_unit_tujuan.utj_id
+	LEFT JOIN t_user
+	ON t_surat_msk.sms_unit_tujuan = t_user.usr_id
+	WHERE t_surat_msk.sms_id = id
+	AND t_surat_msk.sms_deleted = '0';
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for `selectPaginationSuratMasuk`
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `selectPaginationSuratMasuk`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectPaginationSuratMasuk`(IN perpage INTEGER, IN ofset INTEGER)
+BEGIN
+	SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
+			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
+			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat, 
+			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan, 
+			t_surat_msk.sms_edited_by, t_surat_msk.sms_status_terkirim, t_surat_msk.sms_file, 
+			t_surat_msk.sms_pengirim, t_surat_msk.sms_deleted,
+			t_unit_tujuan.utj_unit_tujuan, t_jenis_surat_masuk.jsm_nama_jenis, 
+			t_user.usr_userName		
+	FROM t_surat_msk
+	LEFT JOIN t_jenis_surat_masuk
+	ON t_surat_msk.sms_jenis_surat = t_jenis_surat_masuk.jsm_id
+	LEFT JOIN t_unit_tujuan
+	ON t_surat_msk.sms_unit_tujuan = t_unit_tujuan.utj_id
+	LEFT JOIN t_user
+	ON t_surat_msk.sms_unit_tujuan = t_user.usr_id
+	WHERE t_surat_msk.sms_deleted = '0'
+	ORDER BY t_surat_msk.sms_id
+	LIMIT perpage, ofset;
+END
+;;
+DELIMITER ;
 
 -- ----------------------------
 -- Auto increment value for `t_form_disposisi`
