@@ -29,21 +29,7 @@ class Disposisi extends CI_Controller{
 			$this->pageLogin();
 		}
 		else{
-			// tentukan jumlah data per halaman
-			$offset = $this->uri->segment(3);
-			$offset = (empty($offset))?0:$offset;
-			$perpage = 10;
-			// load library pagination
-			$this->load->library('pagination');
-			// konfigurasi tampilan paging
-			$config = array('base_url' => site_url('disposisi/page/'),
-							'total_rows' => count($this->M_Disposisi->selectAll()->result()),
-							'per_page' => $perpage);
-			// inisialisasi pagination dan config
-			$this->pagination->initialize($config);
-			$limit['perpage'] = $perpage;
-			$limit['offset'] = $offset;
-			$data['suratList'] = $this->M_Disposisi->selectAllPaging($limit)->result();
+			$data['suratList'] = $this->M_Disposisi->selectAllPaging()->result();
 			$data['content'] = 'l_disposisi';
 			$data['title']= 'Daftar disposisi';
 			$this->load->view('layout',$data);

@@ -6,26 +6,25 @@
             </div>
             <div class="panel-body" style="background: #CCC;">
                 <div class="col-md-6 col-md-offset-6 text-right">
-                	<form class="form-inline" method="post" action="<?php echo site_url('suratmasuk/search'); ?>">
+                	<form class="form-inline">
                     	<div class="form-group">
-                        	<input type="text" class="form-control" name="s_keyword" placeholder="Search">
-                        	<input type="date" class="form-control tgl" name="s_date_awal" placeholder="yyyy-mm-dd">
-                        	<input type="date" class="form-control tgl" name="s_date_akhir" placeholder="yyy-mm-dd">
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        	<input type="date" class="form-control tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
+                        	<input type="date" class="form-control tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">
                         </div>
                     </form>
                 </div>
             </div>
-            <table class="table table-responsive table-hover table-striped">
+            <table class="table table-responsive table-hover table-striped table-bordered">
             	<thead>
                 <tr>
                 	<th>No.Agenda</th>
                 	<th>No./ Tanggal Surat</th>
                 	<th>Pengirim / Perihal</th>
-                	<th>Tanggal Terima / Tenggat</th>
+                	<th>Tanggal Terima</th>
+                	<th>Tenggat</th>
                 	<th>Keterangan</th>
                 	<th>Terkirim</th>
-                	<th>Direkam / diubah terakhir oleh</th>
+                	<th>Diubah terakhir oleh</th>
                 	<th>Aksi</th>
                 </tr>
                 </thead>
@@ -35,7 +34,8 @@
                 	<td><?php echo $row->sms_no_agenda; ?></td>
                 	<td><?php if($row->sms_file != ''){echo "<a target='_blank' href='".base_url()."uploads/surat_masuk/".$row->sms_file."'>"; } echo $row->sms_nomor_surat."</a><br>".$row->sms_tgl_srt; ?></td>
                 	<td><?php echo $row->sms_pengirim."<br>".$row->sms_perihal; ?></td>
-                	<td><?php echo $row->sms_tgl_srt_diterima."<br>".$row->sms_tgl_srt_dtlanjut; ?></td>
+                	<td><?php echo $row->sms_tgl_srt_diterima; ?></td>
+					<td><?php echo $row->sms_tgl_srt_dtlanjut; ?></td>
                 	<td><?php echo $row->sms_keterangan; ?></td>
                 	<td><?php echo $row->sms_status_terkirim; ?></td>
                 	<td><?php echo $row->usr_userName; ?></td>
@@ -55,7 +55,6 @@
                 </tbody>
             </table>
         </div>
-        <center><nav><?php echo $this->pagination->create_links(); ?></nav></center>
     </div>
 </div>
 <script type="text/javascript">
@@ -73,4 +72,35 @@ deleteLinks[i].addEventListener('click', function(event) {
 });
 }
 //-->
+
+/* Custom filtering function which will search data in column four between two values */
+$.fn.dataTable.ext.search.push(
+    function( settings, colom, dataIndex ) {
+        var min = Date.parse($('#s_date_awal').val());
+        var max = Date.parse($('#s_date_akhir').val());
+        var awal = Date.parse(colom[3]) || 0;
+		var akhir = Date.parse(colom[3]) || 0;
+		 
+        if ( ( isNaN( min ) && isNaN( max ) ) ||
+             ( isNaN( min ) && akhir <= max ) ||
+             ( min <= awal   && isNaN( max ) ) ||
+             ( min <= awal   && akhir <= max ) )
+        {
+            return true;
+        }
+        return false;
+    }
+);
+$(document).ready(function() {
+	var table = $('.table').DataTable( {
+    	paging: true, ordering: true, search:true, scrollY: "300px"
+	} );
+	
+	// Event listener to the two range filtering inputs to redraw on input
+    $('#s_date_awal, #s_date_akhir').keyup( function() {
+        table.draw();
+    } );
+});
+
+
 </script>

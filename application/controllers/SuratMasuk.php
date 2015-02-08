@@ -38,21 +38,7 @@ class SuratMasuk extends CI_Controller{
 			$this->pageLogin();
 		}
 		else{
-			// tentukan jumlah data per halaman
-			$offset = $this->uri->segment(3);
-			$offset = (empty($offset))?0:$offset;
-			$perpage = 10;
-			// load library pagination
-			$this->load->library('pagination');
-			// konfigurasi tampilan paging
-			$config = array('base_url' => site_url('suratmasuk/page/'),
-							'total_rows' => count($this->M_SuratMasuk->selectAll()),
-							'per_page' => $perpage,);
-			// inisialisasi pagination dan config
-			$this->pagination->initialize($config);
-			$limit['perpage'] = $perpage;
-			$limit['offset'] = $offset;
-			$data['suratList'] = $this->M_SuratMasuk->selectAllPaging($limit);
+			$data['suratList'] = $this->M_SuratMasuk->selectAll();
 			$data['content'] = 'l_suratmasuk';
 			$data['title']= 'Daftar surat masuk';
 			$data['unit_tujuan'] = $this->M_UnitTujuan->selectAll();
