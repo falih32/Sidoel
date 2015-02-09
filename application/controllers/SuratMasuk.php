@@ -22,7 +22,6 @@ class SuratMasuk extends CI_Controller{
 		{
 			$this->load->helper('url');
 			$this->load->database();
-			//$this->load->library('input');
 			$this->load->model('M_SuratMasuk');
 			$this->load->model('M_UnitTujuan');
 			$this->load->model('M_JenisSMasuk');
@@ -30,22 +29,20 @@ class SuratMasuk extends CI_Controller{
     }
     
     public function index(){
-		$this->page();
+		$data['content'] = 'l_suratmasuk';
+		$data['title']= 'Daftar surat masuk';
+		$this->load->view('layout',$data);
     }
-    
-	public function page(){
-		if($this->session->userdata('id_user') == ''){
-			$this->pageLogin();
-		}
-		else{
-			$data['suratList'] = $this->M_SuratMasuk->selectAll();
-			$data['content'] = 'l_suratmasuk';
-			$data['title']= 'Daftar surat masuk';
-			$data['unit_tujuan'] = $this->M_UnitTujuan->selectAll();
-			$this->load->view('layout',$data);
-		}
-	}
 	
+	public function ajaxProcess(){
+		$min=$this->input->post('min');
+		$max=$this->input->post('max');
+		if($min == '') $min = '0000-00-00';
+		if($max == '') $max = '9999-12-31';
+		$result = $this->M_SuratMasuk->selectAjax($min, $max);
+		echo $result;
+	}
+    	
     public function getAllUnitTujuan(){       
 		return $this->M_UnitTujuan->selectAll()->result();
     }

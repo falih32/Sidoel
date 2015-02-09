@@ -15,12 +15,33 @@ class M_SuratMasuk extends CI_Model{
     //put your code here
     function __construct(){
         parent::__construct();
+		$this->load->library('Datatables');
     }
     
     function insert($data){
         $this->db->insert('t_surat_msk', $data);
     }
     
+	function selectAjax($min, $max){
+		$this->datatables
+			->select('sms_id, sms_no_agenda, sms_nomor_surat, sms_tgl_srt, sms_pengirim, sms_perihal, sms_tgl_srt_diterima, sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, usr_userName')
+			->from('t_surat_msk')
+			->where('sms_deleted','0')
+			->where('sms_tgl_srt_diterima >= ', $min)
+			->where('sms_tgl_srt_diterima <= ', $max)
+			->join('t_user', 't_surat_msk.sms_unit_tujuan = t_user.usr_id', 'left');
+		$this->datatables->edit_column('sms_aksi',"".
+			"<form>".
+			"<div class='form-group'>".
+			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href='suratmasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' href='suratmasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"<a class='btn btn-success' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
+			"</div>".
+			"</form>".
+		"",'sms_id');
+		return $this->datatables->generate();
+	}
+	
     function selectAll(){
         // ganti pake procedure
 //        $this->db->select('*');
@@ -141,12 +162,10 @@ class M_SuratMasuk extends CI_Model{
 	OR UPPER(t_user.usr_username) like CONCAT('%',UPPER('$search'),'%')
 	OR UPPER(t_surat_msk.sms_pengirim) like CONCAT('%',UPPER('$search'),'%')
 	AND t_surat_msk.sms_tgl_srt_diterima >= '$dateAwal'
-	AND t_surat_msk.sms_tgl_srt_diterima <= '$dateAkhir'
+	AND t_surat_msk.sms_tgl_srt_dtlanjut <= '$dateAkhir'
 	AND t_surat_msk.sms_deleted = '0'
         ORDER BY t_surat_msk.sms_id DESC
 	LIMIT $ofs, $lmt")->result();
-        return $data;
-        
-    
+        return $data;    
     }
 }

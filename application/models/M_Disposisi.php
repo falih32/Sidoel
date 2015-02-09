@@ -16,9 +16,31 @@ class M_Disposisi extends CI_Model{
     //put your code here
     function __construct(){
         parent::__construct();
+		$this->load->library('Datatables');
         $this->load->model('M_DisposisiInstruksi');
         $this->load->model('M_DisposisiUnitTerusan');
     }
+	
+	function selectAjax($min, $max){
+		$this->datatables
+			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, fds_catatan, fds_tgl_disposisi')
+			->from('t_form_disposisi')
+			->where('fds_deleted','0')
+			->where('fds_tgl_disposisi >= ', $min)
+			->where('fds_tgl_disposisi <= ', $max)
+			->join('t_user', 't_user.usr_id = t_form_disposisi.fds_pengirim', 'left')
+			->join('t_surat_msk', 't_surat_msk.sms_id = t_form_disposisi.fds_id_surat', 'left');
+		$this->datatables->edit_column('fds_aksi',"".
+			"<form>".
+			"<div class='form-group'>".
+			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href='disposisi/hapus_disposisi/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' href='disposisi/edit_disposisi/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"<a class='btn btn-success' href='disposisi/tambah_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
+			"</div>".
+			"</form>".
+		"",'fds_id');
+		return $this->datatables->generate();
+	}
 	
 	function autoInc(){
 		$ai = $this->db->query("SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'sidoel2' AND TABLE_NAME = 't_form_disposisi'")->row()->AUTO_INCREMENT;
