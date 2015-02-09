@@ -13,14 +13,16 @@ SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt,
 	LEFT JOIN t_unit_tujuan
 	ON t_surat_msk.sms_unit_tujuan = t_unit_tujuan.utj_id
 	LEFT JOIN t_user
-	ON t_surat_msk.sms_unit_tujuan = t_user.usr_id
-	WHERE t_surat_msk.sms_id like CONCAT('%','','%')
-	AND t_surat_msk.sms_nomor_surat like CONCAT('%','','%')
-	AND UPPER(t_surat_msk.sms_perihal) like CONCAT('%',UPPER('ket'),'%')
-	AND t_surat_msk.sms_no_agenda like CONCAT('%','','%')
-	AND UPPER(t_surat_msk.sms_keterangan) like CONCAT('%',UPPER('ket'),'%')
-	AND t_user.usr_username like CONCAT('%','','%')
-	AND t_surat_msk.sms_pengirim like CONCAT('%','','%')
+	ON t_surat_msk.sms_pengirim = t_user.usr_id
+	WHERE t_surat_msk.sms_id like CONCAT('%',UPPER('ket'),'%')
+	OR UPPER(t_surat_msk.sms_nomor_surat) like CONCAT('%',UPPER('ket'),'%')
+	OR UPPER(t_surat_msk.sms_perihal) like CONCAT('%',UPPER('ket'),'%')
+	OR UPPER(t_surat_msk.sms_no_agenda) like CONCAT('%',UPPER('ket'),'%')
+	OR UPPER(t_surat_msk.sms_keterangan) like CONCAT('%',UPPER('ket'),'%')
+	OR UPPER(t_user.usr_username) like CONCAT('%',UPPER('ket'),'%')
+	OR UPPER(t_surat_msk.sms_pengirim) like CONCAT('%',UPPER('ket'),'%')
+	AND t_surat_msk.sms_tgl_srt_diterima >=  2015-02-19
+	AND t_surat_msk.sms_tgl_srt_diterima <=  2015-02-19
 	AND t_surat_msk.sms_deleted = '0';
 	
 DELIMITER //

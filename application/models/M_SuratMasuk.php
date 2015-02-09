@@ -141,7 +141,7 @@ class M_SuratMasuk extends CI_Model{
 	OR UPPER(t_user.usr_username) like CONCAT('%',UPPER('$search'),'%')
 	OR UPPER(t_surat_msk.sms_pengirim) like CONCAT('%',UPPER('$search'),'%')
 	AND t_surat_msk.sms_tgl_srt_diterima >= '$dateAwal'
-	AND t_surat_msk.sms_tgl_srt_dtlanjut <= '$dateAkhir'
+	AND t_surat_msk.sms_tgl_srt_diterima <= '$dateAkhir'
 	AND t_surat_msk.sms_deleted = '0'
         ORDER BY t_surat_msk.sms_id DESC
 	LIMIT $ofs, $lmt")->result();
