@@ -7,11 +7,11 @@
  */
 
 /**
- * Description of UnitTujuan
+ * Description of UnitTerusan
  *
- * @author Ganteng Imut
+ * @author Andhika Firdaus
  */
-class UnitTujuan extends CI_Controller {
+class UnitTerusan extends CI_Controller {
     //put your code here
     
     public function __construct(){
@@ -24,7 +24,7 @@ class UnitTujuan extends CI_Controller {
 			$this->load->helper('url');
 			$this->load->database();
 			//$this->load->library('input');
-			$this->load->model('M_UnitTujuan');
+			$this->load->model('M_UnitTerusan');
 		}
     }
     
@@ -40,57 +40,57 @@ class UnitTujuan extends CI_Controller {
         // load library pagination
         $this->load->library('pagination');
         // konfigurasi tampilan paging
-        $config = array('base_url' => site_url('unittujuan/page/'),
-                        'total_rows' => count($this->M_UnitTujuan->selectAll()->result()),
+        $config = array('base_url' => site_url('UnitTerusan/page/'),
+                        'total_rows' => count($this->M_UnitTerusan->selectAll()->result()),
                         'per_page' => $perpage,);
         // inisialisasi pagination dan config
         $this->pagination->initialize($config);
         $limit['perpage'] = $perpage;
         $limit['offset'] = $offset;
-        $data['unitList'] = $this->M_UnitTujuan->selectAllPaging($limit)->result();
-        $data['content'] = 'l_unittujuan';
-	$data['title']= 'Unit surat masuk';
+        $data['unitList'] = $this->M_UnitTerusan->selectAllPaging($limit)->result();
+        $data['content'] = 'l_unitterusan';
+	$data['title']= 'Unit Terusan';
         $this->load->view('layout',$data);
     }
 	
     
     function postVariabel(){
-	//$data['utj_id']             = $this->input->post('utj_id');
-	$data['utj_unit_tujuan']    = $this->input->post('utj_unit_tujuan');
+	
+	$data['utr_nama_unit_trsn']    = $this->input->post('utr_nama_unit_trsn');
 
         return $data;
     }
     
-    public function tambah_unit_tujuan(){
-        $data['content'] = 'f_unittujuan';
-	$data['title']= 'Input Unit Tujuan';
+    public function tambah_unit_terusan(){
+        $data['content'] = 'f_unitterusan';
+	$data['title']= 'Input Unit Terusan';
         $data['mode']= 'add';
         $this->load->view('layout',$data);
     }
     public function proses_tambah_unit(){      
         $data = $this->postVariabel();
-        $this->M_UnitTujuan->insert($data);
-        redirect(site_url('UnitTujuan'));
+        $this->M_UnitTerusan->insert($data);
+        redirect(site_url('UnitTerusan'));
     }
     
-    public function edit_unit_tujuan($id){
-        $data['dataUnit'] = $this->M_UnitTujuan->selectById($id)->row();
+    public function edit_unit_terusan($id){
+        $data['dataUnit'] = $this->M_UnitTerusan->selectById($id)->row();
 	$data['id'] = $id;
 	$data['mode'] = 'edit';
-	$data['content'] = 'f_unittujuan';
-	$data['title'] = 'Edit Unit Tujuan';
+	$data['content'] = 'f_unitterusan';
+	$data['title'] = 'Edit Unit Terusan';
         $this->load->view('layout', $data);
     }
     
     public function proses_edit_unit(){
         $data = $this->postVariabel();
         $id_edit=$this->input->post('id');
-        $this->M_UnitTujuan->update($id_edit, $data);
-        redirect(site_url('UnitTujuan'));
+        $this->M_UnitTerusan->update($id_edit, $data);
+        redirect(site_url('UnitTerusan'));
     }
     
     public function delete_unit($id){
-        $this->M_UnitTujuan->delete($id);
-        redirect('UnitTujuan');
+        $this->M_UnitTerusan->delete($id);
+        redirect('UnitTerusan');
     }
 }

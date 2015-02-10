@@ -48,7 +48,7 @@ class M_UnitTujuan extends CI_Model{
     function selectAllPaging($limit=array()){
         $this->db->select('*');
         $this->db->from('t_unit_tujuan');
-        $this->db->order_by('utj_id', 'desc');
+        $this->db->order_by('utj_id', 'asc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();

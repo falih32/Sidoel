@@ -30,13 +30,16 @@ class User extends CI_Controller{
     }
         // melihat halam qqan login
     public function index(){
+        $this->page();
+    }
+    public function page(){
         if($this->session->userdata('id_user') == ''){
                 $this->pageLogin();
         }
         else{
             $offset = $this->uri->segment(3);
             $offset = (empty($offset))?0:$offset;
-            $perpage = 10;
+            $perpage =10;
             // load library pagination
             $this->load->library('pagination');
             // konfigurasi tampilan paging

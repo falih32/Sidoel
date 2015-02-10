@@ -49,7 +49,7 @@ class M_UnitTerusan extends CI_Model{
     function selectAllPaging($limit=array()){
         $this->db->select('*');
         $this->db->from('t_unit_terusan');
-        $this->db->order_by('utr_id', 'desc');
+        $this->db->order_by('utr_id', 'asc');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();

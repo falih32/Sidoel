@@ -27,7 +27,7 @@
     <div class="row-fluid">
     	<div class="panel panel-info">
             <div class="panel-heading">
-                <h3>Register User</h3>
+                <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
             <form method="post" action="<?php if($mode == 'edit'){echo base_url()."user/proses_editUser";}else{echo base_url()."user/proses_addUser";}?>" class="form-horizontal" enctype="multipart/form-data">
