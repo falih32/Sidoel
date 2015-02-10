@@ -21,21 +21,20 @@ class Disposisi extends CI_Controller{
     }
     
     public function index(){
-		$this->page();
-    }
-    
-	public function page(){
-		if($this->session->userdata('id_user') == ''){
-			$this->pageLogin();
-		}
-		else{
-			$data['suratList'] = $this->M_Disposisi->selectAllPaging()->result();
 			$data['content'] = 'l_disposisi';
 			$data['title']= 'Daftar disposisi';
 			$this->load->view('layout',$data);
-		}
+    }
+    
+	public function ajaxProcess(){
+		$min=$this->input->post('min');
+		$max=$this->input->post('max');
+		if($min == '') $min = '0000-00-00';
+		if($max == '') $max = '9999-12-31';
+		$result = $this->M_Disposisi->selectAjax($min, $max);
+		echo $result;
 	}
-	
+		
     public function getAllUnitTerusan(){       
 		return $this->M_UnitTerusan->selectAll()->result();
     }
