@@ -21,8 +21,23 @@ class Disposisi extends CI_Controller{
     }
     
     public function index(){
+			$data['mode'] = 'normal';
 			$data['content'] = 'l_disposisi';
-			$data['title']= 'Daftar disposisi';
+			$data['title'] = 'Daftar disposisi';
+			$this->load->view('layout',$data);
+    }
+	
+	public function disposisi_saya(){
+			$data['mode'] = 'byUser';
+			$data['content'] = 'l_disposisi';
+			$data['title'] = 'Daftar disposisi';
+			$this->load->view('layout',$data);
+    }
+	
+	public function tracking(){
+			$data['mode'] = 'bySurat';
+			$data['content'] = 'l_disposisi';
+			$data['title'] = 'Daftar disposisi';
 			$this->load->view('layout',$data);
     }
     
@@ -34,7 +49,25 @@ class Disposisi extends CI_Controller{
 		$result = $this->M_Disposisi->selectAjax($min, $max);
 		echo $result;
 	}
-		
+	
+	public function ajaxProcessByUser(){
+		$user = $this->session->userdata('id_user');
+		$min=$this->input->post('min');
+		$max=$this->input->post('max');
+		if($min == '') $min = '0000-00-00';
+		if($max == '') $max = '9999-12-31';
+		$result = $this->M_Disposisi->selectAjaxByUser($min, $max, $user);
+		echo $result;
+	}
+	
+	public function ajaxProcessBySurat($surat){
+		$min=$this->input->post('min');
+		$max=$this->input->post('max');
+		if($min == '') $min = '0000-00-00';
+		if($max == '') $max = '9999-12-31';
+		$result = $this->M_Disposisi->selectAjaxBySurat($min, $max, $surat);
+		echo $result;
+	}	
     public function getAllUnitTerusan(){       
 		return $this->M_UnitTerusan->selectAll()->result();
     }

@@ -11,8 +11,8 @@
 	                        <label for="s_date_awal">Tanggal disposisi : </label>
                         	<input type="date" class="form-control tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
                         	<input type="date" class="form-control tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">
-                            <button type="reset" class="form-control btn btn-default" id="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
-                            <button type="button" class="form-control btn btn-default" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
+                            <button type="reset" class="form-control btn btn-default" id="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            <button type="button" class="form-control btn btn-default" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                         </div>
                     </form>
                 </div>
@@ -60,7 +60,11 @@ $(document).ready(function() {
 		"processing":true, 
 		"serverSide": true,
 		"ajax":{
-			"url":"<?php echo site_url('disposisi/ajaxProcess');?>",
+			"url":"<?php 
+				if($mode == "normal"){echo site_url('disposisi/ajaxProcess');}
+				elseif($mode == "byUser"){echo site_url('disposisi/ajaxProcessByUser');}
+				elseif($mode == "bySurat"){echo site_url('disposisi/ajaxProcessBySurat/'.$this->uri->segment(3));}
+			?>",
 			"type":"POST",
 			"data":function ( d ) {
 				d.min = $('#s_date_awal').val();
