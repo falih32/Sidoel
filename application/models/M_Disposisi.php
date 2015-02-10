@@ -92,6 +92,9 @@ class M_Disposisi extends CI_Model{
 		return $i;
 	}
     
+    function setNotifZero($userId){
+        $this->db->query("update t_user set usr_total_read = '0' where usr_id = '$userId'");
+    }    
     function insert($data){
         $this->db->insert('t_form_disposisi', $data);
     }

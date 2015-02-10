@@ -21,6 +21,8 @@ class Disposisi extends CI_Controller{
     }
     
     public function index(){
+                        $s = $this->session->userdata('id_user');
+                        $this->M_Disposisi->setNotifZero($s);
 			$data['mode'] = 'normal';
 			$data['content'] = 'l_disposisi';
 			$data['title'] = 'Daftar disposisi';
@@ -39,6 +41,10 @@ class Disposisi extends CI_Controller{
 			$data['content'] = 'l_disposisi';
 			$data['title'] = 'Daftar disposisi';
 			$this->load->view('layout',$data);
+    }
+    
+    public function updateNotifZero(){
+        $this->M_disposisi->selectNotifZero($this->session->userdata('id_user'));
     }
     
 	public function ajaxProcess(){

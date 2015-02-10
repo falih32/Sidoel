@@ -6,6 +6,7 @@
     <title><?php echo $title; ?></title>
     <link href="<?php echo base_url();?>assets/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/sidoel.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/dataTables.responsive.css" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]>
@@ -60,7 +61,31 @@
 				dateFormat: 'yy-mm-dd'
 			});
 		});
-	});
+                
+                var counterValue = parseInt($('.notif').html());
+                
+                function removeAnimation(){
+                    setTimeout(function() {
+                        $('.notif').removeClass('animating')
+                    }, 1000);           
+                }
+
+                $('#dis-notif').on('click',function(){
+                 $.ajax({
+                    url: "Disposisi/updateNotifZero",
+                    type: "POST",
+                    data: { 'username': user, 'liked': '1' },                   
+                    success: function()
+                                {
+                                    alert("ok");                                    
+                                }
+                });
+                    counterValue = 0; // increment
+                    $('.notif').html(counterValue).addClass('animating'); // animate it
+                        removeAnimation(); // remove CSS animating class
+                });
+                
+                
 	// ]]>
 	</script>
 </head>
