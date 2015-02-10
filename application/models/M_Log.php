@@ -11,7 +11,7 @@
  *
  * @author Ganteng Imut
  */
-class M_Log {
+class M_Log extends CI_Model {
     //put your code here
     function __construct(){
         parent::__construct();

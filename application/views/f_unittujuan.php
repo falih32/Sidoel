@@ -27,7 +27,7 @@
                     </div>
               
                     </div>
-                </div>
+                
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
