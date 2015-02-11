@@ -1,33 +1,39 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of UnitTerusan
- *
- * @author Andhika Firdaus
- */
 class UnitTerusan extends CI_Controller {
     //put your code here
     
     public function __construct(){
         parent::__construct();
 		if($this->session->userdata('id_user') == ''){
+			$this->session->set_flashdata('message', array('msg' => 'Please <strong>login</strong> to continue','class' => 'danger'));
 			redirect('login');
 		}
 		else
 		{
 			$this->load->helper('url');
 			$this->load->database();
-			//$this->load->library('input');
+			$this->load->helper('date');
+			$this->load->model('M_Log');
 			$this->load->model('M_UnitTerusan');
 		}
     }
+	
+	function writeLog($tabel, $aksi){
+		$data['log_user'] = $this->session->userdata('id_user');
+		$data['log_nama_tabel'] = $tabel;
+		$data['log_aksi'] = $aksi;
+		$this->M_Log->insert($data);
+	}
     
+	function limitRole($limit){
+		$role = $this->session->userdata('id_role');
+		if($role > $limit){
+			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+			redirect('login');
+		}
+	}
+	
     public function index(){
 		$this->page();
     }
@@ -62,35 +68,43 @@ class UnitTerusan extends CI_Controller {
     }
     
     public function tambah_unit_terusan(){
+		$this->limitRole(1);
         $data['content'] = 'f_unitterusan';
-	$data['title']= 'Input Unit Terusan';
+		$data['title']= 'Input Unit Terusan';
         $data['mode']= 'add';
         $this->load->view('layout',$data);
     }
     public function proses_tambah_unit(){      
+		$this->limitRole(1);
         $data = $this->postVariabel();
         $this->M_UnitTerusan->insert($data);
+		$this->writeLog('Unit Terusan','Create');
         redirect(site_url('UnitTerusan'));
     }
     
     public function edit_unit_terusan($id){
+		$this->limitRole(1);
         $data['dataUnit'] = $this->M_UnitTerusan->selectById($id)->row();
-	$data['id'] = $id;
-	$data['mode'] = 'edit';
-	$data['content'] = 'f_unitterusan';
-	$data['title'] = 'Edit Unit Terusan';
+		$data['id'] = $id;
+		$data['mode'] = 'edit';
+		$data['content'] = 'f_unitterusan';
+		$data['title'] = 'Edit Unit Terusan';
         $this->load->view('layout', $data);
     }
     
     public function proses_edit_unit(){
+		$this->limitRole(1);
         $data = $this->postVariabel();
         $id_edit=$this->input->post('id');
         $this->M_UnitTerusan->update($id_edit, $data);
+		$this->writeLog('Unit Terusan','Update');
         redirect(site_url('UnitTerusan'));
     }
     
     public function delete_unit($id){
+		$this->limitRole(1);
         $this->M_UnitTerusan->delete($id);
+		$this->writeLog('Unit Terusan','Delete');
         redirect('UnitTerusan');
     }
 }

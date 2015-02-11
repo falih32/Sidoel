@@ -1,16 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of C_Login
- *
- * @author Ganteng Imut
- */
 class Login extends CI_Controller{
     
     function __construct(){
@@ -52,17 +41,18 @@ class Login extends CI_Controller{
         }else{
             if ($num_account > 0){
             // kalau ada set session
-                $array_items = array('id_user' => $temp_account->usr_id,
+                $array_items = array('id_user' => $temp_account->usr_id, 
                                       'username' => $temp_account->usr_username,
+									  'id_role' => $temp_account->usr_role,
                                       'logged_in' => true);
                 $this->session->set_userdata($array_items);
                 $data['content'] = 'dashboard';
-                $data['title'] = 'Dashboard';       
+                $data['title'] = 'Dashboard';    
+				$this->session->set_flashdata('message', array('msg' => 'Login berhasil','class' => 'success'));   
             }
             else {
             // kalau ga ada diredirect lagi ke halaman login
-                $this->session->set_flashdata('notification', 'Peringatan : Username dan Password
-                tidak cocok '.$username);
+			$this->session->set_flashdata('message', array('msg' => 'Login gagal','class' => 'danger'));
             }
 			redirect(site_url('login'));
         }

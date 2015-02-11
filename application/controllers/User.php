@@ -1,37 +1,44 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of User List
- *
- * @author Andhika Firdaus
- */
 class User extends CI_Controller{
     
     public function __construct(){
         parent::__construct();
 		if($this->session->userdata('id_user') == ''){
+			$this->session->set_flashdata('message', array('msg' => 'Please <strong>login</strong> to continue','class' => 'danger'));
 			redirect('login');
 		}
 		else
 		{
 			$this->load->helper('url');
 			$this->load->database();
-			//$this->load->library('input');
+			$this->load->helper('date');
+			$this->load->model('M_Log');
 			$this->load->model('M_User');
-                        $this->load->model('M_Role');
+			$this->load->model('M_Role');
 
 		}
     }
-        // melihat halam qqan login
+	
+	function writeLog($tabel, $aksi){
+		$data['log_user'] = $this->session->userdata('id_user');
+		$data['log_nama_tabel'] = $tabel;
+		$data['log_aksi'] = $aksi;
+		$this->M_Log->insert($data);
+	}
+	
+	function limitRole($limit){
+		$role = $this->session->userdata('id_role');
+		if($role > $limit){
+			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+			redirect('login');
+		}
+	}
+	
     public function index(){
         $this->page();
     }
+	
     public function page(){
         if($this->session->userdata('id_user') == ''){
                 $this->pageLogin();
@@ -60,14 +67,14 @@ class User extends CI_Controller{
     
     function postVariabel(){
 
-	$data['usr_username']           = $this->input->post('usr_username');
-	$data['usr_password']           = md5($this->input->post('usr_password'));
-	$data['usr_nama']               = $this->input->post('usr_nama');
-	$data['usr_nip']                = $this->input->post('usr_nip');
-	$data['usr_role']               = $this->input->post('usr_role');
-	$data['usr_no_telp']             = $this->input->post('usr_no_telp');
-	$data['usr_email']              = $this->input->post('usr_email');
-        
+		$data['usr_username']           = $this->input->post('usr_username');
+		$data['usr_password']           = md5($this->input->post('usr_password'));
+		$data['usr_nama']               = $this->input->post('usr_nama');
+		$data['usr_nip']                = $this->input->post('usr_nip');
+		$data['usr_role']               = $this->input->post('usr_role');
+		$data['usr_no_telp']             = $this->input->post('usr_no_telp');
+		$data['usr_email']              = $this->input->post('usr_email');
+			
         return $data;
     }
     public function viewList(){
@@ -78,6 +85,7 @@ class User extends CI_Controller{
     }
     
     public function addUser(){
+		$this->limitRole(1);
         $data['content'] = 'f_user';
         $data['title'] = 'Tambah Pengguna';
         $data['mode']= 'add';
@@ -85,15 +93,18 @@ class User extends CI_Controller{
         $this->load->view('layout', $data);
     }
         
-    public function proses_addUser(){      
+    public function proses_addUser(){     
+		$this->limitRole(1); 
         $data = $this->postVariabel();
 
         $this->M_User->insert($data);
+		$this->writeLog('User','Create');
         redirect(site_url('User'));
     }
     
     
     public function editUser($id){
+		$this->limitRole(1);
           
         $data['userlist'] = $this->M_User->selectById($id)->row();
         $data['id'] = $id;
@@ -105,14 +116,18 @@ class User extends CI_Controller{
     }
     
     public function proses_editUser(){
+		$this->limitRole(1);
         $data = $this->postVariabel();
         $id_edit=$this->input->post('id');
         $this->M_User->update($id_edit, $data);
+		$this->writeLog('User','Update');
         redirect(site_url('User'));
     }
  
     public function deleteUser($id){
+		$this->limitRole(1);
         $this->M_User->delete($id);
+		$this->writeLog('User','Delete');
         redirect('User');
     }
     public function getAllRole(){

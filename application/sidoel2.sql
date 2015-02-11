@@ -1,7 +1,7 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : Mysql_local
+Source Server         : local
 Source Server Version : 50621
 Source Host           : localhost:3306
 Source Database       : sidoel2
@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-02-11 00:03:22
+Date: 2015-02-11 20:51:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -36,7 +36,7 @@ INDEX `pengirim_fk` (`fds_pengirim`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=36
+AUTO_INCREMENT=45
 
 ;
 
@@ -44,7 +44,7 @@ AUTO_INCREMENT=36
 -- Records of t_form_disposisi
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_form_disposisi` VALUES ('1', '29', '1', 'cacat', '2015-02-07', null, null, '0'), ('2', '29', '1', 'ccc', '2015-02-07', null, null, '0'), ('3', '29', '1', 'kkkk', '2015-02-07', null, null, '0'), ('4', '32', '1', 'kaka', '2015-02-07', '1', null, '0'), ('5', '32', '1', 'cacat', '2015-02-07', '1', null, '0'), ('6', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('7', '32', '1', 'kakaka', '2015-02-07', '1', null, '0'), ('8', '32', '1', 'kaka', '2015-02-07', '1', null, '0'), ('9', '32', '1', 'kaaijciawc', '2015-02-07', '1', null, '0'), ('10', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('11', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('12', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('13', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('14', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('15', '32', '1', 'kakakakakakaka', '2015-02-07', '1', null, '0'), ('16', '32', '1', 'kakakakakakaka', '2015-02-07', '1', null, '0'), ('17', '32', '1', 'ahey', '2015-02-07', '1', null, '0'), ('18', '32', '1', 'ahey', '2015-02-07', '1', null, '0'), ('19', '32', '1', 'ahey', '2015-02-07', '1', null, '0'), ('20', '32', '1', 'acecaec', '2015-02-07', '1', null, '0'), ('21', '32', '', '', '0000-00-00', '1', null, '0'), ('22', '32', '1', 'kakaoe', '2015-02-07', '1', null, '0'), ('23', '32', '1', 'kakakakaodprptbsay', '2015-02-07', '1', null, '0'), ('24', '32', '1', 'cacat', '2015-02-07', '1', null, '0'), ('25', '32', '1', 'cacat', '2015-02-07', '1', null, '0'), ('26', '32', '1', 'cacataaaaaaaa', '2015-02-07', '1', null, '0'), ('27', '32', '1', 'aasadadafgagtnmishgr', '2015-02-07', '1', null, '0'), ('28', '32', '1', 'aaaaaaaaaaaaaaaaaaaaaaaaa', '2015-02-07', '1', null, '0'), ('29', '32', '1', 'lololol', '2015-02-07', '1', null, '0'), ('30', '32', '1', 'adasfa', '2015-02-07', '1', null, '0'), ('31', '32', '1', 'akakaka', '2015-02-07', '1', null, '0'), ('32', '32', '1', 'akakaka', '2015-02-07', '1', null, '0'), ('33', '32', '1', 'kakakaka', '2015-02-07', '1', null, '0'), ('34', '32', '1', 'kakakaka', '2015-02-07', '1', null, '0'), ('35', '32', '1', 'kakakakakuku', '2015-02-07', '1', null, '0');
+INSERT INTO `t_form_disposisi` VALUES ('1', '29', '1', 'cacat', '2015-02-07', null, null, '0'), ('2', '29', '1', 'ccc', '2015-02-07', null, null, '0'), ('3', '29', '1', 'kkkk', '2015-02-07', null, null, '0'), ('4', '32', '1', 'kaka', '2015-02-07', '1', null, '0'), ('5', '32', '1', 'cacat', '2015-02-07', '1', null, '0'), ('6', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('7', '32', '1', 'kakaka', '2015-02-07', '1', null, '0'), ('8', '32', '1', 'kaka', '2015-02-07', '1', null, '0'), ('9', '32', '1', 'kaaijciawc', '2015-02-07', '1', null, '0'), ('10', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('11', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('12', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('13', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('14', '32', '1', 'lll', '2015-02-07', '1', null, '0'), ('15', '32', '1', 'kakakakakakaka', '2015-02-07', '1', null, '0'), ('16', '32', '1', 'kakakakakakaka', '2015-02-07', '1', null, '0'), ('17', '32', '1', 'ahey', '2015-02-07', '1', null, '0'), ('18', '32', '1', 'ahey', '2015-02-07', '1', null, '0'), ('19', '32', '1', 'ahey', '2015-02-07', '1', null, '0'), ('20', '32', '1', 'acecaec', '2015-02-07', '1', null, '0'), ('21', '32', '', '', '0000-00-00', '1', null, '0'), ('22', '32', '1', 'kakaoe', '2015-02-07', '1', null, '0'), ('23', '32', '1', 'kakakakaodprptbsay', '2015-02-07', '1', null, '0'), ('24', '32', '1', 'cacat', '2015-02-07', '1', null, '0'), ('25', '32', '1', 'cacat', '2015-02-07', '1', null, '0'), ('26', '32', '1', 'cacataaaaaaaa', '2015-02-07', '1', null, '0'), ('27', '32', '1', 'aasadadafgagtnmishgr', '2015-02-07', '1', null, '0'), ('28', '32', '1', 'aaaaaaaaaaaaaaaaaaaaaaaaa', '2015-02-07', '1', null, '0'), ('29', '32', '1', 'lololol', '2015-02-07', '1', null, '0'), ('30', '32', '1', 'adasfa', '2015-02-07', '1', null, '0'), ('31', '32', '1', 'akakaka', '2015-02-07', '1', null, '0'), ('32', '32', '1', 'akakaka', '2015-02-07', '1', null, '0'), ('33', '32', '1', 'kakakaka', '2015-02-07', '1', null, '0'), ('34', '32', '1', 'kakakaka', '2015-02-07', '1', null, '0'), ('35', '32', '1', 'kakakakakuku', '2015-02-07', '1', null, '0'), ('36', '4', '1', 'pake tujuan gan', '2015-02-11', '1', '-99', '1'), ('37', '4', '1', 'pake tujuan gan', '2015-02-11', '1', '-99', '0'), ('38', '8', '1', 'testing', '2015-02-11', '1', '-99', '0'), ('39', '11', '1', 'tsting lagi', '2015-02-11', '1', '-99', '0'), ('40', '8', '1', 'pppp', '2015-02-11', '1', '-99', '0'), ('41', '28', '1', 'cekz', '2015-02-11', '1', '-99', '0'), ('42', '8', '1', 'kolek', '2015-02-11', '1', '-99', '0'), ('43', null, '1', 'wasu', '2015-02-11', '1', '-99', '0'), ('44', '4', '1', 'lodaya', '2015-02-11', '1', '-99', '0');
 COMMIT;
 
 -- ----------------------------
@@ -99,13 +99,13 @@ CREATE TABLE `t_log` (
 `log_id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `log_nama_tabel`  varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
 `log_aksi`  varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
-`log_tanggal`  datetime NULL DEFAULT NULL ,
-`log_user`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`log_tanggal`  datetime NOT NULL DEFAULT 'CURRENT_TIMESTAMP' ,
+`log_user`  int(255) NULL DEFAULT NULL ,
 PRIMARY KEY (`log_id`)
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=2
+AUTO_INCREMENT=9
 
 ;
 
@@ -113,7 +113,7 @@ AUTO_INCREMENT=2
 -- Records of t_log
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_log` VALUES ('1', 'Surat Masuk', 'Create', '2015-02-10 21:48:46', 'Junno');
+INSERT INTO `t_log` VALUES ('1', 'Surat Masuk', 'Create', '2015-02-10 21:48:46', '1'), ('2', 'Surat Masuk', 'Create', '0000-00-00 00:00:00', '1'), ('3', 'Surat Masuk', 'Update', '0000-00-00 00:00:00', '1'), ('4', 'Surat Masuk', 'Create', '2015-02-11 18:34:41', '1'), ('5', 'Surat Masuk', 'Create', '2015-02-11 18:39:14', '1'), ('6', 'Surat Masuk', 'Update', '2015-02-11 18:41:37', '1'), ('7', 'Disposisi', 'Create', '2015-02-11 19:50:38', '1'), ('8', 'Disposisi', 'Create', '2015-02-11 19:52:27', '1');
 COMMIT;
 
 -- ----------------------------
@@ -169,7 +169,7 @@ INDEX `user_fk` (`sms_edited_by`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=33
+AUTO_INCREMENT=37
 
 ;
 
@@ -177,7 +177,7 @@ AUTO_INCREMENT=33
 -- Records of t_surat_msk
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_surat_msk` VALUES ('2', 'BAAA1', '2015-02-24', '2015-01-28', '2015-01-29', '0', 'Testimoni', '2', '667', '2', 'jkkljhlkjhlkhl', '1', '', null, 'Junno', '0'), ('4', '123', '0000-00-00', '2015-02-19', '2015-02-04', '1', 'per', '1', '0', '2', 'ket', '1', '', '10666083_1485349628381481_913245954_a.jpg', 'Tantra', '0'), ('5', '1234', '0000-00-00', '2015-02-24', '2015-02-26', '0', 'hal', '2', '1', '2', 'ket', '1', '', null, 'Saya', '0'), ('6', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', '1', 'ket', null, null, null, 'Saya', '0'), ('7', '2', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'KET', null, '1', '1', 'asasa', null, null, null, 'Saya', '0'), ('8', '23', '2015-02-04', '2015-02-04', '2015-02-04', null, '', null, '0', null, '', null, null, null, '23', '0'), ('9', '23', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', null, 'frvvd', null, null, null, '23', '0'), ('10', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', '2', 'poiu', null, null, null, 'Saya', '0'), ('11', '1', '2015-02-04', '2015-02-04', '2015-02-04', '1', '', '2', '0', '2', '', null, null, null, '1', '0'), ('12', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'lalala', null, null, null, 'Saya', '0'), ('13', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'lelele', null, null, null, 'Saya', '0'), ('14', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'popopo', null, null, null, 'Saya', '0'), ('16', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'lolilo', '1', null, null, 'Saya', '1'), ('17', '28', '2015-02-04', '2015-02-05', '2015-02-06', null, 'Perihal', '2', '2', '1', 'Keterangan', '1', null, null, 'Junno', '0'), ('18', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '0'), ('19', '1', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'up', '1', null, null, 'Saya', '0'), ('20', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'up lagi', '1', null, null, 'Saya', '1'), ('21', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '0'), ('22', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('23', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('24', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('25', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, '20110902_blady_11.jpg', '', '1'), ('26', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'ahahahaha', '1', null, '20110902_blady_12.jpg', 'Saya', '0'), ('27', 'aaaa', '0000-00-00', '0000-00-00', '0000-00-00', '1', 'aaaa', '2', '0', '2', 'aaaaaaaaa', null, null, null, 'aaaa', '0'), ('28', '23', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', null, null, null, '', '0'), ('29', '12312312', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', null, null, 'akar.png', '', '0'), ('30', '312', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', null, null, 'akr.gif', '', '1'), ('31', '1', '2015-02-07', '2015-02-08', '2015-02-09', '1', 'Perihal', '1', '1', '2', 'Keterangan', null, null, null, 'Junno', '1'), ('32', '999', '2015-02-07', '2015-02-07', '2015-02-07', '1', 'Perihal', '2', '1', '2', 'kak', null, null, null, 'Junno', '0');
+INSERT INTO `t_surat_msk` VALUES ('2', 'BAAA1', '2015-02-24', '2015-01-28', '2015-01-29', '0', 'Testimoni', '2', '667', '2', 'jkkljhlkjhlkhl', '1', '', null, 'Junno', '0'), ('4', '123', '0000-00-00', '2015-02-19', '2015-02-04', '1', 'per', '1', '0', '2', 'keter', '1', null, null, 'Tantra', '0'), ('5', '1234', '0000-00-00', '2015-02-24', '2015-02-26', null, 'hal', '2', '1', '2', 'HHAHAHAHAHA', '1', null, null, 'Saya', '0'), ('6', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', '1', 'ket', null, null, null, 'Saya', '0'), ('7', '2', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'KET', null, '1', '1', 'asasa', null, null, null, 'Saya', '0'), ('8', '23', '2015-02-04', '2015-02-04', '2015-02-04', null, '', null, '0', null, '', null, null, null, '23', '0'), ('9', '23', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', null, 'frvvd', null, null, null, '23', '0'), ('10', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', null, '1', '2', 'poiu', null, null, null, 'Saya', '0'), ('11', '1', '2015-02-04', '2015-02-04', '2015-02-04', '1', '', '2', '0', '2', '', null, null, null, '1', '0'), ('12', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'lalala', null, null, null, 'Saya', '0'), ('13', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'lelele', null, null, null, 'Saya', '0'), ('14', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'popopo', null, null, null, 'Saya', '0'), ('16', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'lolilo', '1', null, null, 'Saya', '1'), ('17', '28', '2015-02-04', '2015-02-05', '2015-02-06', null, 'Perihal', '2', '2', '1', 'Keterangan', '1', null, null, 'Junno', '0'), ('18', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '0'), ('19', '1', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'up', '1', null, null, 'Saya', '0'), ('20', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '2', '1', '2', 'up lagi', '1', null, null, 'Saya', '1'), ('21', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '0'), ('22', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('23', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('24', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, null, '', '1'), ('25', '', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', '1', null, '20110902_blady_11.jpg', '', '1'), ('26', '1234', '2015-02-04', '2015-02-04', '2015-02-04', '1', 'hal', '1', '1', '1', 'ahahahaha', '1', null, '20110902_blady_12.jpg', 'Saya', '0'), ('27', 'aaaa', '0000-00-00', '0000-00-00', '0000-00-00', '1', 'aaaa', '2', '0', '2', 'aaaaaaaaa', null, null, null, 'aaaa', '0'), ('28', '23', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', null, null, null, '', '0'), ('29', '12312312', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', null, null, 'akar.png', '', '0'), ('30', '312', '0000-00-00', '0000-00-00', '0000-00-00', null, '', '2', '0', '2', '', null, null, 'akr.gif', '', '1'), ('31', '1', '2015-02-07', '2015-02-08', '2015-02-09', '1', 'Perihal', '1', '1', '2', 'Keterangan', null, null, null, 'Junno', '1'), ('32', '999', '2015-02-07', '2015-02-07', '2015-02-07', '1', 'Perihal', '2', '1', '2', 'kak', null, null, null, 'Junno', '0'), ('33', '280691', '2015-02-10', '2015-02-11', '2015-02-18', null, 'Coba log', '2', '1', '3', 'Mari kita coba log untuk surat masuk -edit', '1', null, null, 'Junno', '0'), ('34', '280691', '2015-02-10', '2015-02-11', '2015-02-18', null, 'Coba log', '2', '1', '3', 'Mari kita coba log untuk surat masuk', '1', null, 'joint1.png', 'Junno', '0'), ('35', '280691', '2015-02-10', '2015-02-11', '2015-02-18', null, 'Coba log', '2', '1', '3', 'Mari kita coba log untuk surat masuk', '1', null, 'joint2.png', 'Junno', '0'), ('36', '132', '2015-02-11', '2015-02-11', '2015-02-11', null, '', '2', '0', '3', '', '1', null, null, '2432354', '0');
 COMMIT;
 
 -- ----------------------------
@@ -253,7 +253,7 @@ AUTO_INCREMENT=6
 -- Records of t_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_user` VALUES ('1', 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 'Administrator', '19900326 201401 1 002', '3', '12132434', 'kek', '0', '0'), ('2', 'umum', 'adfab9c56b8b16d6c067f8d3cff8818e', 'Nur Akhwan', '19900326 201401 1 002', '2', '343242', 'trd', '0', '0'), ('3', 'tantra', 'c314409d89dea3fb1d2fc4b63e88b7fc', 'Juno', '123', '3', '7566', 'sdsd', '0', '0'), ('4', 'asasa', '4cfdc2e157eefe6facb983b1d557b3a1', 'ampas', '232324', '2', '879', 'sdsd', '0', '0'), ('5', 'bbbb', 'a37180db89d784b1b4979b2734aa7c5d', 'aaaa', '121212', '3', '25666', 'ganti', '0', '0');
+INSERT INTO `t_user` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', '1', '12132434', 'kek', '0', '0'), ('2', 'umum', '21232f297a57a5a743894a0e4a801fc3', 'Nur Akhwan', '19900326 201401 1 002', '2', '343242', 'trd', '0', '0'), ('3', 'tantra', 'c314409d89dea3fb1d2fc4b63e88b7fc', 'Juno', '123', '3', '7566', 'sdsd', '0', '0'), ('4', 'asasa', '4cfdc2e157eefe6facb983b1d557b3a1', 'ampas', '232324', '2', '879', 'sdsd', '0', '0'), ('5', 'bbbb', '21232f297a57a5a743894a0e4a801fc3', 'aaaa', '121212', '3', '25666', 'ganti', '0', '0');
 COMMIT;
 
 -- ----------------------------
@@ -272,7 +272,7 @@ INDEX `id_instruksi_fk` (`din_id_instruksi`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=31
+AUTO_INCREMENT=64
 
 ;
 
@@ -280,7 +280,7 @@ AUTO_INCREMENT=31
 -- Records of tr_disposisi_instruksi
 -- ----------------------------
 BEGIN;
-INSERT INTO `tr_disposisi_instruksi` VALUES ('28', '13', '10'), ('28', '12', '11'), ('29', '13', '12'), ('29', '6', '13'), (null, '13', '14'), (null, '11', '15'), ('32', '13', '17'), ('32', '4', '18'), ('33', '13', '19'), ('33', '6', '20'), ('34', '13', '21'), ('34', '6', '22');
+INSERT INTO `tr_disposisi_instruksi` VALUES ('28', '13', '10'), ('28', '12', '11'), ('29', '13', '12'), ('29', '6', '13'), (null, '13', '14'), (null, '11', '15'), ('32', '13', '17'), ('32', '4', '18'), ('33', '13', '19'), ('33', '6', '20'), ('34', '13', '21'), ('34', '6', '22'), ('36', '13', '31'), ('36', '8', '32'), ('37', '13', '37'), ('37', '8', '38'), ('38', '13', '43'), ('38', '7', '44'), ('39', '10', '48'), ('39', '5', '49'), ('40', '13', '52'), ('40', '9', '53'), ('41', '13', '55'), ('42', '13', '58'), ('42', '6', '59'), ('43', '13', '60'), ('43', '8', '61'), ('44', '13', '62'), ('44', '6', '63');
 COMMIT;
 
 -- ----------------------------
@@ -299,7 +299,7 @@ INDEX `id_disposisi_fk` (`dut_id_disposisi`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=10
+AUTO_INCREMENT=41
 
 ;
 
@@ -307,7 +307,7 @@ AUTO_INCREMENT=10
 -- Records of tr_disposisi_unit_terusan
 -- ----------------------------
 BEGIN;
-INSERT INTO `tr_disposisi_unit_terusan` VALUES ('4', '34', '1');
+INSERT INTO `tr_disposisi_unit_terusan` VALUES ('4', '34', '1'), ('6', '36', '10'), ('6', '37', '13'), ('4', '38', '18'), ('1', '38', '19'), ('3', '39', '23'), ('1', '39', '24'), ('6', '40', '27'), ('4', '40', '28'), ('6', '41', '31'), ('3', '41', '32'), ('6', '42', '35'), ('3', '42', '36'), ('6', '43', '37'), ('4', '43', '38'), ('6', '44', '39'), ('4', '44', '40');
 COMMIT;
 
 -- ----------------------------
@@ -315,7 +315,7 @@ COMMIT;
 -- ----------------------------
 DROP TABLE IF EXISTS `tr_disposisi_user`;
 CREATE TABLE `tr_disposisi_user` (
-`dus_id`  bigint(20) NOT NULL DEFAULT 0 ,
+`dus_id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `dus_disposisi`  bigint(20) NULL DEFAULT NULL ,
 `dus_user`  int(11) NULL DEFAULT NULL ,
 PRIMARY KEY (`dus_id`),
@@ -326,6 +326,7 @@ INDEX `tr_disposisi_user_fk2` (`dus_user`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=31
 
 ;
 
@@ -333,12 +334,13 @@ DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
 -- Records of tr_disposisi_user
 -- ----------------------------
 BEGIN;
+INSERT INTO `tr_disposisi_user` VALUES ('25', '42', '2'), ('26', '42', '4'), ('27', '43', '1'), ('28', '43', '3'), ('29', '44', '1'), ('30', '44', '4');
 COMMIT;
 
 -- ----------------------------
 -- Auto increment value for `t_form_disposisi`
 -- ----------------------------
-ALTER TABLE `t_form_disposisi` AUTO_INCREMENT=36;
+ALTER TABLE `t_form_disposisi` AUTO_INCREMENT=45;
 
 -- ----------------------------
 -- Auto increment value for `t_instruksi`
@@ -353,7 +355,7 @@ ALTER TABLE `t_jenis_surat_masuk` AUTO_INCREMENT=3;
 -- ----------------------------
 -- Auto increment value for `t_log`
 -- ----------------------------
-ALTER TABLE `t_log` AUTO_INCREMENT=2;
+ALTER TABLE `t_log` AUTO_INCREMENT=9;
 
 -- ----------------------------
 -- Auto increment value for `t_role`
@@ -363,7 +365,7 @@ ALTER TABLE `t_role` AUTO_INCREMENT=4;
 -- ----------------------------
 -- Auto increment value for `t_surat_msk`
 -- ----------------------------
-ALTER TABLE `t_surat_msk` AUTO_INCREMENT=33;
+ALTER TABLE `t_surat_msk` AUTO_INCREMENT=37;
 
 -- ----------------------------
 -- Auto increment value for `t_unit_terusan`
@@ -383,9 +385,14 @@ ALTER TABLE `t_user` AUTO_INCREMENT=6;
 -- ----------------------------
 -- Auto increment value for `tr_disposisi_instruksi`
 -- ----------------------------
-ALTER TABLE `tr_disposisi_instruksi` AUTO_INCREMENT=31;
+ALTER TABLE `tr_disposisi_instruksi` AUTO_INCREMENT=64;
 
 -- ----------------------------
 -- Auto increment value for `tr_disposisi_unit_terusan`
 -- ----------------------------
-ALTER TABLE `tr_disposisi_unit_terusan` AUTO_INCREMENT=10;
+ALTER TABLE `tr_disposisi_unit_terusan` AUTO_INCREMENT=41;
+
+-- ----------------------------
+-- Auto increment value for `tr_disposisi_user`
+-- ----------------------------
+ALTER TABLE `tr_disposisi_user` AUTO_INCREMENT=31;

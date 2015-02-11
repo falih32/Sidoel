@@ -29,20 +29,22 @@
                 <h3>Tambah Disposisi</h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."disposisi/proses_edit_disposisi";}else{echo base_url()."disposisi/proses_tambah_disposisi";}?>" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."disposisi/proses_edit_disposisi";}else{echo base_url()."disposisi/proses_tambah_disposisi";}?>" class="form-horizontal" role="form" data-toggle="validator" enctype="multipart/form-data">
             <input type="hidden" name="fds_id" value="<?php echo $fds_id; ?>">
             <input type="hidden" name="fds_id_parent" value="<?php echo $fds_id_parent; ?>">
+            <input type="hidden" name="fds_id_surat" value="<?php echo $fds_id_surat; ?>">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="fds_id_surat" class="col-sm-2 control-label text-left">No. Surat</label>
+                        <label for="dummy" class="col-sm-2 control-label text-left">ID Surat</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="fds_id_surat" name="fds_id_surat" placeholder="No. Surat" value="<?php echo $fds_id_surat; ?>" autofocus="">
+	                        <input type="text" class="form-control" id="dummy" name="dummy" placeholder="ID Surat" value="<?php echo $fds_id_surat; ?>" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="fds_kasubbag" class="col-sm-2 control-label text-left">Kasubag</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="fds_kasubbag" name="fds_kasubbag" placeholder="Kasubag" value="<?php echo $fds_kasubbag; ?>">
+	                        <input type="text" class="form-control" id="fds_kasubbag" name="fds_kasubbag" placeholder="Kasubag" value="<?php echo $fds_kasubbag; ?>" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -64,7 +66,8 @@
                     <div class="form-group">
                         <label for="fds_tgl_disposisi" class="col-sm-2 control-label text-left">Tgl. disposisi</label>
                         <div class="col-sm-3">
-	                        <input type="date" class="form-control tgl" id="fds_tgl_disposisi" name="fds_tgl_disposisi" placeholder="yyyy-mm-dd" value="<?php echo $fds_tgl_disposisi; ?>">
+	                        <input type="date" class="form-control tgl" id="fds_tgl_disposisi" name="fds_tgl_disposisi" placeholder="yyyy-mm-dd" value="<?php echo $fds_tgl_disposisi; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -98,7 +101,8 @@
                     <div class="form-group">
                         <label for="fds_catatan" class="col-sm-2 control-label text-left">Catatan</label>
                         <div class="col-sm-10">
-	                        <textarea class="form-control" id="fds_catatan" name="fds_catatan" placeholder="catatan"><?php echo $fds_catatan; ?></textarea>
+	                        <textarea class="form-control" id="fds_catatan" name="fds_catatan" placeholder="catatan" required><?php echo $fds_catatan; ?></textarea>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                 </div>

@@ -20,6 +20,7 @@ class M_Log extends CI_Model {
     function insert($data){
         $this->db->insert('t_log', $data);
     }
+	
     
     function selectAll(){
         $this->db->select('*');

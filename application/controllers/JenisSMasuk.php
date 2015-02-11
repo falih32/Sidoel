@@ -1,21 +1,11 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of JenisSMasuk
- *
- * @author Ganteng Imut
- */
 class JenisSMasuk {
     //put your code here
     public function __construct(){
         parent::__construct();
 		if($this->session->userdata('id_user') == ''){
+			$this->session->set_flashdata('message', array('msg' => 'Please <strong>login</strong> to continue','class' => 'danger'));
 			redirect('login');
 		}
 		else

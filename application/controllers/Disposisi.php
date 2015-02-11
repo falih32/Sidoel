@@ -5,12 +5,15 @@ class Disposisi extends CI_Controller{
     public function __construct(){
         parent::__construct();
 		if($this->session->userdata('id_user') == ''){
+			$this->session->set_flashdata('message', array('msg' => 'Silahkan <strong>login</strong> untuk melanjutkan','class' => 'danger'));
 			redirect('login');
 		}
 		else
 		{
 			$this->load->helper('url');
 			$this->load->database();
+			$this->load->helper('date');
+			$this->load->model('M_Log');
 			$this->load->model('M_SuratMasuk');
 			$this->load->model('M_User');
 			$this->load->model('M_UnitTerusan');
@@ -21,28 +24,45 @@ class Disposisi extends CI_Controller{
 			$this->load->model('M_DisposisiUser');
 		}
     }
+	
+	function limitRole($limit){
+		$role = $this->session->userdata('id_role');
+		if($role > $limit){
+			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+			redirect('login');
+		}
+	}
+	
+	function writeLog($tabel, $aksi){
+		$data['log_user'] = $this->session->userdata('id_user');
+		$data['log_nama_tabel'] = $tabel;
+		$data['log_aksi'] = $aksi;
+		$this->M_Log->insert($data);
+	}
     
     public function index(){
-                        $s = $this->session->userdata('id_user');
-                        $this->M_Disposisi->setNotifZero($s);
-			$data['mode'] = 'normal';
-			$data['content'] = 'l_disposisi';
-			$data['title'] = 'Daftar disposisi';
-			$this->load->view('layout',$data);
+		$this->limitRole(2);
+		$s = $this->session->userdata('id_user');
+		$this->M_Disposisi->setNotifZero($s);
+		$data['mode'] = 'normal';
+		$data['content'] = 'l_disposisi';
+		$data['title'] = 'Daftar disposisi';
+		$this->load->view('layout',$data);
     }
 	
 	public function disposisi_saya(){
-			$data['mode'] = 'byUser';
-			$data['content'] = 'l_disposisi';
-			$data['title'] = 'Daftar disposisi';
-			$this->load->view('layout',$data);
+		$this->limitRole(3);
+		$data['mode'] = 'byUser';
+		$data['content'] = 'l_disposisi';
+		$data['title'] = 'Daftar disposisi';
+		$this->load->view('layout',$data);
     }
 	
 	public function tracking(){
-			$data['mode'] = 'bySurat';
-			$data['content'] = 'l_disposisi';
-			$data['title'] = 'Daftar disposisi';
-			$this->load->view('layout',$data);
+		$data['mode'] = 'bySurat';
+		$data['content'] = 'l_disposisi';
+		$data['title'] = 'Daftar disposisi';
+		$this->load->view('layout',$data);
     }
     
     public function updateNotifZero(){
@@ -104,6 +124,7 @@ class Disposisi extends CI_Controller{
 	}
      
     public function buat_disposisi($id){
+		$this->limitRole(2);
         $data['content'] = 'f_disposisi';
 		$data['title'] = 'Tambah disposisi';
 		$data['mode'] = 'add';          
@@ -119,6 +140,7 @@ class Disposisi extends CI_Controller{
     }
 	
     public function tambah_disposisi($id){
+		$this->limitRole(3);
 		$data['id_surat'] = $this->M_Disposisi->selectById($id)->row()->fds_id_surat;
         $data['content'] = 'f_disposisi';
 		$data['title'] = 'Tambah disposisi';
@@ -134,6 +156,7 @@ class Disposisi extends CI_Controller{
     }
 	
     public function proses_tambah_disposisi(){      
+		$this->limitRole(3);
         $data1 = $this->postVariabel_fds();
         $this->M_Disposisi->insert($data1);
 		$AI = $this->M_Disposisi->autoInc();
@@ -159,10 +182,13 @@ class Disposisi extends CI_Controller{
 	        $this->M_DisposisiUser->insert($in3);
 		}
         
+		$this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+		$this->writeLog('Disposisi','Create');
 		redirect(site_url('Disposisi'));
     }
     
     public function edit_disposisi($id){
+		$this->limitRole(3);
         $data['dataDisposisi'] = $this->M_Disposisi->selectById($id)->row();
 		$data['id'] = $id;
 		$data['mode'] = 'edit';
@@ -178,6 +204,7 @@ class Disposisi extends CI_Controller{
     }
     
     public function proses_edit_disposisi(){
+		$this->limitRole(2);
 		$id = $this->input->post('fds_id');
 		
         $data1 = $this->postVariabel_fds();
@@ -206,15 +233,20 @@ class Disposisi extends CI_Controller{
 		$data4 = $this->input->post('tr_disposisi_user');
 		foreach($data4 as $row){
 			$in4['dus_user'] = $row;
-			$in4['dus_disposisi'] = $AI;
+			$in4['dus_disposisi'] = $id;
 	        $this->M_DisposisiUser->insert($in4);
 		}
+		$this->session->set_flashdata('message', array('msg' => 'Data telah diperbarui','class' => 'success'));
+		$this->writeLog('Disposisi','Update');
         redirect(site_url('Disposisi'));
     }
     
     public function hapus_disposisi($id){
+		$this->limitRole(2);
 		$data['fds_deleted'] = 1;
         $this->M_Disposisi->update($id, $data);
+		$this->session->set_flashdata('message', array('msg' => 'Data telah dihapus','class' => 'warning'));
+		$this->writeLog('Disposisi','Delete');
         redirect('Disposisi');
     }
     

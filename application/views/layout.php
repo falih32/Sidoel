@@ -20,6 +20,7 @@
     <script src="<?php echo base_url();?>assets/js/dataTables.responsive.js"></script>
     <script src="<?php echo base_url();?>assets/js/dataTables.bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/validator.min.js"></script>
 	<script type="text/javascript">
 	// <![CDATA[
 	$(document).ready(function () {

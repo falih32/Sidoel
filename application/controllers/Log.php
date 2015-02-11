@@ -1,22 +1,12 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Log
- *
- * @author Ganteng Imut
- */
 class Log extends CI_Controller{
     //put your code here
     
     public function __construct(){
         parent::__construct();
 		if($this->session->userdata('id_user') == ''){
+			$this->session->set_flashdata('message', array('msg' => 'Please <strong>login</strong> to continue','class' => 'danger'));
 			redirect('login');
 		}
 		else
@@ -49,48 +39,8 @@ class Log extends CI_Controller{
         $limit['offset'] = $offset;
         $data['logList'] = $this->M_Log->selectAllPaging($limit)->result();
         $data['content'] = 'log';
-	$data['title']= 'Log';
+		$data['title']= 'Log';
         $this->load->view('layout',$data);
-    }
-
-    function postVariabel(){
-	
-	$data['utr_nama_unit_trsn']    = $this->input->post('utr_nama_unit_trsn');
-
-        return $data;
-    }
-    
-    public function tambah_unit_terusan(){
-        $data['content'] = 'f_unitterusan';
-	$data['title']= 'Input Unit Terusan';
-        $data['mode']= 'add';
-        $this->load->view('layout',$data);
-    }
-    public function proses_tambah_unit(){      
-        $data = $this->postVariabel();
-        $this->M_UnitTerusan->insert($data);
-        redirect(site_url('UnitTerusan'));
-    }
-    
-    public function edit_unit_terusan($id){
-        $data['dataUnit'] = $this->M_UnitTerusan->selectById($id)->row();
-	$data['id'] = $id;
-	$data['mode'] = 'edit';
-	$data['content'] = 'f_unitterusan';
-	$data['title'] = 'Edit Unit Terusan';
-        $this->load->view('layout', $data);
-    }
-    
-    public function proses_edit_unit(){
-        $data = $this->postVariabel();
-        $id_edit=$this->input->post('id');
-        $this->M_UnitTerusan->update($id_edit, $data);
-        redirect(site_url('UnitTerusan'));
-    }
-    
-    public function delete_unit($id){
-        $this->M_UnitTerusan->delete($id);
-        redirect('UnitTerusan');
     }
 }
 

@@ -1,6 +1,7 @@
 <?php 
     $usr_id_notif = $this->session->userdata('id_user');
-    $notifDisposisi	= $this->db->query("select usr_total_read from t_user where usr_id = '$usr_id_notif'")->row()->usr_total_read;
+    if($usr_id_notif){$notifDisposisi = $this->db->query("select usr_total_read from t_user where usr_id = '$usr_id_notif'")->row()->usr_total_read;}
+	else{$notifDisposisi = 0;}
  ?>
 <?php $onpage= $this->uri->segment(1); ?>
 <nav class="navbar navbar-inverse">
@@ -35,3 +36,13 @@
     </div><!--/.nav-collapse -->
   </div>
 </nav>
+<?php if($this->session->flashdata('message') != ""){ $msg=$this->session->flashdata('message');?>
+<div class="container-fluid">
+    <div class="row-fluid">
+    	<div class="alert alert-<?php echo $msg['class']?> alert-dismissible" role="alert">
+        <?php echo $msg['msg']; ?>
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        </div>
+    </div>
+</div>
+<?php } ?>
