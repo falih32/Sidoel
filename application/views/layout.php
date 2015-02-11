@@ -62,30 +62,19 @@
 			});
 		});
                 
-                var counterValue = parseInt($('.notif').html());
                 
-                function removeAnimation(){
-                    setTimeout(function() {
-                        $('.notif').removeClass('animating')
-                    }, 1000);           
-                }
-
-                $('#dis-notif').on('click',function(){
-                 $.ajax({
-                    url: "Disposisi/updateNotifZero",
-                    type: "POST",
-                    data: { 'username': user, 'liked': '1' },                   
-                    success: function()
-                                {
-                                    alert("ok");                                    
-                                }
-                });
-                    counterValue = 0; // increment
-                    $('.notif').html(counterValue).addClass('animating'); // animate it
-                        removeAnimation(); // remove CSS animating class
-                });
-                
-                
+				function reloadNotif(){
+					jQuery.getJSON("<?php echo site_url('notif'); ?>",{
+						format: "json",
+						dataType: 'json',
+						contentType: "application/json; charset=utf-8"},
+						function(result){
+							document.getElementById("notif").textContent=result;
+					});
+				}
+				reloadNotif();
+				setInterval(reloadNotif, 10*1000);
+	});
 	// ]]>
 	</script>
 </head>

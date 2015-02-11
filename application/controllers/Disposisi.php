@@ -12,11 +12,13 @@ class Disposisi extends CI_Controller{
 			$this->load->helper('url');
 			$this->load->database();
 			$this->load->model('M_SuratMasuk');
+			$this->load->model('M_User');
 			$this->load->model('M_UnitTerusan');
 			$this->load->model('M_Instruksi');
 			$this->load->model('M_Disposisi');
 			$this->load->model('M_DisposisiInstruksi');
 			$this->load->model('M_DisposisiUnitTerusan');
+			$this->load->model('M_DisposisiUser');
 		}
     }
     
@@ -110,6 +112,8 @@ class Disposisi extends CI_Controller{
 		$data['instruksi'] = $this->getAllInstruksi();
 		$data['disposisiInstruksi'] = '';
 		$data['disposisiUnitTerusan'] = '';
+		$data['userList'] = $this->M_User->selectAll()->result();
+		$data['disposisiUser'] = '';
 		$data['fds_id_parent'] = -99;
         $this->load->view('layout',$data);
     }
@@ -123,6 +127,8 @@ class Disposisi extends CI_Controller{
 		$data['instruksi'] = $this->getAllInstruksi();
 		$data['disposisiInstruksi'] = '';
 		$data['disposisiUnitTerusan'] = '';
+		$data['userList'] = $this->M_User->selectAll()->result();
+		$data['disposisiUser'] = '';
 		$data['fds_id_parent'] = $id;
         $this->load->view('layout',$data);
     }
@@ -145,6 +151,13 @@ class Disposisi extends CI_Controller{
 			$in2['dut_id_disposisi'] = $AI;
 	        $this->M_DisposisiUnitTerusan->insert($in2);
 		}
+		
+		$data4 = $this->input->post('tr_disposisi_user');
+		foreach($data4 as $row){
+			$in3['dus_user'] = $row;
+			$in3['dus_disposisi'] = $AI;
+	        $this->M_DisposisiUser->insert($in3);
+		}
         
 		redirect(site_url('Disposisi'));
     }
@@ -154,9 +167,11 @@ class Disposisi extends CI_Controller{
 		$data['id'] = $id;
 		$data['mode'] = 'edit';
 		$data['content'] = 'f_disposisi';
-		$data['titile'] = 'Edit disposisi';
+		$data['title'] = 'Edit disposisi';
 		$data['disposisiInstruksi'] = $this->M_DisposisiInstruksi->selectByDisposisi($id)->result() ;
 		$data['disposisiUnitTerusan'] = $this->M_DisposisiUnitTerusan->selectByDisposisi($id)->result() ;
+		$data['userList'] = $this->M_User->selectAll()->result();
+		$data['disposisiUser'] = $this->M_DisposisiUser->selectAll()->result();
 		$data['unitTerusan'] = $this->getAllUnitTerusan();
 		$data['instruksi'] = $this->getAllInstruksi();
         $this->load->view('layout', $data);
@@ -186,11 +201,19 @@ class Disposisi extends CI_Controller{
 	        $this->M_DisposisiUnitTerusan->insert($in2);
 		}
 		
+		$this->M_DisposisiUser->deleteByDisposisi($id);
+		
+		$data4 = $this->input->post('tr_disposisi_user');
+		foreach($data4 as $row){
+			$in4['dus_user'] = $row;
+			$in4['dus_disposisi'] = $AI;
+	        $this->M_DisposisiUser->insert($in4);
+		}
         redirect(site_url('Disposisi'));
     }
     
     public function hapus_disposisi($id){
-		$data['deleted'] = 1;
+		$data['fds_deleted'] = 1;
         $this->M_Disposisi->update($id, $data);
         redirect('Disposisi');
     }

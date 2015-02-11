@@ -68,6 +68,20 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="tr_disposisi_user" class="col-sm-2 control-label text-left">Tujuan</label>
+                        <div class="col-sm-10 checkbox text-left">
+                        	<?php foreach($userList as $row){ ?>
+                            <label class="checkbox">
+	                        <input type="checkbox" class="form-control" id="tr_disposisi_user" name="tr_disposisi_user[<?php echo $row->usr_id; ?>]" value="<?php echo $row->usr_id?>"
+                            <?php if ($disposisiUser != ''){ foreach($disposisiUser as $rowIn){?>
+                            	<?php if($row->usr_id == $rowIn->dus_user){echo "checked";}?>
+							<?php }} ?>>
+							<?php echo $row->usr_nama; ?>
+                            </label>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="utr_unitTerusan" class="col-sm-2 control-label">Unit terusan</label>
                         <div class="col-sm-10 checkbox">
                         	<?php foreach($utr_unitTerusan as $row){?>

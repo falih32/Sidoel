@@ -20,3 +20,16 @@ and open the template in the editor.
        transform: scale(1.7);
     }
 }
+.notif
+		{
+		  background: #e02424;  		
+		  position: absolute;
+		  right: 0px;
+		  top: 0px;
+		  padding: 2px 6px;
+		  color: #fff;
+		  font: bold .9em Tahoma, Arial, Helvetica;
+		  -moz-border-radius: 3px;
+		  -webkit-border-radius: 3px;
+		  border-radius: 3px;
+		}
