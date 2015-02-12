@@ -21,6 +21,16 @@ class M_Disposisi extends CI_Model{
         $this->load->model('M_DisposisiUnitTerusan');
     }
 	
+	function selectTotalBulan($totalMonthBefore){
+		return $this->db->query("SELECT DATE_FORMAT(fds_tgl_disposisi, '%Y') as 'year',
+		MONTHNAME(fds_tgl_disposisi) as 'month',
+		COUNT(*) as 'total'
+		FROM t_form_disposisi
+		WHERE MONTH(fds_tgl_disposisi) <= $totalMonthBefore
+		and fds_tgl_disposisi is not null
+		GROUP BY DATE_FORMAT(fds_tgl_disposisi, '%Y%m')")->result();
+	}
+	
 	function selectAjax($min, $max){
 		$this->datatables
 			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, fds_catatan, fds_tgl_disposisi')

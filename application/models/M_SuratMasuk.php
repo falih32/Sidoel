@@ -18,6 +18,16 @@ class M_SuratMasuk extends CI_Model{
 		$this->load->library('Datatables');
     }
     
+	function selectTotalBulan($totalMonthBefore){
+		return $this->db->query("SELECT DATE_FORMAT(sms_tgl_srt_diterima, '%Y') as 'year',
+		MONTHNAME(sms_tgl_srt_diterima) as 'month',
+		COUNT(*) as 'total'
+		FROM t_surat_msk
+		WHERE MONTH(sms_tgl_srt_diterima) <= $totalMonthBefore
+		and sms_tgl_srt_diterima is not null
+		GROUP BY DATE_FORMAT(sms_tgl_srt_diterima, '%Y%m')")->result();
+	}
+	
     function insert($data){
         $this->db->insert('t_surat_msk', $data);
     }

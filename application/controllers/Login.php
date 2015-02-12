@@ -15,9 +15,7 @@ class Login extends CI_Controller{
 			$this->pageLogin();
 		}
 		else{
-			$data['title'] = 'SIDOEL';
-			$data['content'] = 'dashboard';
-			$this->load->view('layout', $data);
+			redirect('Dashboard');
 		}		
     }
     

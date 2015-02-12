@@ -29,7 +29,7 @@ class Disposisi extends CI_Controller{
 		$role = $this->session->userdata('id_role');
 		if($role > $limit){
 			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
-			redirect('login');
+			redirect('Dashboard');
 		}
 	}
 	
