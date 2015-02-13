@@ -43,7 +43,8 @@ class M_SuratMasuk extends CI_Model{
 		$this->datatables->edit_column('sms_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href='suratmasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-primary' href='suratmasuk/view_surat_masuk/$1'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
+                        "<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href='suratmasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
 			"<a class='btn btn-info' href='suratmasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
 			"<a class='btn btn-success' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
 			"</div>".

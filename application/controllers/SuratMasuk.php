@@ -129,6 +129,18 @@ class SuratMasuk extends CI_Controller{
         redirect(site_url('SuratMasuk'));
     }
     
+    public function view_surat_masuk($id){
+		$this->limitRole(2);
+        $data['dataSurat'] = $this->M_SuratMasuk->selectById($id);
+		$data['id'] = $id;
+		$data['mode'] = 'edit';
+		$data['content'] = 'v_suratmasuk';
+		$data['title'] = 'Detail surat masuk';
+        $data['jenisList'] = $this->getAllJenisSurat();
+        $data['unitList'] = $this->getAllUnitTujuan();
+        $this->load->view('layout', $data);
+    }
+    
     public function edit_surat_masuk($id){
 		$this->limitRole(2);
         $data['dataSurat'] = $this->M_SuratMasuk->selectById($id);
