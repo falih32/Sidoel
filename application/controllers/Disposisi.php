@@ -197,12 +197,27 @@ class Disposisi extends CI_Controller{
 		$data['disposisiInstruksi'] = $this->M_DisposisiInstruksi->selectByDisposisi($id)->result() ;
 		$data['disposisiUnitTerusan'] = $this->M_DisposisiUnitTerusan->selectByDisposisi($id)->result() ;
 		$data['userList'] = $this->M_User->selectAll()->result();
-		$data['disposisiUser'] = $this->M_DisposisiUser->selectAll()->result();
+		$data['disposisiUser'] = $this->M_DisposisiUser->selectByDisposisi($id)->result();
 		$data['unitTerusan'] = $this->getAllUnitTerusan();
 		$data['instruksi'] = $this->getAllInstruksi();
         $this->load->view('layout', $data);
     }
     
+    public function detail_disposisi($id){
+		$this->limitRole(3);
+        $data['dataDisposisi'] = $this->M_Disposisi->selectById($id)->row();
+		$data['id'] = $id;
+		$data['content'] = 'v_disposisi';
+		$data['title'] = 'Detail disposisi';
+		$data['disposisiInstruksi'] = $this->M_DisposisiInstruksi->selectByDisposisi($id)->result() ;
+		$data['disposisiUnitTerusan'] = $this->M_DisposisiUnitTerusan->selectByDisposisi($id)->result() ;
+		$data['userList'] = $this->M_User->selectAll()->result();
+		$data['disposisiUser'] = $this->M_DisposisiUser->selectByDisposisi($id)->result();
+		$data['unitTerusan'] = $this->getAllUnitTerusan();
+		$data['instruksi'] = $this->getAllInstruksi();
+        $this->load->view('layout', $data);
+    }
+	
     public function proses_edit_disposisi(){
 		$this->limitRole(2);
 		$id = $this->input->post('fds_id');

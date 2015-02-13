@@ -1,10 +1,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="col-md-3 col-md-offset-3">
-            Logo
-        </div>
-        <div class="col-md-3">
-            <div class="login-panel panel panel-default">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">Sign In</h3>
                 </div>

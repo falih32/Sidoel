@@ -43,9 +43,10 @@ class M_Disposisi extends CI_Model{
 		$this->datatables->edit_column('fds_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href='disposisi/hapus_disposisi/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
-			"<a class='btn btn-info' href='disposisi/edit_disposisi/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
-			"<a class='btn btn-success' href='disposisi/tambah_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
+			"<a class='btn btn-primary' href=".base_url()."disposisi/detail_disposisi/$1><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
+			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href=".base_url()."disposisi/hapus_disposisi/$1><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' href=".base_url()."disposisi/edit_disposisi/$1><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"<a class='btn btn-success' href=".base_url()."disposisi/tambah_disposisi/$1><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
 			"</div>".
 			"</form>".
 		"",'fds_id');
@@ -65,9 +66,10 @@ class M_Disposisi extends CI_Model{
 		$this->datatables->edit_column('fds_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href='disposisi/hapus_disposisi/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
-			"<a class='btn btn-info' href='disposisi/edit_disposisi/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
-			"<a class='btn btn-success' href='disposisi/tambah_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
+			"<a class='btn btn-primary' href=".base_url()."disposisi/detail_disposisi/$1><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
+			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href=".base_url()."disposisi/hapus_disposisi/$1><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' href=".base_url()."disposisi/edit_disposisi/$1><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"<a class='btn btn-success' href=".base_url()."disposisi/tambah_disposisi/$1><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
 			"</div>".
 			"</form>".
 		"",'fds_id');
@@ -87,9 +89,10 @@ class M_Disposisi extends CI_Model{
 		$this->datatables->edit_column('fds_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href='disposisi/hapus_disposisi/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
-			"<a class='btn btn-info' href='disposisi/edit_disposisi/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
-			"<a class='btn btn-success' href='disposisi/tambah_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
+			"<a class='btn btn-primary' href=".base_url()."disposisi/detail_disposisi/$1><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
+			"<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href=".base_url()."disposisi/hapus_disposisi/$1><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' href=".base_url()."disposisi/edit_disposisi/$1><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"<a class='btn btn-success' href=".base_url()."disposisi/tambah_disposisi/$1><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
 			"</div>".
 			"</form>".
 		"",'fds_id');
@@ -122,6 +125,8 @@ class M_Disposisi extends CI_Model{
         $this->db->select('*');
         $this->db->from('t_form_disposisi');
         $this->db->where('fds_id', $id);
+		$this->db->join('t_surat_msk','t_surat_msk.sms_id = t_form_disposisi.fds_id_surat', 'left');
+		$this->db->join('t_user', 't_form_disposisi.fds_pengirim = t_user.usr_id', 'left');
         return $this->db->get();
     }
      

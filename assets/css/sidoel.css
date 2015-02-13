@@ -7,6 +7,10 @@ and open the template in the editor.
     Created on : Feb 11, 2015, 12:23:55 AM
     Author     : Ganteng Imut
 */
+body{
+	background:url(images/mosaic-tiles-background-blue.jpg);
+    background-size: 300px 300px;
+}
 
 .animating{
     animation: animate 1s cubic-bezier(0,1,1,0);            
@@ -33,3 +37,10 @@ and open the template in the editor.
 		  -webkit-border-radius: 3px;
 		  border-radius: 3px;
 		}
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}

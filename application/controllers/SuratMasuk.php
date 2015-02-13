@@ -129,7 +129,7 @@ class SuratMasuk extends CI_Controller{
         redirect(site_url('SuratMasuk'));
     }
     
-    public function view_surat_masuk($id){
+    public function detail_surat_masuk($id){
 		$this->limitRole(2);
         $data['dataSurat'] = $this->M_SuratMasuk->selectById($id);
 		$data['id'] = $id;

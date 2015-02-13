@@ -11,7 +11,9 @@
 		$sms_agenda = $dataSurat-> sms_no_agenda;
 		$sms_unit_tujuan = $dataSurat-> sms_unit_tujuan;
 		$sms_keterangan = $dataSurat-> sms_keterangan;
-                $sms_file =$dataSurat-> sms_file;
+        $sms_file =$dataSurat-> sms_file;
+		$utj_unit_tujuan = $dataSurat->utj_unit_tujuan;
+		$jsm_nama_jenis = $dataSurat->jsm_nama_jenis;
 ?>
 <div class="container-fluid">
     <div class="row-fluid">
@@ -20,92 +22,63 @@
                 <h3>Detail surat masuk</h3>
             </div>
             <div class="panel-body">
-            <form>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="nomor_surat" class="col-sm-2 control-label text-left">No. Surat</label>
-                        <div class="col-sm-10">
-	                        <p class="form-control-static"><?php echo $sms_nomor_surat; ?> </p>
-                            </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="pengirim" class="col-sm-2 control-label text-left">Pengirim</label>
-                        <div class="col-sm-10">
-                            <p class="form-control-static"><?php echo $sms_pengirim; ?></p>
-                           
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="tgl_srt" class="col-sm-2 control-label text-left">Tanggal</label>
-                        <div class="col-sm-3">
-                            <p class="form-control-static"><?php echo $sms_tgl_srt; ?>></p>
-                            <p class="help-block">Tanggal surat</p>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                            <p class="form-control-static"><?php echo $sms_tgl_srt_diterima; ?></p>
-                            <div class="help-block with-errors"></div>
-                            <p class="help-block">Tanggal surat diterima</p>
-                        </div>
-                        
-                        <div class="col-sm-3">
-                            <p class="form-control-static"><?php echo $sms_tgl_srt_dtlanjut; ?></p>
-                            <p class="help-block">Tenggat Waktu untuk ditindaklanjuti</p>
-                        </div>
-                        
-                        <div class="col-sm-1">
-                            <label>
-                              <input type="checkbox" id="tenggat_wkt" name="sms_tenggat_wkt" value="1"  <?php if($sms_tenggat_wkt == 1){echo "checked";} ?>>
-                            </label>
-                            <p class="help-block">Tanpa tenggat waktu</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="perihal" class="col-sm-2 control-label text-left">Perihal</label>
-                        <div class="col-sm-10">
-                            <p class="form-control-static"><?php echo $sms_perihal; ?></p>
-                               </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="jenis_surat" class="col-sm-2 control-label text-left">Jenis</label>
-                        <div class="col-sm-4">
-	                        <p class="form-control-static"><?php echo $sms_jenis_surat; ?></p>
-                            	
-                        </div>
-                        <label for="no_agenda" class="col-sm-2 control-label text-left">Agenda</label>
-                        <div class="col-sm-4">
-                            <p class="form-control-static"><?php echo $sms_agenda; ?></p>
-                              </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="unit_tujuan" class="col-sm-2 control-label text-left">Unit Tujuan</label>
-                        <div class="col-sm-10">
-	                        <p class="form-control-static"><?php echo $sms_unit_tujuan; ?></p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="file_upload" class="col-sm-2 control-label text-left">Upload file</label>
-                        <div class="col-sm-10">
-	                        <p class="form-control-static"><?php echo $sms_file; ?></p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="keterangan" class="col-sm-2 control-label text-left">Keterangan</label>
-                                <div class="col-sm-10">
-	                        <p class="form-control-static"><?php echo $sms_keterangan; ?></p>
-                        </div>
-                    </div>
-                </div>
+            	<table class="table table-striped table-bordered table-hover" width="50%">
+                    <tbody>
+                    	<tr>
+                        	<th>Nomor Surat</th>
+                        	<td><?php echo $sms_nomor_surat; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>Pengirim</th>
+                        	<td><?php echo $sms_pengirim; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>Tanggal Surat</th>
+                        	<td><?php echo $sms_tgl_srt; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>Tanggal Surat Diterima</th>
+                        	<td><?php echo $sms_tgl_srt_diterima; ?></td>
+                        </tr>
+                        <?php if($sms_tenggat_wkt == '1'){?>
+                    	<tr>
+                        	<th>Tanggal Surat Ditindaklanjuti</th>
+                        	<td><?php echo $sms_tgl_srt_dtlanjut; ?></td>
+                        </tr>
+                        <?php } ?>
+                    	<tr>
+                        	<th>Perihal</th>
+                        	<td><?php echo $sms_perihal; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>Jenis Surat</th>
+                        	<td><?php echo $jsm_nama_jenis; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>Agenda</th>
+                        	<td><?php echo $sms_agenda; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>Unit Tujuan</th>
+                        	<td><?php echo $utj_unit_tujuan; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>Keterangan</th>
+                        	<td><?php echo $sms_keterangan; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>File</th>
+                        	<td><a class="btn btn-default" target="_blank" href="<?php echo base_url()."uploads/surat_masuk/".$sms_file; ?>"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
                         	<a class="btn btn-lg btn-danger" href="<?php echo base_url()."suratmasuk";?>"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
-                                                   </div>
+                        </div>
                     </div>
                 </div>
-            </form>        
             </div>
         </div>
     </div>
