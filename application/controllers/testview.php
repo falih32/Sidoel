@@ -19,7 +19,7 @@ class testview extends CI_Controller{
         // melihat halam qqan login
     public function index(){
 		$data['title'] = 'suratmasuk';
-		$data['content'] = 'l_suratmasuk';
-        $this->load->view('layout', $data);
+		$data['content'] = 'testview';
+        $this->load->view('testview', $data);
     }
 }

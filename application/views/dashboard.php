@@ -13,6 +13,44 @@
                 document.write("<canvas id='chart1' width='"+width+"' height='"+height+"'></canvas>")
                 </script>
                 <p id="chart-legend">asu</p>
+                
+                <h3>Grafik Surat Masuk dan Disposisi</h3>
+				<div id="mynetwork"></div>
+                                
+                <script type="text/javascript">
+                  // create an array with nodes
+                  var nodes = [
+                    {id: 1, label: 'Node 1'},
+                    {id: 2, label: 'Node 2'},
+                    {id: 3, label: 'Node 3'},
+                    {id: 4, label: 'Node 4'},
+                    {id: 5, label: 'Node 5'}
+                  ];
+                
+                  // create an array with edges
+                  var edges = [
+                    {from: 1, to: 3},
+                    {from: 2, to: 4},
+                    {from: 2, to: 5}
+                  ];
+                
+                  // create a network
+                  var container = document.getElementById('mynetwork');
+                  var data= {
+                    nodes: nodes,
+                    edges: edges,
+                  };
+                  var options = {
+                    width: document.getElementById('conchart').offsetWidth * 0.9,
+                    height: '500px',
+					edges:{
+						color: 'red',
+						style: 'arrow'
+					}
+                  };
+                  var network = new vis.Network(container, data, options);
+                </script>
+
             </div>
         </div>
     </div>
@@ -20,6 +58,7 @@
 <script type="application/javascript">
 
 $(document).ready(function() {
+	
 	// Global setting
 	Chart.defaults.global = {
 		// Boolean - Whether to animate the chart
