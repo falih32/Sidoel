@@ -68,7 +68,11 @@
                         </tr>
                     	<tr>
                         	<th>File</th>
-                        	<td><a class="btn btn-default" target="_blank" href="<?php echo base_url()."uploads/surat_masuk/".$sms_file; ?>"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span> View</a></td>
+                        	<td>
+                            	<?php if ($sms_file == ""){echo "<i>Tidak ada file yang diunggah</i>";} else {?>
+                                <a class="btn btn-default" target="_blank" href="<?php echo base_url()."uploads/surat_masuk/".$sms_file; ?>"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Buka file</a>
+                                <?php } ?>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

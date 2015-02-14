@@ -2,35 +2,36 @@
     <div class="row-fluid">
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat masuk <a class="btn btn-success" href="<?php echo base_url()."SuratMasuk/";?>tambah_surat_masuk"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
+                <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat masuk <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Surat masuk' href="<?php echo base_url()."SuratMasuk/";?>tambah_surat_masuk"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
             </div>
             <div class="panel-body" style="background: #CCC;">
                 <div class="col-md-6 col-md-offset-6 text-right" id="date_search">
                     <input type="date" class="form-control input-sm tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
                     <input type="date" class="form-control input-sm tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">
-                    <button type="reset" class="form-control btn btn-default btn-sm" id="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
-                    <button type="button" class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
+                    <button type="reset" data-toggle='tooltip' data-placement='top' title='Clear' class="form-control btn btn-default btn-sm" id="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
+                    <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
                 </div>
             </div>
-            <div style="overflow:scroll;">
-            <table class="table table-hover table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
+            <table class="table table-hover table-striped table-bordered">
             	<thead>
                 <tr>
                 	<th>No.Agenda</th>
-                	<th>No. Surat</th>
-                	<th>Tgl. Surat</th>
-                	<th>Pengirim</th>
-                	<th>Perihal</th>
-                	<th>Tgl. Terima</th>
-                	<th>Tenggat</th>
+                	<th>No. Surat / Tgl. Surat</th>
+                	<th>Pengirim / Perihal</th>
+                	<th>Tgl. Terima / Tenggat</th>
                 	<th>Keterangan</th>
                 	<th>Terkirim</th>
-                	<th>Diubah terakhir oleh</th>
+                	<th>Direkam oleh</th>
                 	<th>Aksi</th>
+                	<th>No. Surat</th>
+                	<th>Tgl. Surat</th>
+                	<th>Tgl. Terima</th>
+                	<th>Tenggat</th>
+                	<th>Pengirim</th>
+                	<th>Perihal</th>
                 </tr>
                 </thead>
             </table>
-            </div>
         </div>
     </div>
 </div>
@@ -51,6 +52,10 @@ function makeConfirmation(){
 	}
 }
 
+function makeTooltip(){
+	$('[data-toggle="tooltip"]').tooltip({});
+}
+
 function moveSearch(){
 	var newParent = document.getElementById('DataTables_Table_0_filter');
 	var oldParent = document.getElementById('date_search');
@@ -65,8 +70,9 @@ $(document).ready(function() {
 	
 	var table = $('.table').DataTable( {
     	"paging": true, 
-		"ordering": true, 
 		"search":true,  
+		"ordering": true, 
+		"responsive": false,
 		"processing":true, 
 		"serverSide": true,
 		"ajax":{
@@ -79,23 +85,29 @@ $(document).ready(function() {
 		},
 		"columns": [
                 { "data": "sms_no_agenda" },
-                { "data": "sms_nomor_surat" },
+                { "data": "no_tgl" },
+                { "data": "pengirim_perihal" },
+                { "data": "terima_tenggat" },
+                { "data": "sms_keterangan" },
+                { "data": "sms_status_terkirim" },
+                { "data": "usr_userName" },
+                { "data": "sms_aksi" },
+                { "data": "sms_nomor_surat"},
                 { "data": "sms_tgl_srt" },
                 { "data": "sms_pengirim" },
                 { "data": "sms_perihal" },
                 { "data": "sms_tgl_srt_diterima" },
-                { "data": "sms_tgl_srt_dtlanjut" },
-                { "data": "sms_keterangan" },
-                { "data": "sms_status_terkirim" },
-                { "data": "usr_userName" },
-                { "data": "sms_aksi" }
+                { "data": "sms_tgl_srt_dtlanjut" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "targets": 10 }
+				{ "searchable": true, "orderable":true, "targets": [0, 4, 5, 6] },
+				{ "searchable": false, "orderable":false, "targets": [1, 2, 3, 4, 5, 6, 7] },
+				{ "visible": false, "orderable":true, "targets": [8, 9, 10, 11, 12, 13] }
 			],
-		"order": [[ 5, "desc" ]],
+		"order": [[ 12, "desc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
+			makeTooltip();
 			moveSearch();
 		}
 	} );

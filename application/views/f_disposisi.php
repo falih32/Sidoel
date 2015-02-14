@@ -35,9 +35,9 @@
             <input type="hidden" name="fds_id_surat" value="<?php echo $fds_id_surat; ?>">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="dummy" class="col-sm-2 control-label text-left">ID Surat</label>
+                        <label for="dummy" class="col-sm-2 control-label text-left">Detail Surat</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="dummy" name="dummy" placeholder="ID Surat" value="<?php echo $fds_id_surat; ?>" disabled>
+	                        <p class="form-control-static"><a class="btn btn-default" href="<?php echo base_url()."SuratMasuk/detail_surat_masuk/".$fds_id_surat; ?>" target="_blank"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Lihat detail</a></p>
                         </div>
                     </div>
                     <div class="form-group">

@@ -40,13 +40,16 @@ class M_SuratMasuk extends CI_Model{
 			->where('sms_tgl_srt_diterima >= ', $min)
 			->where('sms_tgl_srt_diterima <= ', $max)
 			->join('t_user', 't_surat_msk.sms_unit_tujuan = t_user.usr_id', 'left');
+		$this->datatables->add_column('no_tgl', '$1<br>$2', 'sms_nomor_surat, sms_tgl_srt');
+		$this->datatables->add_column('pengirim_perihal', '$1<br>$2', 'sms_pengirim, sms_perihal');
+		$this->datatables->add_column('terima_tenggat', '$1<br>$2', 'sms_tgl_srt_diterima, sms_tgl_srt_dtlanjut');
 		$this->datatables->edit_column('sms_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a class='btn btn-primary' href='suratmasuk/detail_surat_masuk/$1'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
-                        "<a class='btn btn-danger delete' data-confirm='Are you sure to delete this item?' href='suratmasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
-			"<a class='btn btn-info' href='suratmasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
-			"<a class='btn btn-success' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
+			"<a class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Lihat detail' href='suratmasuk/detail_surat_masuk/$1'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
+			"<a class='btn btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='suratmasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='suratmasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"<a class='btn btn-success' data-toggle='tooltip' data-placement='top' title='Buat Disposisi' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
 			"</div>".
 			"</form>".
 		"",'sms_id');

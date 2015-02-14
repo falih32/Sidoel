@@ -21,10 +21,10 @@
         <li <?php if($onpage == "" || $onpage == "dashboard")echo "class='active'"; ?>><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
         <li <?php if($onpage == "suratmasuk")echo "class='active'"; ?>><a href="<?php echo site_url("SuratMasuk"); ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat Masuk</a></li>
         <?php if($this->session->userdata('id_user') <= 2){ ?>
-        <li <?php if($onpage == "disposisi" && $mode=="normal")echo "class='active'"; ?>><a id = "dis-notif" href="<?php echo site_url("Disposisi"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi</a></li>
+        <li <?php if($onpage == "disposisi" && ($mode=="normal" || $mode=="edit" || $mode=="add"))echo "class='active'"; ?>><a id = "dis-notif" href="<?php echo site_url("Disposisi"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi</a></li>
         <?php } ?>
-        <li <?php if($onpage == "disposisi" && $mode=="byUserMasuk")echo "class='active'"; ?>><a id = "dis-notif" href="<?php echo site_url("Disposisi/disposisi_saya"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Inbox Disposisi <span id="notif" class="notif"><?php echo $notifDisposisi;?></span></a></li>
-        <li <?php if($onpage == "disposisi" && $mode=="byUserKeluar")echo "class='active'"; ?>><a href="<?php echo site_url("Disposisi/disposisi_keluar"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi Keluar</a></li>
+        <li <?php if($onpage == "disposisi" && $mode=="byUserMasuk")echo "class='active'"; ?>><a id = "dis-notif" href="<?php echo site_url("Disposisi/disposisi_masuk"); ?>"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Disposisi Masuk <span id="notif" class="notif"><?php echo $notifDisposisi;?></span></a></li>
+        <li <?php if($onpage == "disposisi" && $mode=="byUserKeluar")echo "class='active'"; ?>><a href="<?php echo site_url("Disposisi/disposisi_keluar"); ?>"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Disposisi Keluar</a></li>
         <li class="dropdown <?php if($onpage == "user" || $onpage == "unittujuan" || $onpage == "unitterusan" || $onpage == "role")echo "active"; ?>">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Referensi <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">

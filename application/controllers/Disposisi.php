@@ -50,11 +50,11 @@ class Disposisi extends CI_Controller{
 		$this->load->view('layout',$data);
     }
 	
-	public function disposisi_saya(){
+	public function disposisi_masuk(){
 		$this->limitRole(3);
 		$data['mode'] = 'byUserMasuk';
 		$data['content'] = 'l_disposisi';
-		$data['title'] = 'Daftar disposisi';
+		$data['title'] = 'Daftar Masuk';
 		$this->load->view('layout',$data);
     }
 	
@@ -62,7 +62,7 @@ class Disposisi extends CI_Controller{
 		$this->limitRole(3);
 		$data['mode'] = 'byUserKeluar';
 		$data['content'] = 'l_disposisi';
-		$data['title'] = 'Daftar disposisi';
+		$data['title'] = 'Daftar Keluar';
 		$this->load->view('layout',$data);
     }
 	
@@ -224,6 +224,7 @@ class Disposisi extends CI_Controller{
     public function detail_disposisi($id){
 		$this->limitRole(3);
         $data['dataDisposisi'] = $this->M_Disposisi->selectById($id)->row();
+		$data['mode'] = 'normal';
 		$data['id'] = $id;
 		$data['content'] = 'v_disposisi';
 		$data['title'] = 'Detail disposisi';

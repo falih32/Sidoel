@@ -8,8 +8,8 @@
                 <div class="col-md-6 col-md-offset-6 text-right" id="date_search">
                     <input type="date" class="form-control input-sm tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
                     <input type="date" class="form-control input-sm tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">
-                    <button type="reset" class="form-control btn btn-default btn-sm" id="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
-                    <button type="button" class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
+                    <button type="reset" data-toggle='tooltip' data-placement='top' title='Clear' class="form-control btn btn-default btn-sm" id="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
+                    <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
                 </div>
             </div>
             <table class="table table-responsive table-hover table-striped table-bordered" cellspacing="0" width="100%">
@@ -42,6 +42,10 @@ function makeConfirmation(){
 			}
 		});
 	}
+}
+
+function makeTooltip(){
+	$('[data-toggle="tooltip"]').tooltip({});
 }
 
 function moveSearch(){
@@ -83,11 +87,12 @@ $(document).ready(function() {
                 { "data": "fds_aksi" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "targets": 5 }
+				{ "searchable": false, "orderable":false, "targets": 5 },
 			],
 		"order": [[ 4, "desc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
+			makeTooltip();
 			moveSearch();
 		}
 	} );
