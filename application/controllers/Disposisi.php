@@ -253,14 +253,14 @@ class Disposisi extends CI_Controller{
 	        $this->M_DisposisiInstruksi->insert($in);
 		}
 		
-		$this->M_DisposisiUnitTerusan->deleteByDisposisi($id);
-		
-        $data3 = $this->postVariabel_dut();
-		foreach($data3 as $row){
-			$in2['dut_id_unit_terusan'] = $row;
-			$in2['dut_id_disposisi'] = $id;
-	        $this->M_DisposisiUnitTerusan->insert($in2);
-		}
+		//$this->M_DisposisiUnitTerusan->deleteByDisposisi($id);
+//		
+//        $data3 = $this->postVariabel_dut();
+//		foreach($data3 as $row){
+//			$in2['dut_id_unit_terusan'] = $row;
+//			$in2['dut_id_disposisi'] = $id;
+//	        $this->M_DisposisiUnitTerusan->insert($in2);
+//		}
 		
 		$this->M_DisposisiUser->deleteByDisposisi($id);
 		

@@ -1,8 +1,12 @@
+<?php $role = $this->session->userdata('id_role'); ?>
 <div class="container-fluid">
     <div class="row-fluid">
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat masuk <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Surat masuk' href="<?php echo base_url()."SuratMasuk/";?>tambah_surat_masuk"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
+                <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat masuk
+                <?php if($role <= 2){?>
+                <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Surat masuk' href="<?php echo base_url()."SuratMasuk/";?>tambah_surat_masuk"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
+                <?php } ?>
             </div>
             <div class="panel-body" style="background: #CCC;">
                 <div class="col-md-6 col-md-offset-6 text-right" id="date_search">
@@ -102,7 +106,8 @@ $(document).ready(function() {
 		"columnDefs": [
 				{ "searchable": true, "orderable":true, "targets": [0, 4, 5, 6] },
 				{ "searchable": false, "orderable":false, "targets": [1, 2, 3, 4, 5, 6, 7] },
-				{ "visible": false, "orderable":true, "targets": [8, 9, 10, 11, 12, 13] }
+				{ "visible": false, "orderable":true, "targets": [8, 9, 10, 11, 12, 13] },
+				{ "visible":false, "targets": [<?php if($role > 2) echo"7"; ?>]}
 			],
 		"order": [[ 12, "desc" ]],
 		"drawCallback": function( settings ) {

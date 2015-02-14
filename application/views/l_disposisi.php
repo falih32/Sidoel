@@ -88,6 +88,7 @@ $(document).ready(function() {
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": 5 },
+				{ "visible":false, "targets": 1}
 			],
 		"order": [[ 4, "desc" ]],
 		"drawCallback": function( settings ) {

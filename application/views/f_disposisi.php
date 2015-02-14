@@ -40,13 +40,13 @@
 	                        <p class="form-control-static"><a class="btn btn-default" href="<?php echo base_url()."SuratMasuk/detail_surat_masuk/".$fds_id_surat; ?>" target="_blank"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Lihat detail</a></p>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="fds_kasubbag" class="col-sm-2 control-label text-left">Kasubag</label>
                         <div class="col-sm-10">
 	                        <input type="text" class="form-control" id="fds_kasubbag" name="fds_kasubbag" placeholder="Kasubag" value="<?php echo $fds_kasubbag; ?>" required>
                             <div class="help-block with-errors"></div>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label for="ins_instruksi" class="col-sm-2 control-label">Instruksi</label>
                         <div class="col-sm-10 checkbox text-left">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tr_disposisi_user" class="col-sm-2 control-label text-left">Tujuan</label>
-                        <div class="col-sm-10 checkbox text-left">
+                        <div class="col-sm-10 checkbox text-left" style="max-height:300px; overflow-y:scroll;">
                         	<?php foreach($userList as $row){ ?>
                             <label class="checkbox">
 	                        <input type="checkbox" class="form-control" id="tr_disposisi_user" name="tr_disposisi_user[<?php echo $row->usr_id; ?>]" value="<?php echo $row->usr_id?>"
@@ -84,7 +84,7 @@
                             <?php } ?>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="utr_unitTerusan" class="col-sm-2 control-label">Unit terusan</label>
                         <div class="col-sm-10 checkbox">
                         	<?php foreach($utr_unitTerusan as $row){?>
@@ -97,7 +97,7 @@
                             </label>
                             <?php } ?>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label for="fds_catatan" class="col-sm-2 control-label text-left">Catatan</label>
                         <div class="col-sm-10">
