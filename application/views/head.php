@@ -21,9 +21,10 @@
         <li <?php if($onpage == "" || $onpage == "dashboard")echo "class='active'"; ?>><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
         <li <?php if($onpage == "suratmasuk")echo "class='active'"; ?>><a href="<?php echo site_url("SuratMasuk"); ?>"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Surat Masuk</a></li>
         <?php if($this->session->userdata('id_user') <= 2){ ?>
-        <li <?php if($onpage == "disposisi")echo "class='active'"; ?>><a id = "dis-notif" href="<?php echo site_url("Disposisi"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi</a></li>
+        <li <?php if($onpage == "disposisi" && $mode=="normal")echo "class='active'"; ?>><a id = "dis-notif" href="<?php echo site_url("Disposisi"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi</a></li>
         <?php } ?>
-        <li <?php if($onpage == "disposisi")echo "class='active'"; ?>><a id = "dis-notif" href="<?php echo site_url("Disposisi/disposisi_saya"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Inbox Disposisi <span id="notif" class="notif"><?php echo $notifDisposisi;?></span></a></li>
+        <li <?php if($onpage == "disposisi" && $mode=="byUserMasuk")echo "class='active'"; ?>><a id = "dis-notif" href="<?php echo site_url("Disposisi/disposisi_saya"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Inbox Disposisi <span id="notif" class="notif"><?php echo $notifDisposisi;?></span></a></li>
+        <li <?php if($onpage == "disposisi" && $mode=="byUserKeluar")echo "class='active'"; ?>><a href="<?php echo site_url("Disposisi/disposisi_keluar"); ?>"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi Keluar</a></li>
         <li class="dropdown <?php if($onpage == "user" || $onpage == "unittujuan" || $onpage == "unitterusan" || $onpage == "role")echo "active"; ?>">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Referensi <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -47,7 +48,7 @@
         	<div class="panel-body">
                 <div class="col-sm-2"><img src="<?php echo base_url();?>assets/css/images/logokelautan.png" alt="logo kelautan" width="100%"></div>
                 <div class="col-md-10 text-center">
-                	<h1>SISTEM DISPOSISI ONLINE (SIDOEL)</h1>
+                	<h1>SISTEM DISPOSISI ELEKTRONIK (SIDOEL)</h1>
                     <h2>KEMENTERIAN KELAUTAN DAN PERIKANAN REPUBLIK INDONESIA<br>
                     <small>Ministry of Marine Affairs and Fisheries Republic of Indonesia</small></h2>
                 </div>

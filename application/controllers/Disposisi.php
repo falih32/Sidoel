@@ -52,7 +52,15 @@ class Disposisi extends CI_Controller{
 	
 	public function disposisi_saya(){
 		$this->limitRole(3);
-		$data['mode'] = 'byUser';
+		$data['mode'] = 'byUserMasuk';
+		$data['content'] = 'l_disposisi';
+		$data['title'] = 'Daftar disposisi';
+		$this->load->view('layout',$data);
+    }
+	
+	public function disposisi_keluar(){
+		$this->limitRole(3);
+		$data['mode'] = 'byUserKeluar';
 		$data['content'] = 'l_disposisi';
 		$data['title'] = 'Daftar disposisi';
 		$this->load->view('layout',$data);
@@ -85,6 +93,16 @@ class Disposisi extends CI_Controller{
 		if($min == '') $min = '0000-00-00';
 		if($max == '') $max = '9999-12-31';
 		$result = $this->M_Disposisi->selectAjaxByUser($min, $max, $user);
+		echo $result;
+	}
+	
+	public function ajaxProcessByUserKeluar(){
+		$user = $this->session->userdata('id_user');
+		$min=$this->input->post('min');
+		$max=$this->input->post('max');
+		if($min == '') $min = '0000-00-00';
+		if($max == '') $max = '9999-12-31';
+		$result = $this->M_Disposisi->selectAjaxByUserKeluar($min, $max, $user);
 		echo $result;
 	}
 	

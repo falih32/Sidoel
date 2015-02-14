@@ -12,7 +12,8 @@
                     <button type="button" class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
                 </div>
             </div>
-            <table class="table table-responsive table-hover table-striped table-bordered">
+            <div style="overflow:scroll;">
+            <table class="table table-hover table-striped table-bordered dt-responsive" cellspacing="0" width="100%">
             	<thead>
                 <tr>
                 	<th>No.Agenda</th>
@@ -29,6 +30,7 @@
                 </tr>
                 </thead>
             </table>
+            </div>
         </div>
     </div>
 </div>
@@ -65,7 +67,6 @@ $(document).ready(function() {
     	"paging": true, 
 		"ordering": true, 
 		"search":true,  
-		"responsive":true,
 		"processing":true, 
 		"serverSide": true,
 		"ajax":{
@@ -92,6 +93,7 @@ $(document).ready(function() {
 		"columnDefs": [
 				{ "searchable": false, "targets": 10 }
 			],
+		"order": [[ 5, "desc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			moveSearch();

@@ -44,3 +44,7 @@ body{
   display: flex;
   align-items: center;
 }
+table.dataTable th,
+table.dataTable td {
+	white-space: nowrap;
+}

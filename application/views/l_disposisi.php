@@ -2,7 +2,7 @@
     <div class="row-fluid">
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi</h3>
+                <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi <?php if ($mode=='byUserMasuk'){echo"Masuk";} elseif($mode=='byUserKeluar'){echo "Keluar";}?></h3>
             </div>
             <div class="panel-body" style="background: #CCC;">
                 <div class="col-md-6 col-md-offset-6 text-right" id="date_search">
@@ -12,10 +12,9 @@
                     <button type="button" class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
                 </div>
             </div>
-            <table class="table table-responsive table-hover table-striped table-bordered">
+            <table class="table table-responsive table-hover table-striped table-bordered" cellspacing="0" width="100%">
             	<thead>
                 <tr>
-                	<th>ID Disposisi</th>
                 	<th>No. Surat</th>
                 	<th>Kepada</th>
                 	<th>Dari</th>
@@ -60,13 +59,13 @@ $(document).ready(function() {
     	"paging": true, 
 		"ordering": true, 
 		"search":true, 
-		"scrollY": "300px", 
 		"processing":true, 
 		"serverSide": true,
 		"ajax":{
 			"url":"<?php 
 				if($mode == "normal"){echo site_url('disposisi/ajaxProcess');}
-				elseif($mode == "byUser"){echo site_url('disposisi/ajaxProcessByUser');}
+				elseif($mode == "byUserMasuk"){echo site_url('disposisi/ajaxProcessByUser');}
+				elseif($mode == "byUserKeluar"){echo site_url('disposisi/ajaxProcessByUserKeluar');}
 				elseif($mode == "bySurat"){echo site_url('disposisi/ajaxProcessBySurat/'.$this->uri->segment(3));}
 			?>",
 			"type":"POST",
@@ -76,7 +75,6 @@ $(document).ready(function() {
 			}
 		},
 		"columns": [
-                { "data": "fds_id" },
                 { "data": "sms_nomor_surat" },
                 { "data": "fds_kasubbag" },
                 { "data": "usr_username" },
@@ -85,8 +83,9 @@ $(document).ready(function() {
                 { "data": "fds_aksi" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "targets": 6 }
+				{ "searchable": false, "targets": 5 }
 			],
+		"order": [[ 4, "desc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			moveSearch();
