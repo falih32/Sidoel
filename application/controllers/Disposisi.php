@@ -199,12 +199,19 @@ class Disposisi extends CI_Controller{
 		foreach($data4 as $row){
 			$in3['dus_user'] = $row;
 			$in3['dus_disposisi'] = $AI;
-	        $this->M_DisposisiUser->insert($in3);
+                        $this->M_DisposisiUser->insert($in3);
+                        $this->M_User->updateNotif($row);
 		}
-        
-		$this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-		$this->writeLog('Disposisi','Create');
-		redirect(site_url('Disposisi'));
+                            
+                $data4 = $this->input->post('tr_disposisi_user');
+		foreach($data4 as $row){
+                    $noTujuan= $this->M_User->selectbyId($row)->row()->usr_no_telp;
+                    $message = 'Anda mendapat disposisi instruksi baru dari '.$this->session->userdata('username').' dengan ID '.$AI.'. Silahkan cek '.  base_url().'disposisi/detail_disposisi/'.$AI;
+
+                    $query = "INSERT INTO sms.outbox (DestinationNumber, TextDecoded, CreatorID)VALUES ('$noTujuan', '$message', 'Gammu')";
+                    $this->db->query($query);
+                }
+                redirect(site_url('Disposisi'));
     }
     
     public function edit_disposisi($id){

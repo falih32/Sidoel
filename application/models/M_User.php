@@ -59,6 +59,11 @@ class M_User extends CI_Model{
         $this->db->where('usr_id', $id);
         $this->db->update('t_user', $data);
     }
+    
+    function updateNotif($id){
+        $this->db->query("UPDATE t_user SET usr_total_read=usr_total_read+1 WHERE usr_id='".$id."'");
+    }
+    
     function selectAllPaging($limit=array()){
         $this->db->select('*');
         $this->db->from('t_user');
