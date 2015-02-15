@@ -126,6 +126,17 @@ class M_Disposisi extends CI_Model{
 		return $this->datatables->generate();
 	}
 	
+	function getTrackingData($id_surat){
+		$this->db
+		->select('*')
+		->from('t_form_disposisi')
+		->where('fds_deleted','0')
+		->where('fds_id_surat',$id_surat)
+		->join('t_user', 't_user.usr_id = t_form_disposisi.fds_pengirim','left')
+		->order_by('fds_id_parent', 'acs');
+		return $this->db->get()->result();
+	}
+	
 	function autoInc(){
 		$ai = $this->db->query("SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'sidoel2' AND TABLE_NAME = 't_form_disposisi'")->row()->AUTO_INCREMENT;
 		$i = $ai-1;

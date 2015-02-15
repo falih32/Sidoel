@@ -66,10 +66,11 @@ class Disposisi extends CI_Controller{
 		$this->load->view('layout',$data);
     }
 	
-	public function tracking(){
+	public function tracking($id_surat){
 		$data['mode'] = 'bySurat';
 		$data['content'] = 'l_disposisi';
 		$data['title'] = 'Daftar disposisi';
+		$data['graphData'] = $this->M_Disposisi->getTrackingData($id_surat);
 		$this->load->view('layout',$data);
     }
     
@@ -114,6 +115,7 @@ class Disposisi extends CI_Controller{
 		$result = $this->M_Disposisi->selectAjaxBySurat($min, $max, $surat);
 		echo $result;
 	}	
+	
     public function getAllUnitTerusan(){       
 		return $this->M_UnitTerusan->selectAll()->result();
     }

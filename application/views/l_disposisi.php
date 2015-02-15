@@ -4,7 +4,54 @@
             <div class="panel-heading">
                 <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi <?php if ($mode=='byUserMasuk'){echo"Masuk";} elseif($mode=='byUserKeluar'){echo "Keluar";}?></h3>
             </div>
-            <div class="panel-body" style="background: #CCC;">
+            <div class="panel-body" style="background: #CCC;" id="conchart">
+            	<div class="col-md-12">                
+					<?php if($mode == "bySurat"){?>
+                        <div id="mynetwork"></div>
+                                        
+                        <script type="text/javascript">
+                          // create an array with nodes
+                          var nodes = [
+                            <?php 
+                            $tot=count($graphData); 
+                            $i=0;
+                            foreach($graphData as $row){
+                                $i=$i+1;?>
+                                {id: <?php echo $row->fds_id; ?>, label: <?php echo "\"".$row->usr_username."\""; ?>}<?php if($i != $tot){echo ",";} ?>
+                            <?php } ?>
+                          ];
+                        
+                          // create an array with edges
+                          var edges = [
+                          <?php
+                            $i=0;
+                            foreach($graphData as $row){
+                                $i=$i+1;?>
+                                <?php if($row->fds_id_parent != "-99"){?>
+                                    {from: <?php echo $row->fds_id_parent; ?>, to: <?php echo $row->fds_id; ?>}<?php if($i != $tot){echo ",";} ?>
+                                <?php } ?>
+                            <?php } ?>
+                          ];
+                        
+                          // create a network
+                          var container = document.getElementById('mynetwork');
+                          var data= {
+                            nodes: nodes,
+                            edges: edges,
+                          };
+                          var options = {
+                            width: document.getElementById('conchart').offsetWidth * 0.9,
+                            height: '500px',
+                            edges:{
+                                color: 'red',
+                                style: 'arrow'
+                            }
+                          };
+                          var network = new vis.Network(container, data, options);
+                        </script>
+        
+                    <?php } ?>
+                </div>
                 <div class="col-md-6 col-md-offset-6 text-right" id="date_search">
                     <input type="date" class="form-control input-sm tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
                     <input type="date" class="form-control input-sm tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">

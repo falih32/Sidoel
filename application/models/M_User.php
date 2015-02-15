@@ -28,11 +28,11 @@ class M_User extends CI_Model{
     }
     // cek keberadaan user di sistem
     function check_user_account($username, $password){
-        $this->db->select('*');
-        $this->db->from('t_user');
-        $this->db->where('usr_username', $username);
-        $this->db->where('usr_password', md5($password));
-        return $this->db->get();
+        //$this->db->select('*');
+//        $this->db->from('t_user');
+//        $this->db->where('usr_username', $username);
+//        $this->db->where('usr_password', md5($password));
+		return $this->db->query("SELECT * FROM t_user WHERE usr_username = ".$this->db->escape($username)." AND usr_password = ".$this->db->escape(md5($password)));
     }
     // mengambil data user tertentu
        function get_user($id_user){
