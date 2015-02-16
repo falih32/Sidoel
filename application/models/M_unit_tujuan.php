@@ -1,0 +1,45 @@
+<?php
+
+class M_unit_tujuan extends CI_Model{
+    //put your code here
+    function __construct(){
+        parent::__construct();
+    }
+    
+    function insert($data){
+        $this->db->insert('t_unit_tujuan', $data);
+    }
+    
+    function selectAll(){
+        $this->db->select('*');
+        $this->db->from('t_unit_tujuan');
+        $this->db->order_by('utj_id', 'desc');
+        return $this->db->get();
+    }
+    function selectById($id){
+        $this->db->select('*');
+        $this->db->from('t_unit_tujuan');
+        $this->db->where('utj_id', $id);
+        return $this->db->get();
+    }
+     
+    function update($id, $data){
+        $this->db->where('utj_id', $id);
+        $this->db->update('t_unit_tujuan', $data);
+    }
+    
+    function delete($id){
+        $this->db->where('utj_id', $id);
+        $this->db->delete('t_unit_tujuan');
+    }
+    
+    // function yang digunakan oleh paginationsample
+    function selectAllPaging($limit=array()){
+        $this->db->select('*');
+        $this->db->from('t_unit_tujuan');
+        $this->db->order_by('utj_id', 'asc');
+        if ($limit != NULL)
+        $this->db->limit($limit['perpage'], $limit['offset']);
+        return $this->db->get();
+    }
+}

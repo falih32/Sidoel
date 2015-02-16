@@ -80,7 +80,7 @@ $(document).ready(function() {
 		"processing":true, 
 		"serverSide": true,
 		"ajax":{
-			"url":"<?php echo site_url('suratmasuk/ajaxProcess');?>",
+			"url":"<?php echo site_url('SuratMasuk/ajaxProcess');?>",
 			"type":"POST",
 			"data":function ( d ) {
 				d.min = $('#s_date_awal').val();

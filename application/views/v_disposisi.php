@@ -37,7 +37,7 @@
                                 </ul>
                             </td>
                         </tr>
-                    	<tr>
+                    	<!--<tr>
                         	<th>Unit Terusan</th>
                         	<td>
                             	<ul>
@@ -50,7 +50,7 @@
                                 <?php } ?>
                                 </ul>
                             </td>
-                        </tr>
+                        </tr>-->
                     	<tr>
                         	<th>Tujuan</th>
                         	<td>

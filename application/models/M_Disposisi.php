@@ -11,14 +11,14 @@
  *
  * @author Ganteng Imut
  */
-class M_Disposisi extends CI_Model{
+class M_disposisi extends CI_Model{
     //put your code here
     //put your code here
     function __construct(){
         parent::__construct();
 		$this->load->library('Datatables');
-        $this->load->model('M_DisposisiInstruksi');
-        $this->load->model('M_DisposisiUnitTerusan');
+        $this->load->model('m_disposisi_instruksi');
+        $this->load->model('m_disposisi_unit_terusan');
     }
 	
 	function selectTotalBulan($totalMonthBefore){
@@ -148,6 +148,8 @@ class M_Disposisi extends CI_Model{
     }    
     function insert($data){
         $this->db->insert('t_form_disposisi', $data);
+		$insert_id = $this->db->insert_id();
+		return $insert_id;
     }
     
     function selectAll(){

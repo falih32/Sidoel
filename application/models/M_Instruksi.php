@@ -1,17 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of M_Instruksi
- *
- * @author Ganteng Imut
- */
-class M_Instruksi extends CI_Model{
+class M_instruksi extends CI_Model{
     //put your code here
     //put your code here
     function __construct(){

@@ -15,7 +15,7 @@ function confirmation() {
     <div class="row-fluid">
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Unit Tujuan <a class="btn btn-success" href="<?php echo base_url()."unittujuan/";?>tambah_unit_tujuan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
+                <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Unit Tujuan <a class="btn btn-success" href="<?php echo base_url()."UnitTujuan/";?>tambah_unit_tujuan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
             </div>
             <table class="table table-responsive table-hover table-striped">
             	<thead>
@@ -35,8 +35,8 @@ function confirmation() {
 						<form>
                         <div class="form-group">
                             <div class="btn-group" role="group" aria-label="...">
-                                <a class="btn btn-danger confirmation" href="<?php echo base_url()."unittujuan/delete_unit/".$row->utj_id;?>" onclick="confirmation()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                <a class="btn btn-info" href="<?php echo base_url()."unittujuan/edit_unit_tujuan/".$row->utj_id; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                                <a class="btn btn-danger confirmation" href="<?php echo base_url()."UnitTujuan/delete_unit/".$row->utj_id;?>" onclick="confirmation()"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                <a class="btn btn-info" href="<?php echo base_url()."UnitTujuan/edit_unit_tujuan/".$row->utj_id; ?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
               
                                 
                             </div>

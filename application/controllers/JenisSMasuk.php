@@ -13,7 +13,7 @@ class JenisSMasuk {
 			$this->load->helper('url');
 			$this->load->database();
 			//$this->load->library('input');
-			$this->load->model('M_JenisSMasuk');
+			$this->load->model('m_jenis_smasuk');
 		}
     }
     
@@ -30,13 +30,13 @@ class JenisSMasuk {
         $this->load->library('pagination');
         // konfigurasi tampilan paging
         $config = array('base_url' => site_url('jenissuratmasuk/page/'),
-                        'total_rows' => count($this->M_JenisSMasuk->selectAll()),
+                        'total_rows' => count($this->m_jenis_smasuk->selectAll()),
                         'per_page' => $perpage,);
         // inisialisasi pagination dan config
         $this->pagination->initialize($config);
         $limit['perpage'] = $perpage;
         $limit['offset'] = $offset;
-        $data['jenisList'] = $this->M_JenisSMasuk->selectAllPaging($limit);
+        $data['jenisList'] = $this->m_jenis_smasuk->selectAllPaging($limit);
         $data['content'] = 'l_jenisSmasuk';
 	$data['title']= 'Jenis surat masuk';
         $this->load->view('layout',$data);
@@ -59,12 +59,12 @@ class JenisSMasuk {
     }
     public function proses_tambah_jmasuk(){      
         $data = $this->postVariabel();
-        $this->M_JenisSMasuk->insert($data);
+        $this->m_jenis_smasuk->insert($data);
         redirect(site_url('JenisSMasuk'));
     }
     
     public function edit_jenis_surat_masuk($id){
-        $data['dataJenis'] = $this->M_JenisSMasuk->selectById($id);
+        $data['dataJenis'] = $this->m_jenis_smasuk->selectById($id);
 	$data['id'] = $id;
 	$data['mode'] = 'edit';
 	$data['content'] = 'f_jenissuratmasuk';
@@ -75,12 +75,12 @@ class JenisSMasuk {
     public function proses_edit_jmasuk(){
         $data = $this->postVariabel();
         $id_edit=$this->input->post('id');
-        $this->M_JenisSMasuk->update($id_edit, $data);
+        $this->m_jenis_smasuk->update($id_edit, $data);
         redirect(site_url('JenisSMasuk'));
     }
     
     public function delete_jmasuk($id){
-        $this->M_JenisSMasuk->delete($id);
+        $this->m_jenis_smasuk->delete($id);
         redirect('JenisSMasuk');
     }
 }

@@ -114,10 +114,10 @@ $(document).ready(function() {
 		"serverSide": true,
 		"ajax":{
 			"url":"<?php 
-				if($mode == "normal"){echo site_url('disposisi/ajaxProcess');}
-				elseif($mode == "byUserMasuk"){echo site_url('disposisi/ajaxProcessByUser');}
-				elseif($mode == "byUserKeluar"){echo site_url('disposisi/ajaxProcessByUserKeluar');}
-				elseif($mode == "bySurat"){echo site_url('disposisi/ajaxProcessBySurat/'.$this->uri->segment(3));}
+				if($mode == "normal"){echo site_url('Disposisi/ajaxProcess');}
+				elseif($mode == "byUserMasuk"){echo site_url('Disposisi/ajaxProcessByUser');}
+				elseif($mode == "byUserKeluar"){echo site_url('Disposisi/ajaxProcessByUserKeluar');}
+				elseif($mode == "bySurat"){echo site_url('Disposisi/ajaxProcessBySurat/'.$this->uri->segment(3));}
 			?>",
 			"type":"POST",
 			"data":function ( d ) {

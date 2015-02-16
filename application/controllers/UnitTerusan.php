@@ -14,8 +14,8 @@ class UnitTerusan extends CI_Controller {
 			$this->load->helper('url');
 			$this->load->database();
 			$this->load->helper('date');
-			$this->load->model('M_Log');
-			$this->load->model('M_UnitTerusan');
+			$this->load->model('m_log');
+			$this->load->model('m_unit_terusan');
 		}
     }
 	
@@ -23,7 +23,7 @@ class UnitTerusan extends CI_Controller {
 		$data['log_user'] = $this->session->userdata('id_user');
 		$data['log_nama_tabel'] = $tabel;
 		$data['log_aksi'] = $aksi;
-		$this->M_Log->insert($data);
+		$this->m_log->insert($data);
 	}
     
 	function limitRole($limit){
@@ -47,13 +47,13 @@ class UnitTerusan extends CI_Controller {
         $this->load->library('pagination');
         // konfigurasi tampilan paging
         $config = array('base_url' => site_url('UnitTerusan/page/'),
-                        'total_rows' => count($this->M_UnitTerusan->selectAll()->result()),
+                        'total_rows' => count($this->m_unit_terusan->selectAll()->result()),
                         'per_page' => $perpage,);
         // inisialisasi pagination dan config
         $this->pagination->initialize($config);
         $limit['perpage'] = $perpage;
         $limit['offset'] = $offset;
-        $data['unitList'] = $this->M_UnitTerusan->selectAllPaging($limit)->result();
+        $data['unitList'] = $this->m_unit_terusan->selectAllPaging($limit)->result();
         $data['content'] = 'l_unitterusan';
 	$data['title']= 'Unit Terusan';
         $this->load->view('layout',$data);
@@ -77,14 +77,14 @@ class UnitTerusan extends CI_Controller {
     public function proses_tambah_unit(){      
 		$this->limitRole(1);
         $data = $this->postVariabel();
-        $this->M_UnitTerusan->insert($data);
+        $this->m_unit_terusan->insert($data);
 		$this->writeLog('Unit Terusan','Create');
         redirect(site_url('UnitTerusan'));
     }
     
     public function edit_unit_terusan($id){
 		$this->limitRole(1);
-        $data['dataUnit'] = $this->M_UnitTerusan->selectById($id)->row();
+        $data['dataUnit'] = $this->m_unit_terusan->selectById($id)->row();
 		$data['id'] = $id;
 		$data['mode'] = 'edit';
 		$data['content'] = 'f_unitterusan';
@@ -96,14 +96,14 @@ class UnitTerusan extends CI_Controller {
 		$this->limitRole(1);
         $data = $this->postVariabel();
         $id_edit=$this->input->post('id');
-        $this->M_UnitTerusan->update($id_edit, $data);
+        $this->m_unit_terusan->update($id_edit, $data);
 		$this->writeLog('Unit Terusan','Update');
         redirect(site_url('UnitTerusan'));
     }
     
     public function delete_unit($id){
 		$this->limitRole(1);
-        $this->M_UnitTerusan->delete($id);
+        $this->m_unit_terusan->delete($id);
 		$this->writeLog('Unit Terusan','Delete');
         redirect('UnitTerusan');
     }

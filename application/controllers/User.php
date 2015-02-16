@@ -13,9 +13,9 @@ class User extends CI_Controller{
 			$this->load->helper('url');
 			$this->load->database();
 			$this->load->helper('date');
-			$this->load->model('M_Log');
-			$this->load->model('M_User');
-			$this->load->model('M_Role');
+			$this->load->model('m_log');
+			$this->load->model('m_user');
+			$this->load->model('m_role');
 
 		}
     }
@@ -24,7 +24,7 @@ class User extends CI_Controller{
 		$data['log_user'] = $this->session->userdata('id_user');
 		$data['log_nama_tabel'] = $tabel;
 		$data['log_aksi'] = $aksi;
-		$this->M_Log->insert($data);
+		$this->m_log->insert($data);
 	}
 	
 	function limitRole($limit){
@@ -51,13 +51,13 @@ class User extends CI_Controller{
             $this->load->library('pagination');
             // konfigurasi tampilan paging
             $config = array('base_url' => site_url('User/page/'),
-                            'total_rows' => count($this->M_User->selectAll()->result()),
+                            'total_rows' => count($this->m_user->selectAll()->result()),
                             'per_page' => $perpage,);
             // inisialisasi pagination dan config
             $this->pagination->initialize($config);
             $limit['perpage'] = $perpage;
             $limit['offset'] = $offset;
-            $data['userList'] = $this->M_User->selectAllPaging($limit)->result();
+            $data['userList'] = $this->m_user->selectAllPaging($limit)->result();
             $data['content'] = 'l_user';
             $data['title']= 'Daftar User';
             $this->load->view('layout',$data);
@@ -80,7 +80,7 @@ class User extends CI_Controller{
     public function viewList(){
         $data['content'] = 'l_user';
         $data['title'] = 'Daftar Pengguna';
-        $data['userlist'] = $this->M_User->getAllUser();
+        $data['userlist'] = $this->m_user->getAllUser();
         $this->load->view('layout', $data);
     }
     
@@ -89,7 +89,7 @@ class User extends CI_Controller{
         $data['content'] = 'f_user';
         $data['title'] = 'Tambah Pengguna';
         $data['mode']= 'add';
-        $data['rolelist']=  $this->M_Role->selectAll()->result();
+        $data['rolelist']=  $this->m_role->selectAll()->result();
         $this->load->view('layout', $data);
     }
         
@@ -97,7 +97,7 @@ class User extends CI_Controller{
 		$this->limitRole(1); 
         $data = $this->postVariabel();
 
-        $this->M_User->insert($data);
+        $this->m_user->insert($data);
 		$this->writeLog('User','Create');
         redirect(site_url('User'));
     }
@@ -106,12 +106,12 @@ class User extends CI_Controller{
     public function editUser($id){
 		$this->limitRole(1);
           
-        $data['userlist'] = $this->M_User->selectById($id)->row();
+        $data['userlist'] = $this->m_user->selectById($id)->row();
         $data['id'] = $id;
         $data['mode'] = 'edit';
         $data['content'] = 'f_user';
         $data['title'] = 'Edit User Information';
-        $data['rolelist']=  $this->M_Role->selectAll()->result();
+        $data['rolelist']=  $this->m_role->selectAll()->result();
         $this->load->view('layout', $data);
     }
     
@@ -119,19 +119,19 @@ class User extends CI_Controller{
 		$this->limitRole(1);
         $data = $this->postVariabel();
         $id_edit=$this->input->post('id');
-        $this->M_User->update($id_edit, $data);
+        $this->m_user->update($id_edit, $data);
 		$this->writeLog('User','Update');
         redirect(site_url('User'));
     }
  
     public function deleteUser($id){
 		$this->limitRole(1);
-        $this->M_User->delete($id);
+        $this->m_user->delete($id);
 		$this->writeLog('User','Delete');
         redirect('User');
     }
     public function getAllRole(){
-        return $this->M_Role->selectAll()->result();
+        return $this->m_role->selectAll()->result();
     }
     
 }

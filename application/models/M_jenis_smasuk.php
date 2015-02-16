@@ -1,0 +1,45 @@
+<?php
+
+class M_jenis_smasuk extends CI_Model{
+    //put your code here
+    function __construct(){
+        parent::__construct();
+    }
+    
+    function insert($data){
+        $this->db->insert('t_jenis_surat_masuk', $data);
+    }
+    
+    function selectAll(){
+        $this->db->select('*');
+        $this->db->from('t_jenis_surat_masuk');
+        $this->db->order_by('jsm_id', 'desc');
+        return $this->db->get();
+    }
+    function selectById($id){
+        $this->db->select('*');
+        $this->db->from('t_jenis_surat_masuk');
+        $this->db->where('jsm_id', $id);
+        return $this->db->get();
+    }
+     
+    function update($id, $data){
+        $this->db->where('jsm_id', $id);
+        $this->db->update('t_jenis_surat_masuk', $data);
+    }
+    
+    function delete($id){
+        $this->db->where('jsm_id', $id);
+        $this->db->delete('t_jenis_surat_masuk');
+    }
+    
+    // function yang digunakan oleh paginationsample
+    function selectAllPaging($limit=array()){
+        $this->db->select('*');
+        $this->db->from('t_jenis_surat_masuk');
+        $this->db->order_by('jsm_id', 'desc');
+        if ($limit != NULL)
+        $this->db->limit($limit['perpage'], $limit['offset']);
+        return $this->db->get();
+    }
+}

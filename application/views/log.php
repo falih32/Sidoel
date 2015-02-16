@@ -15,7 +15,7 @@ function confirmation() {
     <div class="row-fluid">
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> User Log <a class="btn btn-success" href="<?php echo base_url()."unittujuan/";?>tambah_unit_tujuan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
+                <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> User Log <a class="btn btn-success" href="<?php echo base_url()."UnitTujuan/";?>tambah_unit_tujuan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a></h3>
             </div>
             <table class="table table-responsive table-hover table-striped">
             	<thead>
@@ -31,7 +31,7 @@ function confirmation() {
                 <?php foreach ($logList as $row) { ?>
                 <tr>
                 	<td><?php echo $row->log_id; ?></td>
-                        <td><?php echo $row->log_user; ?></td>
+                        <td><?php echo $row->usr_username; ?></td>
                 	<td><?php echo $row->log_nama_tabel; ?></td>
                         <td><?php echo $row->log_aksi; ?></td>
                         <td><?php echo $row->log_tanggal; ?></td>

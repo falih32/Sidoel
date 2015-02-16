@@ -12,8 +12,8 @@ class Dashboard extends CI_Controller{
 		{
 			$this->load->helper('url');
 			$this->load->database();
-			$this->load->model('M_SuratMasuk');
-			$this->load->model('M_Disposisi');
+			$this->load->model('m_surat_masuk');
+			$this->load->model('m_disposisi');
 		}
     }
 	
@@ -25,8 +25,8 @@ class Dashboard extends CI_Controller{
 	}
 	
 	function getData(){
-		$sm = $this->M_SuratMasuk->selectTotalBulan(6);
-		$dp = $this->M_Disposisi->selectTotalBulan(6);
+		$sm = $this->m_surat_masuk->selectTotalBulan(6);
+		$dp = $this->m_disposisi->selectTotalBulan(6);
 		$m = array();
 		$c_sm = array();
 		$c_dp = array();
@@ -62,8 +62,8 @@ class Dashboard extends CI_Controller{
 	}
 	
 	public function getJson(){
-		$sm = $this->M_SuratMasuk->selectTotalBulan(6);
-		$dp = $this->M_Disposisi->selectTotalBulan(6);
+		$sm = $this->m_surat_masuk->selectTotalBulan(6);
+		$dp = $this->m_disposisi->selectTotalBulan(6);
 		$m = array();
 		$c_sm = array();
 		$c_dp = array();

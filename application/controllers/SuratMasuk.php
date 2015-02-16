@@ -13,10 +13,10 @@ class SuratMasuk extends CI_Controller{
 			$this->load->helper('url');
 			$this->load->helper('date');
 			$this->load->database();
-			$this->load->model('M_SuratMasuk');
-			$this->load->model('M_UnitTujuan');
-			$this->load->model('M_JenisSMasuk');
-			$this->load->model('M_Log');
+			$this->load->model('m_surat_masuk');
+			$this->load->model('m_unit_tujuan');
+			$this->load->model('m_jenis_smasuk');
+			$this->load->model('m_log');
 		}
     }
 	
@@ -24,7 +24,7 @@ class SuratMasuk extends CI_Controller{
 		$data['log_user'] = $this->session->userdata('id_user');
 		$data['log_nama_tabel'] = $tabel;
 		$data['log_aksi'] = $aksi;
-		$this->M_Log->insert($data);
+		$this->m_log->insert($data);
 	}
 	
 	function limitRole($limit){
@@ -56,7 +56,7 @@ class SuratMasuk extends CI_Controller{
 		$max=$this->input->post('max');
 		if($min == '') $min = '0000-00-00';
 		if($max == '') $max = '9999-12-31';
-		$result = $this->M_SuratMasuk->selectAjax($min, $max);
+		$result = $this->m_surat_masuk->selectAjax($min, $max);
 		echo $result;
 	}
     	
@@ -66,16 +66,16 @@ class SuratMasuk extends CI_Controller{
 		$max=$this->input->post('max');
 		if($min == '') $min = '0000-00-00';
 		if($max == '') $max = '9999-12-31';
-		$result = $this->M_SuratMasuk->selectAjax($min, $max, $user);
+		$result = $this->m_surat_masuk->selectAjax($min, $max, $user);
 		echo $result;
 	}
 	
     public function getAllUnitTujuan(){       
-		return $this->M_UnitTujuan->selectAll()->result();
+		return $this->m_unit_tujuan->selectAll()->result();
     }
     
     public function getAllJenisSurat(){
-		return $this->M_JenisSMasuk->selectAll()->result();
+		return $this->m_jenis_smasuk->selectAll()->result();
     }
     
     function postVariabel(){
@@ -123,7 +123,7 @@ class SuratMasuk extends CI_Controller{
 			$updata = $this->upload->data();
 			$data['sms_file'] = $updata['file_name'];
 		}
-        $this->M_SuratMasuk->insert($data);
+        $this->m_surat_masuk->insert($data);
 		$this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
 		$this->writeLog('Surat Masuk','Create');
         redirect(site_url('SuratMasuk'));
@@ -131,7 +131,7 @@ class SuratMasuk extends CI_Controller{
     
     public function detail_surat_masuk($id){
 		$this->limitRole(2);
-        $data['dataSurat'] = $this->M_SuratMasuk->selectById($id);
+        $data['dataSurat'] = $this->m_surat_masuk->selectById($id);
 		$data['id'] = $id;
 		$data['mode'] = 'edit';
 		$data['content'] = 'v_suratmasuk';
@@ -143,7 +143,7 @@ class SuratMasuk extends CI_Controller{
     
     public function edit_surat_masuk($id){
 		$this->limitRole(2);
-        $data['dataSurat'] = $this->M_SuratMasuk->selectById($id);
+        $data['dataSurat'] = $this->m_surat_masuk->selectById($id);
 		$data['id'] = $id;
 		$data['mode'] = 'edit';
 		$data['content'] = 'f_suratmasuk';
@@ -162,7 +162,7 @@ class SuratMasuk extends CI_Controller{
 			$data['sms_file'] = $updata['file_name'];
 		}
         $id_edit=$this->input->post('id');
-        $this->M_SuratMasuk->update($id_edit, $data);
+        $this->m_surat_masuk->update($id_edit, $data);
 		$this->session->set_flashdata('message', array('msg' => 'Data telah diperbarui','class' => 'success'));
 		$this->writeLog('Surat Masuk','Update');
         redirect(site_url('SuratMasuk'));
@@ -170,7 +170,7 @@ class SuratMasuk extends CI_Controller{
     
     public function delete_smasuk($id){
 		$this->limitRole(2);
-        $this->M_SuratMasuk->delete($id);
+        $this->m_surat_masuk->delete($id);
 		$this->session->set_flashdata('message', array('msg' => 'Data telah dihapus','class' => 'warning'));
 		$this->writeLog('Surat Masuk','Delete');
         redirect('SuratMasuk');
@@ -184,11 +184,11 @@ class SuratMasuk extends CI_Controller{
 		
 		$limit['perpage'] = 100;
 		$limit['offset'] = 0;
-		$data['suratList'] = $this->M_SuratMasuk->searchSuratMasuk($s_key, $s_date_awal, $s_date_akhir, $limit);
+		$data['suratList'] = $this->m_surat_masuk->searchSuratMasuk($s_key, $s_date_awal, $s_date_akhir, $limit);
 		
 		$data['content'] = 'l_suratmasuk';
 		$data['title']= 'Daftar surat masuk';
-		$data['unit_tujuan'] = $this->M_UnitTujuan->selectAll();
+		$data['unit_tujuan'] = $this->m_unit_tujuan->selectAll();
 		$this->load->view('layout',$data);
 	}
 }

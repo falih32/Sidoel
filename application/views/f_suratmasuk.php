@@ -35,7 +35,7 @@
                 <h3>Surat masuk</h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."suratmasuk/proses_edit_smasuk";}else{echo base_url()."suratmasuk/proses_tambah_smasuk";}?>" class="form-horizontal" role="form" data-toggle="validator" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."SuratMasuk/proses_edit_smasuk";}else{echo base_url()."SuratMasuk/proses_tambah_smasuk";}?>" class="form-horizontal" role="form" data-toggle="validator" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -67,7 +67,7 @@
                         </div>
                         
                         <div class="col-sm-3">
-	                        <input type="date" class="form-control tgl" id="tgl_srt_dtlanjut" name="sms_tgl_srt_dtlanjut" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt_dtlanjut; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$">
+	                        <input type="date" class="form-control tgl" id="tgl_srt_dtlanjut" name="sms_tgl_srt_dtlanjut" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt_dtlanjut; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                             <p class="help-block">Tenggat Waktu untuk ditindaklanjuti</p>
                         </div>
                         
@@ -129,7 +129,7 @@
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
-                        	<a class="btn btn-lg btn-danger" href="<?php echo base_url()."suratmasuk";?>"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                        	<a class="btn btn-lg btn-danger" href="<?php echo base_url()."SuratMasuk";?>"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
                             <button type="reset" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Reset</button>
                             <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan</button>
                         </div>

@@ -4,7 +4,7 @@ class Login extends CI_Controller{
     
     function __construct(){
         parent::__construct();
-        $this->load->model('M_User');
+        $this->load->model('m_user');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -29,7 +29,7 @@ class Login extends CI_Controller{
     public function do_login(){
         $username = $this->input->post('username');
         $password = $this->input->post('password');
-        $temp_account = $this->M_User->check_user_account($username, $password)->row();
+        $temp_account = $this->m_user->check_user_account($username, $password)->row();
         // check account
         $num_account = count($temp_account);
         $this->form_validation->set_rules('username', 'Username', 'required');

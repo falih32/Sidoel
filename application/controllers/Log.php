@@ -14,7 +14,7 @@ class Log extends CI_Controller{
 			$this->load->helper('url');
 			$this->load->database();
 			//$this->load->library('input');
-			$this->load->model('M_Log');
+			$this->load->model('m_log');
 		}
     }
     
@@ -31,13 +31,13 @@ class Log extends CI_Controller{
         $this->load->library('pagination');
         // konfigurasi tampilan paging
         $config = array('base_url' => site_url('log/page/'),
-                        'total_rows' => count($this->M_Log->selectAll()->result()),
+                        'total_rows' => count($this->m_log->selectAll()->result()),
                         'per_page' => $perpage,);
         // inisialisasi pagination dan config
         $this->pagination->initialize($config);
         $limit['perpage'] = $perpage;
         $limit['offset'] = $offset;
-        $data['logList'] = $this->M_Log->selectAllPaging($limit)->result();
+        $data['logList'] = $this->m_log->selectAllPaging($limit)->result();
         $data['content'] = 'log';
 		$data['title']= 'Log';
         $this->load->view('layout',$data);

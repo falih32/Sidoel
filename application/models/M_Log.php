@@ -1,17 +1,6 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of M_Log
- *
- * @author Ganteng Imut
- */
-class M_Log extends CI_Model {
+class M_log extends CI_Model {
     //put your code here
     function __construct(){
         parent::__construct();
@@ -50,6 +39,7 @@ class M_Log extends CI_Model {
         $this->db->select('*');
         $this->db->from('t_log');
         $this->db->order_by('log_id', 'desc');
+		$this->db->join('t_user','t_user.usr_id = t_log.log_user','left');
         if ($limit != NULL)
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();
