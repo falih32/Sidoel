@@ -204,14 +204,41 @@ class Disposisi extends CI_Controller{
                         $this->m_user->updateNotif($row);
 		}
                             
-                //$data4 = $this->input->post('tr_disposisi_user');
-//		foreach($data4 as $row){
+                $data4 = $this->input->post('tr_disposisi_user');
+		foreach($data4 as $row){
 //                    $noTujuan= $this->m_user->selectbyId($row)->row()->usr_no_telp;
 //                    $message = 'Anda mendapat disposisi instruksi baru dari '.$this->session->userdata('username').' dengan ID '.$AI.'. Silahkan cek '.  base_url().'disposisi/detail_disposisi/'.$AI;
 //
 //                    $query = "INSERT INTO sms.outbox (DestinationNumber, TextDecoded, CreatorID)VALUES ('$noTujuan', '$message', 'Gammu')";
 //                    $this->db->query($query);
-//                }
+                    $userkey="andhika1988"; // userkey di SMS Notifikasi //
+
+                    $passkey="211188"; // passkey di SMS Notifikasi //
+                    
+                    $telepon= $this->m_user->selectbyId($row)->row()->usr_no_telp;
+                    
+                    $message='Anda mendapat disposisi instruksi baru dari '.$this->session->userdata('username').' dengan ID '.$AI.'. Silahkan cek '.  base_url().'disposisi/detail_disposisi/'.$AI;
+
+                    $url = "http://reguler.sms-notifikasi.com/apps/smsapi.php";$curlHandle = curl_init();
+
+                    curl_setopt($curlHandle, CURLOPT_URL, $url);
+
+                    curl_setopt($curlHandle, CURLOPT_POSTFIELDS, "userkey=".$userkey."&passkey=".$passkey."&nohp=".$telepon.
+                    "&pesan=".urlencode($message));
+
+                    curl_setopt($curlHandle, CURLOPT_HEADER, 0);
+
+                    curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
+
+                    curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);
+
+                    curl_setopt($curlHandle, CURLOPT_POST, 1);
+
+                    $results = curl_exec($curlHandle);
+
+                    curl_close($curlHandle);
+
+                }
 		$this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
                 redirect(site_url('Disposisi'));
     }
