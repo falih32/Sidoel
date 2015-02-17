@@ -19,6 +19,9 @@
                                     <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                 </label>
                             </div>
+                            <div class="text-right">
+                            	<a href="<?php echo site_url('ResetUser/forgot_password'); ?>"> Lupa password? </a>
+                            </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <input type="submit" class="btn btn-sm btn-success" value="Login">
                         </fieldset>

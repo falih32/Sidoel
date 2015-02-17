@@ -44,15 +44,20 @@
               <div class="form-group">
                         <label for="usr_username" class="col-sm-2 control-label text-left">Username</label>
                         <div class="col-sm-10">
+                        	<?php if($mode == "add"){?>
 	                        <input type="text" class="form-control" id="usr_username" name="usr_username" placeholder="Username" value="<?php echo $usr_username; ?>" required data-minlength="5" pattern="^[a-zA-Z0-9]*$">
                             <p class="help-block">Minimal 5 karakter, hanya huruf dan angka</p>
                             <div class="help-block with-errors"></div>
+                            <?php } else {?>
+                            <input type="hidden" id="usr_username" name="usr_username" value="<?php echo $usr_username; ?>">
+                            <p class="form-control-static"><?php echo $usr_username; ?></p>
+                            <?php }?>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="usr_nip" class="col-sm-2 control-label text-left">NIP</label>
                         <div class="col-sm-10">
-	                        <input type="number" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>">
+	                        <input type="text" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>" pattern="^[0-9]*$">
                             <p class="help-block">Hanya angka</p>
                             <div class="help-block with-errors"></div>
                              </div>
@@ -60,7 +65,7 @@
                <div class="form-group">
                         <label for="usr_no_telp" class="col-sm-2 control-label text-left">Nomor Handphone</label>
                         <div class="col-sm-10">
-	                        <input type="number" class="form-control" id="usr_no_telp" name="usr_no_telp" placeholder="Nomor Handphone" value="<?php echo $usr_no_telp; ?>" required data-minlength="10">
+	                        <input type="text" class="form-control" id="usr_no_telp" name="usr_no_telp" placeholder="Nomor Handphone" value="<?php echo $usr_no_telp; ?>" pattern="^[0-9]*$" required data-minlength="10">
                             <p class="help-block">Hanya angka</p>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -85,13 +90,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="usr_password" class="col-sm-2 control-label text-left">Password</label>
+                        <label for="usr_password" class="col-sm-2 control-label text-left"><?php if($mode == "edit"){echo "Konfirmasi ";}?>Password</label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="usr_password" name="usr_password" placeholder="User Password" value="<?php echo $usr_password; ?>" required data-minlength="5">
                             <p class="help-block">Minimal 5 karakter</p>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
+                    <?php if($mode == "add"){?>
                     <div class="form-group">
                         <label for="konfirm" class="col-sm-2 control-label text-left">Konfirmasi Password</label>
                         <div class="col-sm-10">
@@ -100,6 +106,7 @@
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">

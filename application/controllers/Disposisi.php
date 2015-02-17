@@ -41,7 +41,7 @@ class Disposisi extends CI_Controller{
 	}
     
     public function index(){
-		$this->limitRole(2);
+		$this->limitRole(3);
 		$s = $this->session->userdata('id_user');
 		$this->m_disposisi->setNotifZero($s);
 		$data['mode'] = 'normal';
@@ -88,13 +88,13 @@ class Disposisi extends CI_Controller{
 		echo $result;
 	}
 	
-	public function ajaxProcessByUser(){
+	public function ajaxProcessByUserMasuk(){
 		$user = $this->session->userdata('id_user');
 		$min=$this->input->post('min');
 		$max=$this->input->post('max');
 		if($min == '') $min = '0000-00-00';
 		if($max == '') $max = '9999-12-31';
-		$result = $this->m_disposisi->selectAjaxByUser($min, $max, $user);
+		$result = $this->m_disposisi->selectAjaxByUserMasuk($min, $max, $user);
 		echo $result;
 	}
 	

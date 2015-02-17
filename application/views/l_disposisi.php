@@ -1,3 +1,4 @@
+<?php $role = $this->session->userdata('id_role'); ?>
 <div class="container-fluid">
     <div class="row-fluid">
     	<div class="panel panel-primary">
@@ -114,7 +115,7 @@ $(document).ready(function() {
 		"ajax":{
 			"url":"<?php 
 				if($mode == "normal"){echo site_url('Disposisi/ajaxProcess');}
-				elseif($mode == "byUserMasuk"){echo site_url('Disposisi/ajaxProcessByUser');}
+				elseif($mode == "byUserMasuk"){echo site_url('Disposisi/ajaxProcessByUserMasuk');}
 				elseif($mode == "byUserKeluar"){echo site_url('Disposisi/ajaxProcessByUserKeluar');}
 				elseif($mode == "bySurat"){echo site_url('Disposisi/ajaxProcessBySurat/'.$this->uri->segment(3));}
 			?>",
@@ -127,7 +128,7 @@ $(document).ready(function() {
 		"columns": [
                 { "data": "sms_nomor_surat" },
                 { "data": "fds_kasubbag" },
-                { "data": "usr_username" },
+                { "data": "usr_nama" },
                 { "data": "fds_catatan" },
                 { "data": "fds_tgl_disposisi" },
                 { "data": "fds_aksi" },
@@ -135,7 +136,8 @@ $(document).ready(function() {
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": 5 },
-				{ "visible":false, "targets": [1, 6]}
+				{ "visible":false, "targets": [1, 6]},
+				{ "visible":false, "targets": [<?php if($mode == "normal"&& $role > 2) echo"5"; ?>]}
 			],
 		"order": [[ 6, "desc" ]],
 		"drawCallback": function( settings ) {

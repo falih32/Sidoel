@@ -34,16 +34,17 @@
             <li><a href="<?php echo site_url("Log"); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Log</a></li>
           </ul>
         </li>
-       <?php }?>
        </ul>
        <ul class="nav navbar-nav navbar-right">
        	<li class="dropdown">
         	<a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <strong><?php echo $this->session->userdata('username'); ?></strong><span class="caret"></span></a>
        		<ul class="dropdown-menu" role="menu">
             	<li><a href="<?php echo site_url('User/editUser')."/".$this->session->userdata("id_user"); ?>"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Pengaturan akun</a></li>
+            	<li><a href="<?php echo site_url('User/changePassword')."/".$this->session->userdata("id_user"); ?>"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span> Ubah Password</a></li>
             	<li><a href="<?php echo site_url('login/logout'); ?>"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
             </ul>
         </li>
+       <?php }?>
        </ul>
     </div><!--/.nav-collapse -->
   </div>

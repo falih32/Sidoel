@@ -36,33 +36,9 @@ class User extends CI_Controller{
 	}
 	
     public function index(){
-        $this->page();
-    }
-	
-    public function page(){
-        if($this->session->userdata('id_user') == ''){
-                $this->pageLogin();
-        }
-        else{
-            $offset = $this->uri->segment(3);
-            $offset = (empty($offset))?0:$offset;
-            $perpage =10;
-            // load library pagination
-            $this->load->library('pagination');
-            // konfigurasi tampilan paging
-            $config = array('base_url' => site_url('User/page/'),
-                            'total_rows' => count($this->m_user->selectAll()->result()),
-                            'per_page' => $perpage,);
-            // inisialisasi pagination dan config
-            $this->pagination->initialize($config);
-            $limit['perpage'] = $perpage;
-            $limit['offset'] = $offset;
-            $data['userList'] = $this->m_user->selectAllPaging($limit)->result();
-            $data['content'] = 'l_user';
-            $data['title']= 'Daftar User';
-            $this->load->view('layout',$data);
-        }
-
+		$data['content'] = 'l_user';
+		$data['title']= 'Daftar User';
+		$this->load->view('layout',$data);
     }
 	
 	public function ajaxProcess(){
@@ -100,31 +76,52 @@ class User extends CI_Controller{
     public function proses_addUser(){     
 		$this->limitRole(1); 
         $data = $this->postVariabel();
-
-        $this->m_user->insert($data);
-		$this->writeLog('User','Create');
+		$check = $this->m_user->check_username();
+		if($check == ""){
+			$this->m_user->insert($data);
+			$this->writeLog('User','Create');
+			$this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
+		}
+		else{
+			$this->session->set_flashdata('message', array('msg' => 'Username yang anda pilih sudah terdapat pada sistem','class' => 'danger'));
+		}
         redirect(site_url('User'));
     }
     
     
     public function editUser($id){
-		$this->limitRole(1);
-          
-        $data['userlist'] = $this->m_user->selectById($id)->row();
-        $data['id'] = $id;
-        $data['mode'] = 'edit';
-        $data['content'] = 'f_user';
-        $data['title'] = 'Edit User Information';
-        $data['rolelist']=  $this->m_role->selectAll()->result();
-        $this->load->view('layout', $data);
+		if($this->session->userdata('id_user') == $id || $this->session->userdata('id_role') == '1'){
+			$data['userlist'] = $this->m_user->selectById($id)->row();
+			$data['id'] = $id;
+			$data['mode'] = 'edit';
+			$data['content'] = 'f_user';
+			$data['title'] = 'Edit User Information';
+			$data['rolelist']=  $this->m_role->selectAll()->result();
+			$this->load->view('layout', $data);
+		}
+		else{
+			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+			redirect('Dashboard');
+		}
     }
     
     public function proses_editUser(){
-		$this->limitRole(1);
-        $data = $this->postVariabel();
-        $id_edit=$this->input->post('id');
-        $this->m_user->update($id_edit, $data);
-		$this->writeLog('User','Update');
+		$id_edit=$this->input->post('id');
+		if($this->session->userdata('id_user') == $id_edit || $this->session->userdata('id_role') == '1'){
+			$data = $this->postVariabel();
+			$check_password = $this->m_user->selectById($id_edit)->row()->usr_password;
+			if($data['usr_password']  == $check_password){
+				$this->m_user->update($id_edit, $data);
+				$this->writeLog('User','Update');
+				$this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
+			}
+			else{
+				$this->session->set_flashdata('message', array('msg' => 'Password yang anda masukkan tidak sesuai','class' => 'danger'));
+			}
+		}
+		else{
+			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+		}
         redirect(site_url('User'));
     }
  
@@ -134,9 +131,44 @@ class User extends CI_Controller{
 		$this->writeLog('User','Delete');
         redirect('User');
     }
+	
     public function getAllRole(){
         return $this->m_role->selectAll()->result();
     }
-    
+	
+	public function changePassword($id){
+		$data['id'] = $id;
+		if($this->session->userdata('id_user') == $id || $this->session->userdata('id_role') == '1'){
+			$data['userData'] = $this->m_user->selectById($id)->row();
+			$data['title'] = 'Ubah Password';
+			$data['content'] = 'password_change';
+			$this->load->view('layout', $data);
+		}
+		else{
+			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+			redirect(site_url('User'));
+		}
+	}
+	
+	public function process_change_password(){
+		$id_edit=$this->input->post('usr_id');
+		if($this->session->userdata('id_user') == $id_edit || $this->session->userdata('id_role') == '1'){
+			$old_pass = md5($this->input->post('old_pass'));
+			$check_password = $this->m_user->selectById($id_edit)->row()->usr_password;
+			if($old_pass  == $check_password){
+				$data['usr_password'] = md5($this->input->post('new_pass'));
+				$this->m_user->update($id_edit, $data);
+				$this->writeLog('User','Update');
+				$this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
+			}
+			else{
+				$this->session->set_flashdata('message', array('msg' => 'Password yang anda masukkan tidak sesuai','class' => 'danger'));
+			}
+		}
+		else{
+			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+		}
+        redirect(site_url('User'));
+	}
 }
 ?>

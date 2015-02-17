@@ -33,7 +33,7 @@ class M_disposisi extends CI_Model{
 	
 	function selectAjax($min, $max){
 		$this->datatables
-			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, fds_catatan, fds_tgl_disposisi, sms_id')
+			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, usr_nama, fds_catatan, fds_tgl_disposisi, sms_id')
 			->from('t_form_disposisi')
 			->where('fds_deleted','0')
 			->where('fds_tgl_disposisi >= ', $min)
@@ -54,17 +54,17 @@ class M_disposisi extends CI_Model{
 		return $this->datatables->generate();
 	}
 	
-	function selectAjaxByUser($min, $max, $user){
+	function selectAjaxByUserMasuk($min, $max, $user){
 		$this->datatables
-			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, fds_catatan, fds_tgl_disposisi, sms_id')
+			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, usr_nama, fds_catatan, fds_tgl_disposisi, sms_id')
 			->from('t_form_disposisi')
 			->where('fds_deleted','0')
 			->where('fds_tgl_disposisi >= ', $min)
 			->where('fds_tgl_disposisi <= ', $max)
+			->join('t_user', 't_user.usr_id = t_form_disposisi.fds_pengirim', 'left')
 			->join('tr_disposisi_user', 'tr_disposisi_user.dus_disposisi = t_form_disposisi.fds_id', 'left')
-			->join('t_user', 't_user.usr_id = tr_disposisi_user.dus_user', 'left')
 			->join('t_surat_msk', 't_surat_msk.sms_id = t_form_disposisi.fds_id_surat', 'left')
-			->where('t_user.usr_id', $user);
+			->where('tr_disposisi_user.dus_user', $user);
 		$this->datatables->edit_column('fds_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
@@ -81,7 +81,7 @@ class M_disposisi extends CI_Model{
 	
 	function selectAjaxByUserKeluar($min, $max, $user){
 		$this->datatables
-			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, fds_catatan, fds_tgl_disposisi, sms_id')
+			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, usr_nama, fds_catatan, fds_tgl_disposisi, sms_id')
 			->from('t_form_disposisi')
 			->where('fds_deleted','0')
 			->where('fds_tgl_disposisi >= ', $min)
@@ -105,7 +105,7 @@ class M_disposisi extends CI_Model{
 	
 	function selectAjaxBySurat($min, $max, $surat){
 		$this->datatables
-			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, fds_catatan, fds_tgl_disposisi, sms_id')
+			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, usr_nama, fds_catatan, fds_tgl_disposisi, sms_id')
 			->from('t_form_disposisi')
 			->where('fds_deleted','0')
 			->where('fds_tgl_disposisi >= ', $min)

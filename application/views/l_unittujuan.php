@@ -62,7 +62,7 @@ $(document).ready(function() {
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": 2 },
-				{ "visible":false, "targets": [<?php if($role > 2) echo"2"; ?>]}
+				{ "visible":false, "targets": [<?php if($role > 1) echo"2"; ?>]}
 			],
 		"order": [[ 0, "asc" ]],
 		"drawCallback": function( settings ) {

@@ -94,7 +94,7 @@ $(document).ready(function() {
                 { "data": "terima_tenggat" },
                 { "data": "sms_keterangan" },
                 { "data": "sms_status_terkirim" },
-                { "data": "usr_userName" },
+                { "data": "usr_nama" },
                 { "data": "sms_aksi" },
                 { "data": "sms_nomor_surat"},
                 { "data": "sms_tgl_srt" },

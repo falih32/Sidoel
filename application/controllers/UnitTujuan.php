@@ -35,27 +35,8 @@ class UnitTujuan extends CI_Controller {
 	}
 	
     public function index(){
-		$this->page();
-    }
-    
-    public function page(){
-        // tentukan jumlah data per halaman
-	$offset = $this->uri->segment(3);
-	$offset = (empty($offset))?0:$offset;
-        $perpage = 10;
-        // load library pagination
-        $this->load->library('pagination');
-        // konfigurasi tampilan paging
-        $config = array('base_url' => site_url('UnitTujuan/page/'),
-                        'total_rows' => count($this->m_unit_tujuan->selectAll()->result()),
-                        'per_page' => $perpage,);
-        // inisialisasi pagination dan config
-        $this->pagination->initialize($config);
-        $limit['perpage'] = $perpage;
-        $limit['offset'] = $offset;
-        $data['unitList'] = $this->m_unit_tujuan->selectAllPaging($limit)->result();
         $data['content'] = 'l_unittujuan';
-	$data['title']= 'Unit surat masuk';
+		$data['title']= 'Unit surat masuk';
         $this->load->view('layout',$data);
     }
 	

@@ -1,8 +1,6 @@
 <?php
 
 class M_user extends CI_Model{
-    //put your code here
-    //put your code here
     function __construct(){
         parent::__construct();
 		$this->load->library('Datatables');
@@ -16,21 +14,27 @@ class M_user extends CI_Model{
         $this->db->where('usr_id', $id);
         $this->db->update('t_user', $data);
     }
+	
     // cek keberadaan user di sistem
     function check_user_account($username, $password){
-        //$this->db->select('*');
-//        $this->db->from('t_user');
-//        $this->db->where('usr_username', $username);
-//        $this->db->where('usr_password', md5($password));
 		return $this->db->query("SELECT * FROM t_user WHERE usr_username = ".$this->db->escape($username)." AND usr_password = ".$this->db->escape(md5($password)));
     }
-    // mengambil data user tertentu
+    	// mengambil data user tertentu
        function get_user($id_user){
        $this->db->select('*');
        $this->db->from('t_user');
        $this->db->where('usr_id', $id_user);
        return $this->db->get();
     }
+	
+	function check_username($username){
+		$this->db
+		->select('*')
+		->from('t_user')
+		->where('usr_username', $username);
+		return $this->db->get();
+	}
+		
     function selectAll(){
        $this->db->select('*');
        $this->db->from('t_user');
@@ -41,6 +45,13 @@ class M_user extends CI_Model{
         $this->db->select('*');
         $this->db->from('t_user');
         $this->db->where('usr_id', $id);
+        return $this->db->get();
+    }
+	
+	function selectByUsername($username){
+        $this->db->select('*');
+        $this->db->from('t_user');
+        $this->db->where('usr_username', $username);
         return $this->db->get();
     }
     

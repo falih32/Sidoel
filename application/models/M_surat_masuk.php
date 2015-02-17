@@ -23,12 +23,12 @@ class M_surat_masuk extends CI_Model{
     
 	function selectAjax($min, $max){
 		$this->datatables
-			->select('sms_id, sms_no_agenda, sms_nomor_surat, sms_tgl_srt, sms_pengirim, sms_perihal, sms_tgl_srt_diterima, sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, usr_userName')
+			->select('sms_id, sms_no_agenda, sms_nomor_surat, sms_tgl_srt, sms_pengirim, sms_perihal, sms_tgl_srt_diterima, sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, usr_userName, usr_nama')
 			->from('t_surat_msk')
 			->where('sms_deleted','0')
 			->where('sms_tgl_srt_diterima >= ', $min)
 			->where('sms_tgl_srt_diterima <= ', $max)
-			->join('t_user', 't_surat_msk.sms_unit_tujuan = t_user.usr_id', 'left');
+			->join('t_user', 't_surat_msk.sms_edited_by = t_user.usr_id', 'left');
 		$this->datatables->add_column('no_tgl', '$1<br>$2', 'sms_nomor_surat, sms_tgl_srt');
 		$this->datatables->add_column('pengirim_perihal', '$1<br>$2', 'sms_pengirim, sms_perihal');
 		$this->datatables->add_column('terima_tenggat', '$1<br>$2', 'sms_tgl_srt_diterima, sms_tgl_srt_dtlanjut');

@@ -12,19 +12,15 @@ class Login extends CI_Controller{
         // melihat halam qqan login
     public function index(){
 		if($this->session->userdata('id_user') == ''){
-			$this->pageLogin();
+			$data['content'] = 'login';
+			$data['title'] = 'login';       
+			$this->load->view('layout', $data);
 		}
 		else{
 			redirect('Dashboard');
 		}		
     }
-    
-    public function pageLogin(){
-        $data['content'] = 'login';
-        $data['title'] = 'login';       
-        $this->load->view('layout', $data);
-    }
-    
+        
     // memeriksa keberadaan akun username
     public function do_login(){
         $username = $this->input->post('username');
@@ -56,6 +52,7 @@ class Login extends CI_Controller{
             }
         }
     }
+	
     // keluar dari sistem
     public function logout(){
         $this->session->unset_userdata('id_user');

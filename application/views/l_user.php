@@ -4,7 +4,7 @@
     	<div class="panel panel-primary">
             <div class="panel-heading">
                 <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> User List 
-                <?php if($role <= 2){?>
+                <?php if($role <= 1){?>
                 <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah User' href="<?php echo base_url()."User/";?>addUser"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <?php } ?>
                 </h3>
@@ -70,7 +70,7 @@ $(document).ready(function() {
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": 6 },
-				{ "visible":false, "targets": [<?php if($role > 2) echo"6"; ?>]}
+				{ "visible":false, "targets": [<?php if($role > 1) echo"6"; ?>]}
 			],
 		"order": [[ 0, "asc" ]],
 		"drawCallback": function( settings ) {
