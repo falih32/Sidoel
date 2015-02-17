@@ -9,7 +9,7 @@
                     <tbody>
                     	<tr>
                         	<th>Nomor Surat</th>
-                        	<td><a target="_blank" href="<?php echo site_url('SuratMasuk/detail_surat_masuk')."/".$dataDisposisi->fds_id_surat; ?>"><?php echo $dataDisposisi->sms_nomor_surat; ?></a></td>
+                        	<td><?php echo $dataDisposisi->sms_nomor_surat; ?> <a class="btn btn-default btn-sm" target="_blank" href="<?php echo site_url('SuratMasuk/detail_surat_masuk')."/".$dataDisposisi->fds_id_surat; ?>"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Lihat detail surat</a></td>
                         </tr>
                     	<tr>
                         	<th>Tanggal Disposisi</th>

@@ -38,7 +38,7 @@ class Login extends CI_Controller{
             $this->pageLogin();
         }else{
             if ($num_account > 0){
-            // kalau ada set session
+            	// kalau ada set session
                 $array_items = array('id_user' => $temp_account->usr_id, 
                                       'username' => $temp_account->usr_username,
 									  'id_role' => $temp_account->usr_role,
@@ -46,13 +46,14 @@ class Login extends CI_Controller{
                 $this->session->set_userdata($array_items);
                 $data['content'] = 'dashboard';
                 $data['title'] = 'Dashboard';    
-				$this->session->set_flashdata('message', array('msg' => 'Login berhasil','class' => 'success'));   
+				$this->session->set_flashdata('message', array('msg' => 'Anda berhasil login sebagai <strong>'.$this->session->userdata('username').'</strong>','class' => 'success'));   
+				redirect(site_url('dashboard'));
             }
             else {
-            // kalau ga ada diredirect lagi ke halaman login
-			$this->session->set_flashdata('message', array('msg' => 'Login gagal','class' => 'danger'));
+				// kalau ga ada diredirect lagi ke halaman login
+				$this->session->set_flashdata('message', array('msg' => 'Login gagal','class' => 'danger'));
+				redirect(site_url('login'));
             }
-			redirect(site_url('login'));
         }
     }
     // keluar dari sistem

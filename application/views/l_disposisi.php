@@ -53,10 +53,9 @@
                     <?php } ?>
                 </div>
                 <div class="col-md-6 col-md-offset-6 text-right" id="date_search">
-                    <input type="date" class="form-control input-sm tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
-                    <input type="date" class="form-control input-sm tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">
-                    <button type="reset" data-toggle='tooltip' data-placement='top' title='Clear' class="form-control btn btn-default btn-sm" id="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
-                    <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></button>
+                    <input type="text" class="form-control input-sm tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
+                    <input type="text" class="form-control input-sm tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">
+                    <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                 </div>
             </div>
             <table class="table table-responsive table-hover table-striped table-bordered" cellspacing="0" width="100%">
@@ -131,13 +130,14 @@ $(document).ready(function() {
                 { "data": "usr_username" },
                 { "data": "fds_catatan" },
                 { "data": "fds_tgl_disposisi" },
-                { "data": "fds_aksi" }
+                { "data": "fds_aksi" },
+				{ "data": "fds_id" }
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": 5 },
-				{ "visible":false, "targets": 1}
+				{ "visible":false, "targets": [1, 6]}
 			],
-		"order": [[ 4, "desc" ]],
+		"order": [[ 6, "desc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			makeTooltip();

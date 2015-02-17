@@ -1,7 +1,7 @@
 <?php
 	if($mode == 'edit'){
-		
-		$utj_unit_tujuan = $dataUnit-> utj_unit_tujuan;
+		$id = $dataUnit->utj_id;
+		$utj_unit_tujuan = $dataUnit->utj_unit_tujuan;
                 
 			}
 	else{
@@ -16,13 +16,14 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."UnitTujuan/proses_edit_unit";}else{echo base_url()."UnitTujuan/proses_tambah_unit";}?>" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."UnitTujuan/proses_edit_unit";}else{echo base_url()."UnitTujuan/proses_tambah_unit";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="utj_unit_tujuan" class="col-sm-2 control-label text-left">Unit Tujuan</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="utj_unit_tujuan" name="utj_unit_tujuan" placeholder="Unit Tujuan" value="<?php echo $utj_unit_tujuan; ?>">
+	                        <input type="text" class="form-control" id="utj_unit_tujuan" name="utj_unit_tujuan" placeholder="Unit Tujuan" value="<?php echo $utj_unit_tujuan; ?>" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
               

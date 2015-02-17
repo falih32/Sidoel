@@ -1,6 +1,6 @@
 <?php
 	if($mode == 'edit'){
-		
+		$id = $dataUnit->utr_id;
 		$utr_nama_unit_trsn = $dataUnit-> utr_nama_unit_trsn;
                 
 			}
@@ -16,13 +16,14 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."UnitTerusan/proses_edit_unit";}else{echo base_url()."UnitTerusan/proses_tambah_unit";}?>" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."UnitTerusan/proses_edit_unit";}else{echo base_url()."UnitTerusan/proses_tambah_unit";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="utr_nama_unit_trsn" class="col-sm-2 control-label text-left">Unit Terusan</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="utr_nama_unit_trsn" name="utr_nama_unit_trsn" placeholder="Unit Terusan" value="<?php echo $utr_nama_unit_trsn; ?>">
+	                        <input type="text" class="form-control" id="utr_nama_unit_trsn" name="utr_nama_unit_trsn" placeholder="Unit Terusan" value="<?php echo $utr_nama_unit_trsn; ?>" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
               

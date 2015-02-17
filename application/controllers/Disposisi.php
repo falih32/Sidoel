@@ -52,6 +52,7 @@ class Disposisi extends CI_Controller{
 	
 	public function disposisi_masuk(){
 		$this->limitRole(3);
+		$this->updateNotifZero();
 		$data['mode'] = 'byUserMasuk';
 		$data['content'] = 'l_disposisi';
 		$data['title'] = 'Daftar Masuk';
@@ -75,7 +76,7 @@ class Disposisi extends CI_Controller{
     }
     
     public function updateNotifZero(){
-        $this->m_disposisi->selectNotifZero($this->session->userdata('id_user'));
+        $this->m_disposisi->setNotifZero($this->session->userdata('id_user'));
     }
     
 	public function ajaxProcess(){

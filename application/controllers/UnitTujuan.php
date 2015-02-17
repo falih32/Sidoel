@@ -59,6 +59,9 @@ class UnitTujuan extends CI_Controller {
         $this->load->view('layout',$data);
     }
 	
+	public function ajaxProcess(){
+		echo $this->m_unit_tujuan->ajaxProcess();
+	}
     
     function postVariabel(){
 	//$data['utj_id']             = $this->input->post('utj_id');

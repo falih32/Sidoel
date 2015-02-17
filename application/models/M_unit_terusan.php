@@ -5,6 +5,7 @@ class M_unit_terusan extends CI_Model{
     //put your code here
     function __construct(){
         parent::__construct();
+		$this->load->library('Datatables');
     }
     
     function insert($data){
@@ -23,7 +24,22 @@ class M_unit_terusan extends CI_Model{
         $this->db->where('utr_id', $id);
         return $this->db->get();
     }
-     
+    
+	function ajaxProcess(){
+		$this->datatables
+		->select('utr_id, utr_nama_unit_trsn')
+		->from('t_unit_terusan')
+		->edit_column('aksi',"".
+			"<form>".
+			"<div class='form-group'>".
+			"<a class='btn btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='UnitTerusan/delete_unit/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='UnitTerusan/edit_unit_terusan/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"</div>".
+			"</form>".
+		"",'utr_id');
+		return $this->datatables->generate();
+	}
+	 
     function update($id, $data){
         $this->db->where('utr_id', $id);
         $this->db->update('t_unit_terusan', $data);

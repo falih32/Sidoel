@@ -42,6 +42,10 @@ class Log extends CI_Controller{
 		$data['title']= 'Log';
         $this->load->view('layout',$data);
     }
+	
+	public function ajaxProcess(){
+		echo $this->m_log->ajaxProcess();
+	}
 }
 
     

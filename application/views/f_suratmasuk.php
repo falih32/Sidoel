@@ -55,19 +55,19 @@
                     <div class="form-group">
                         <label for="tgl_srt" class="col-sm-2 control-label text-left">Tanggal</label>
                         <div class="col-sm-3">
-	                        <input type="date" class="form-control tgl" id="tgl_srt" name="sms_tgl_srt" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+	                        <input type="text" class="form-control tgl" id="tgl_srt" name="sms_tgl_srt" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                             <div class="help-block with-errors"></div>
                             <p class="help-block">Tanggal surat</p>
                         </div>
                         
                         <div class="col-sm-3">
-	                        <input type="date" class="form-control tgl" id="tgl_srt_diterima" name="sms_tgl_srt_diterima" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt_diterima; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+	                        <input type="text" class="form-control tgl" id="tgl_srt_diterima" name="sms_tgl_srt_diterima" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt_diterima; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                             <div class="help-block with-errors"></div>
                             <p class="help-block">Tanggal surat diterima</p>
                         </div>
                         
                         <div class="col-sm-3">
-	                        <input type="date" class="form-control tgl" id="tgl_srt_dtlanjut" name="sms_tgl_srt_dtlanjut" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt_dtlanjut; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+	                        <input type="text" class="form-control tgl" id="tgl_srt_dtlanjut" name="sms_tgl_srt_dtlanjut" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt_dtlanjut; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                             <p class="help-block">Tenggat Waktu untuk ditindaklanjuti</p>
                         </div>
                         

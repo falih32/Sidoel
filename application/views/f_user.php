@@ -30,37 +30,47 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."user/proses_editUser";}else{echo base_url()."user/proses_addUser";}?>" class="form-horizontal" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."user/proses_editUser";}else{echo base_url()."user/proses_addUser";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="usr_nama" class="col-sm-2 control-label text-left">Nama</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="usr_nama" name="usr_nama" placeholder="Nama" value="<?php echo $usr_nama; ?>">
+	                        <input type="text" class="form-control" id="usr_nama" name="usr_nama" placeholder="Nama" value="<?php echo $usr_nama; ?>" required data-minlength="3" pattern="^[a-zA-Z\s]*$">
+                            <p class="help-block">Minimal 3 karakter, hanya huruf dan spasi</p>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
               <div class="form-group">
                         <label for="usr_username" class="col-sm-2 control-label text-left">Username</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="usr_username" name="usr_username" placeholder="Username" value="<?php echo $usr_username; ?>">
+	                        <input type="text" class="form-control" id="usr_username" name="usr_username" placeholder="Username" value="<?php echo $usr_username; ?>" required data-minlength="5" pattern="^[a-zA-Z0-9]*$">
+                            <p class="help-block">Minimal 5 karakter, hanya huruf dan angka</p>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="usr_nip" class="col-sm-2 control-label text-left">NIP</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>">
+	                        <input type="number" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>">
+                            <p class="help-block">Hanya angka</p>
+                            <div class="help-block with-errors"></div>
                              </div>
                     </div>
                <div class="form-group">
                         <label for="usr_no_telp" class="col-sm-2 control-label text-left">Nomor Handphone</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="usr_no_telp" name="usr_no_telp" placeholder="Nomor Handphone" value="<?php echo $usr_no_telp; ?>">
+	                        <input type="number" class="form-control" id="usr_no_telp" name="usr_no_telp" placeholder="Nomor Handphone" value="<?php echo $usr_no_telp; ?>" required data-minlength="10">
+                            <p class="help-block">Hanya angka</p>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                  <div class="form-group">
                         <label for="usr_email" class="col-sm-2 control-label text-left">E-mail</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="usr_email" name="usr_email" placeholder="Alamat E-mail" value="<?php echo $usr_email; ?>">
+	                        <input type="text" class="form-control" id="usr_email" name="usr_email" placeholder="Alamat E-mail" value="<?php echo $usr_email; ?>"required pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$">
+                            <p class="help-block">Alamat email harus valid</p>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>       
                     <div class="form-group">
@@ -77,15 +87,17 @@
                     <div class="form-group">
                         <label for="usr_password" class="col-sm-2 control-label text-left">Password</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="usr_password" name="usr_password" placeholder="User Password" value="<?php echo $usr_password; ?>">
-                            
+                            <input type="password" class="form-control" id="usr_password" name="usr_password" placeholder="User Password" value="<?php echo $usr_password; ?>" required data-minlength="5">
+                            <p class="help-block">Minimal 5 karakter</p>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="konfirm" class="col-sm-2 control-label text-left">Konfirmasi Password</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="konfirm" name="konfirm" placeholder="User Password" value="<?php echo $konfirm; ?>">
-                            
+                            <input type="password" class="form-control" id="konfirm" name="konfirm" placeholder="User Password" value="<?php echo $konfirm; ?>" required data-match="#usr_password">
+                            <p class="help-block">Ketik ulang password</p>
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                 </div>

@@ -59,6 +59,9 @@ class UnitTerusan extends CI_Controller {
         $this->load->view('layout',$data);
     }
 	
+	public function ajaxProcess(){
+		echo $this->m_unit_terusan->ajaxProcess();
+	}
     
     function postVariabel(){
 	

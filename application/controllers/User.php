@@ -64,6 +64,10 @@ class User extends CI_Controller{
         }
 
     }
+	
+	public function ajaxProcess(){
+		echo $this->m_user->ajaxProcess();
+	}
     
     function postVariabel(){
 

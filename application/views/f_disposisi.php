@@ -66,7 +66,7 @@
                     <div class="form-group">
                         <label for="fds_tgl_disposisi" class="col-sm-2 control-label text-left">Tgl. disposisi</label>
                         <div class="col-sm-3">
-	                        <input type="date" class="form-control tgl" id="fds_tgl_disposisi" name="fds_tgl_disposisi" placeholder="yyyy-mm-dd" value="<?php echo $fds_tgl_disposisi; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+	                        <input type="text" class="form-control tgl" id="fds_tgl_disposisi" name="fds_tgl_disposisi" placeholder="yyyy-mm-dd" value="<?php echo $fds_tgl_disposisi; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
