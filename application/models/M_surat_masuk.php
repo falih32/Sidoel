@@ -42,6 +42,13 @@ class M_surat_masuk extends CI_Model{
 			"</div>".
 			"</form>".
 		"",'sms_id');
+		$this->datatables->edit_column('sms_view',"".
+			"<form>".
+			"<div class='form-group'>".
+			"<a class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Lihat detail' href='SuratMasuk/detail_surat_masuk/$1'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
+			"</div>".
+			"</form>".
+		"",'sms_id');
 		return $this->datatables->generate();
 	}
 	

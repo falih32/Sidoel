@@ -130,7 +130,7 @@ class SuratMasuk extends CI_Controller{
     }
     
     public function detail_surat_masuk($id){
-		$this->limitRole(2);
+		$this->limitRole(3);
         $data['dataSurat'] = $this->m_surat_masuk->selectById($id);
 		$data['id'] = $id;
 		$data['mode'] = 'edit';

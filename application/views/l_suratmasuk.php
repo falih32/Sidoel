@@ -95,7 +95,7 @@ $(document).ready(function() {
                 { "data": "sms_keterangan" },
                 { "data": "sms_status_terkirim" },
                 { "data": "usr_nama" },
-                { "data": "sms_aksi" },
+                { "data": "<?php if($role > 2) {echo"sms_view";} else{echo "sms_aksi";}?>" },
                 { "data": "sms_nomor_surat"},
                 { "data": "sms_tgl_srt" },
                 { "data": "sms_pengirim" },
@@ -107,8 +107,7 @@ $(document).ready(function() {
 		"columnDefs": [
 				{ "searchable": true, "orderable":true, "targets": [0, 4, 5, 6] },
 				{ "searchable": false, "orderable":false, "targets": [1, 2, 3, 4, 5, 6, 7] },
-				{ "visible": false, "orderable":true, "targets": [8, 9, 10, 11, 12, 13, 14] },
-				{ "visible":false, "targets": [<?php if($role > 2) echo"7"; ?>]}
+				{ "visible": false, "orderable":true, "targets": [8, 9, 10, 11, 12, 13, 14] }
 			],
 		"order": [[ 14, "desc" ]],
 		"drawCallback": function( settings ) {

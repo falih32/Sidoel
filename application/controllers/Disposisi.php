@@ -240,7 +240,7 @@ class Disposisi extends CI_Controller{
 
                 }
 		$this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-                redirect(site_url('Disposisi'));
+                redirect(site_url('Disposisi/disposisi_keluar'));
     }
     
     public function edit_disposisi($id){
@@ -276,7 +276,7 @@ class Disposisi extends CI_Controller{
     }
 	
     public function proses_edit_disposisi(){
-		$this->limitRole(2);
+		$this->limitRole(3);
 		$id = $this->input->post('fds_id');
 		
         $data1 = $this->postVariabel_fds();
@@ -310,16 +310,16 @@ class Disposisi extends CI_Controller{
 		}
 		$this->session->set_flashdata('message', array('msg' => 'Data telah diperbarui','class' => 'success'));
 		$this->writeLog('Disposisi','Update');
-        redirect(site_url('Disposisi'));
+        redirect(site_url('Disposisi/disposisi_keluar'));
     }
     
     public function hapus_disposisi($id){
-		$this->limitRole(2);
+		$this->limitRole(3);
 		$data['fds_deleted'] = 1;
         $this->m_disposisi->update($id, $data);
 		$this->session->set_flashdata('message', array('msg' => 'Data telah dihapus','class' => 'warning'));
 		$this->writeLog('Disposisi','Delete');
-        redirect('Disposisi');
+        redirect('Disposisi/disposisi_keluar');
     }
     
 }
