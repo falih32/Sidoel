@@ -59,7 +59,7 @@
                     <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                 </div>
             </div>
-            <table class="table table-responsive table-hover table-striped table-bordered" cellspacing="0" width="100%">
+            <table class="table table-responsive table-hover table-striped">
             	<thead>
                 <tr>
                 	<th>No. Surat</th>
@@ -109,6 +109,7 @@ $(document).ready(function() {
 	var table = $('.table').DataTable( {
     	"paging": true, 
 		"ordering": true, 
+		"scrollX":true,
 		"search":true, 
 		"processing":true, 
 		"serverSide": true,

@@ -12,7 +12,6 @@
             <table class="table table-responsive table-hover table-striped">
             	<thead>
                 <tr>
-                	<th>User ID</th>
                 	<th>Nama</th>
                 	<th>Username</th>
                 	<th>Nomor HP</th>
@@ -51,6 +50,7 @@ $(document).ready(function() {
 	var table = $('.table').DataTable( {
     	"paging": true, 
 		"search":true,  
+		"scrollX":true,
 		"ordering": true, 
 		"responsive": false,
 		"processing":true, 
@@ -60,7 +60,6 @@ $(document).ready(function() {
 			"type":"POST"
 		},
 		"columns": [
-                { "data": "usr_id" },
                 { "data": "usr_nama" },
                 { "data": "usr_username" },
                 { "data": "usr_no_telp" },
@@ -69,10 +68,10 @@ $(document).ready(function() {
                 { "data": "aksi" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 6 },
-				{ "visible":false, "targets": [<?php if($role > 1) echo"6"; ?>]}
+				{ "searchable": false, "orderable":false, "targets": 5 },
+				{ "visible":false, "targets": [<?php if($role > 1) echo"5"; ?>]}
 			],
-		"order": [[ 0, "asc" ]],
+		"order": [[ 4, "asc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			makeTooltip();

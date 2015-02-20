@@ -16,7 +16,7 @@
                     <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                 </div>
             </div>
-            <table class="table table-hover table-striped table-bordered">
+            <table class="table table-hover table-striped">
             	<thead>
                 <tr>
                 	<th>No.Agenda</th>
@@ -77,6 +77,7 @@ $(document).ready(function() {
 		"search":true,  
 		"ordering": true, 
 		"responsive": false,
+		"scrollX":true,
 		"processing":true, 
 		"serverSide": true,
 		"ajax":{

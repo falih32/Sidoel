@@ -76,8 +76,8 @@ class User extends CI_Controller{
     public function proses_addUser(){     
 		$this->limitRole(1); 
         $data = $this->postVariabel();
-		$check = $this->m_user->check_username();
-		if($check == ""){
+		$check = $this->m_user->check_username($data['usr_username']);
+		if($check->num_rows() == "0"){
 			$this->m_user->insert($data);
 			$this->writeLog('User','Create');
 			$this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
@@ -169,6 +169,19 @@ class User extends CI_Controller{
 			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
 		}
         redirect(site_url('User'));
+	}
+	
+	public function checkUserAjax(){
+		$un = $this->input->get('usr_username');
+		$chk = $this->m_user->check_username($un);
+		if ($chk->num_rows() == "0"){			
+			return json_encode($chk);
+		}
+		else{
+			header('HTTP/1.1 410 Username sudah terdapat pada sistem');
+			header('Content-Type: application/json; charset=UTF-8');
+			die(json_encode(array('message' => 'ERROR', 'code' => 410)));
+		}
 	}
 }
 ?>
