@@ -41,5 +41,13 @@ class M_jabatan extends CI_Model{
         $this->db->limit($limit['perpage'], $limit['offset']);
         return $this->db->get();
     }
+	
+	function ajaxByDept($dept){
+        $this->db->select('*');
+        $this->db->from('t_jabatan');
+        $this->db->where('jbt_departemen', $dept);
+		$this->db->or_where('jbt_departemen', NULL); 
+        return $this->db->get();
+	}
     
 }

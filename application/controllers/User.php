@@ -16,8 +16,8 @@ class User extends CI_Controller{
 			$this->load->model('m_log');
 			$this->load->model('m_user');
 			$this->load->model('m_role');
-                        $this->load->model('m_departemen');
-                        $this->load->model('m_jabatan');
+			$this->load->model('m_departemen');
+			$this->load->model('m_jabatan');
 		}
     }
 	
@@ -193,6 +193,30 @@ class User extends CI_Controller{
 	
 	public function ajaxUserOnline(){
 		echo $this->m_user->ajaxUserOnline();
+	}
+	
+	public function ajaxJabatan(){
+		$out = array();
+		if (isset($_POST['depdrop_parents'])) {
+			$parents = $_POST['depdrop_parents'];
+			$dept = $parents[0];
+			if ($dept != null) {
+				/*
+				 * the `getChildList` function can query a db and return array of format
+				 * {id: <val>, name: <desc>}, based on the list of parents passed.
+				 */
+				 $q = $this->m_jabatan->ajaxByDept($dept)->result();
+				 foreach ($q as $row){
+					 $id = $row->jbt_id;
+					 $name = $row->jbt_nama;
+					 array_push($out, array("id" => $id, "name" => $name));
+				 }
+				 
+				echo json_encode(array('output' => $out, 'selected'=>''));
+				return;
+			}
+		}
+		echo json_encode(array('output' => '', 'selected'=>''));
 	}
 }
 ?>

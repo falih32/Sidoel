@@ -62,7 +62,7 @@
                         <label for="usr_nip" class="col-sm-2 control-label text-left">NIP</label>
                         <div class="col-sm-10">
                         	
-	                        <input type="text" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>"pattern="^[0-9]*$">
+	                        <input type="text" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>" pattern="^[0-9]*$">
                             <p class="help-block">Hanya angka</p>
                             <div class="help-block with-errors"></div>
                             
@@ -73,6 +73,7 @@
                         <label for="usr_departemen" class="col-sm-2 control-label text-left">Unit</label>
                         <div class="col-sm-10">
 	                   		 <select class="form-control" id="usr_departemen" name="usr_departemen">
+                             	<option value="">Select ...</option>
                             	<?php foreach ($deptlist as $row) {?>
                             	<option value="<?php echo $row->dpt_id; ?>" <?php if($row->dpt_id == $usr_departemen){echo "selected";}?>><?php echo $row->dpt_nama; ?></option>
                                 <?php } ?>
@@ -105,7 +106,7 @@
                  <div class="form-group">
                         <label for="usr_email" class="col-sm-2 control-label text-left">E-mail</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="usr_email" name="usr_email" placeholder="Alamat E-mail" value="<?php echo $usr_email; ?>"required pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$">
+	                        <input type="text" class="form-control" id="usr_email" name="usr_email" placeholder="Alamat E-mail" value="<?php echo $usr_email; ?>" required pattern="^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$">
                             <p class="help-block">Alamat email harus valid</p>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -143,7 +144,7 @@
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
-                        	<a class="btn btn-lg btn-danger" href="<?php echo base_url()."user";?>"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                        	<a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
                             <button type="reset" class="btn btn-lg btn-info"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Reset</button>
                             <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan</button>
                         </div>
@@ -154,3 +155,12 @@
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function() {
+	$("#usr_jabatan").depdrop({
+		url: '<?php echo site_url('User/ajaxJabatan');?>',
+		initialize: true,
+		depends: ['usr_departemen']
+	});
+});
+</script>

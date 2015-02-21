@@ -10,6 +10,7 @@
     <link href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/sidoel.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/vis.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/dependent-dropdown.min.css" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]>
     <script src="<?php echo base_url();?>assets/js/jquery-1.11.2_min.js"></script>
     <![endif]-->
@@ -23,6 +24,7 @@
     <script src="<?php echo base_url();?>assets/js/validator.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/Chart.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/vis.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/dependent-dropdown.min.js"></script>
 	<script type="text/javascript">
 	// <![CDATA[
 	$(document).ready(function () {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2015 at 01:17 PM
+-- Generation Time: Feb 21, 2015 at 09:05 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `tr_disposisi_instruksi` (
   `din_id_disposisi` bigint(20) DEFAULT NULL,
   `din_id_instruksi` int(11) DEFAULT NULL,
 `din_id` bigint(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tr_disposisi_instruksi`
@@ -183,7 +183,9 @@ INSERT INTO `tr_disposisi_instruksi` (`din_id_disposisi`, `din_id_instruksi`, `d
 (51, 5, 81),
 (51, 4, 82),
 (49, 13, 85),
-(49, 7, 86);
+(49, 7, 86),
+(52, 10, 88),
+(53, 2, 90);
 
 -- --------------------------------------------------------
 
@@ -230,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `tr_disposisi_user` (
 `dus_id` bigint(20) NOT NULL,
   `dus_disposisi` bigint(20) DEFAULT NULL,
   `dus_user` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tr_disposisi_user`
@@ -253,7 +255,10 @@ INSERT INTO `tr_disposisi_user` (`dus_id`, `dus_disposisi`, `dus_user`) VALUES
 (42, 47, 5),
 (44, 50, 3),
 (46, 51, 4),
-(48, 49, 5);
+(48, 49, 5),
+(51, 52, 1),
+(52, 52, 7),
+(54, 53, 4);
 
 -- --------------------------------------------------------
 
@@ -305,64 +310,67 @@ CREATE TABLE IF NOT EXISTS `t_form_disposisi` (
   `fds_tgl_disposisi` date DEFAULT NULL,
   `fds_pengirim` int(11) DEFAULT NULL,
   `fds_id_parent` bigint(11) DEFAULT NULL,
-  `fds_deleted` int(11) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+  `fds_deleted` int(11) DEFAULT '0',
+  `fds_file` char(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_form_disposisi`
 --
 
-INSERT INTO `t_form_disposisi` (`fds_id`, `fds_id_surat`, `fds_kasubbag`, `fds_catatan`, `fds_tgl_disposisi`, `fds_pengirim`, `fds_id_parent`, `fds_deleted`) VALUES
-(1, 29, '1', 'cacat', '2015-01-22', NULL, NULL, 0),
-(2, 29, '1', 'ccc', '2015-02-07', NULL, NULL, 0),
-(3, 29, '1', 'kkkk', '2015-02-07', NULL, NULL, 0),
-(4, 32, '1', 'kaka', '2015-02-07', 1, NULL, 0),
-(5, 32, '1', 'cacat', '2015-02-07', 1, NULL, 0),
-(6, 32, '1', 'lll', '2015-02-07', 1, NULL, 0),
-(7, 32, '1', 'kakaka', '2015-02-07', 1, NULL, 0),
-(8, 32, '1', 'kaka', '2015-02-07', 1, NULL, 0),
-(9, 32, '1', 'kaaijciawc', '2015-02-07', 1, NULL, 0),
-(10, 32, '1', 'lll', '2015-02-07', 1, NULL, 0),
-(11, 32, '1', 'lll', '2015-02-07', 1, NULL, 0),
-(12, 32, '1', 'lll', '2015-02-07', 1, NULL, 0),
-(13, 32, '1', 'lll', '2015-02-07', 1, NULL, 0),
-(14, 32, '1', 'lll', '2015-02-07', 1, NULL, 0),
-(15, 32, '1', 'kakakakakakaka', '2015-02-07', 1, NULL, 0),
-(16, 32, '1', 'kakakakakakaka', '2015-02-07', 1, NULL, 0),
-(17, 32, '1', 'ahey', '2015-02-07', 1, NULL, 0),
-(18, 32, '1', 'ahey', '2015-02-07', 1, NULL, 0),
-(19, 32, '1', 'ahey', '2015-02-07', 1, NULL, 0),
-(20, 32, '1', 'acecaec', '2015-02-07', 1, NULL, 0),
-(22, 32, '1', 'kakaoe', '2015-02-07', 1, NULL, 0),
-(23, 32, '1', 'kakakakaodprptbsay', '2015-02-07', 1, NULL, 0),
-(24, 32, '1', 'cacat', '2015-02-07', 1, NULL, 0),
-(25, 32, '1', 'cacat', '2015-02-07', 1, NULL, 0),
-(26, 32, '1', 'cacataaaaaaaa', '2015-02-07', 1, NULL, 0),
-(27, 32, '1', 'aasadadafgagtnmishgr', '2015-02-07', 1, NULL, 0),
-(28, 32, '1', 'aaaaaaaaaaaaaaaaaaaaaaaaa', '2015-02-07', 1, NULL, 0),
-(29, 32, '1', 'lololol', '2015-02-07', 1, NULL, 0),
-(30, 32, '1', 'adasfa', '2015-02-07', 1, NULL, 0),
-(31, 32, '1', 'akakaka', '2015-02-07', 1, NULL, 0),
-(32, 32, '1', 'akakaka', '2015-02-07', 1, NULL, 0),
-(33, 32, '1', 'kakakaka', '2015-02-07', 1, NULL, 0),
-(34, 32, '1', 'kakakaka', '2015-02-07', 1, NULL, 0),
-(35, 32, '1', 'kakakakakuku', '2015-02-07', 1, NULL, 0),
-(36, 4, '1', 'pake tujuan gan', '2015-02-11', 1, -99, 1),
-(37, 4, '1', 'pake tujuan gan', '2015-02-11', 1, -99, 0),
-(38, 8, '1', 'testing', '2015-02-11', 1, -99, 0),
-(39, 11, '1', 'tsting lagi', '2015-02-11', 1, -99, 0),
-(40, 8, '1', 'pppp', '2015-02-11', 1, -99, 0),
-(41, 28, '1', 'cekz', '2015-02-11', 1, -99, 0),
-(42, 8, '1', 'kolek', '2015-02-11', 1, -99, 0),
-(43, NULL, '1', 'wasu', '2015-02-11', 1, -99, 0),
-(44, 4, '1', 'lodaya', '2015-02-11', 1, -99, 0),
-(45, 11, NULL, 'tambah disposisi dong', '2015-02-11', 1, 39, 0),
-(46, 5, NULL, 'ganti model lagi', '2015-02-16', 1, -99, 0),
-(47, 5, NULL, 'ini baru ai baru', '2015-02-16', 1, -99, 0),
-(48, 5, NULL, 'kosong', '2015-02-09', 1, -99, 1),
-(49, 19, NULL, 'disposisi buat aaaa', '2015-02-17', 5, -99, 1),
-(50, 19, NULL, 'lanjut gan!', '2015-02-17', 5, 49, 0),
-(51, 5, NULL, 'kok error sih messagenyaaaaa?', '2015-02-17', 1, 47, 0);
+INSERT INTO `t_form_disposisi` (`fds_id`, `fds_id_surat`, `fds_kasubbag`, `fds_catatan`, `fds_tgl_disposisi`, `fds_pengirim`, `fds_id_parent`, `fds_deleted`, `fds_file`) VALUES
+(1, 29, '1', 'cacat', '2015-01-22', NULL, NULL, 0, NULL),
+(2, 29, '1', 'ccc', '2015-02-07', NULL, NULL, 0, NULL),
+(3, 29, '1', 'kkkk', '2015-02-07', NULL, NULL, 0, NULL),
+(4, 32, '1', 'kaka', '2015-02-07', 1, NULL, 0, NULL),
+(5, 32, '1', 'cacat', '2015-02-07', 1, NULL, 0, NULL),
+(6, 32, '1', 'lll', '2015-02-07', 1, NULL, 0, NULL),
+(7, 32, '1', 'kakaka', '2015-02-07', 1, NULL, 0, NULL),
+(8, 32, '1', 'kaka', '2015-02-07', 1, NULL, 0, NULL),
+(9, 32, '1', 'kaaijciawc', '2015-02-07', 1, NULL, 0, NULL),
+(10, 32, '1', 'lll', '2015-02-07', 1, NULL, 0, NULL),
+(11, 32, '1', 'lll', '2015-02-07', 1, NULL, 0, NULL),
+(12, 32, '1', 'lll', '2015-02-07', 1, NULL, 0, NULL),
+(13, 32, '1', 'lll', '2015-02-07', 1, NULL, 0, NULL),
+(14, 32, '1', 'lll', '2015-02-07', 1, NULL, 0, NULL),
+(15, 32, '1', 'kakakakakakaka', '2015-02-07', 1, NULL, 0, NULL),
+(16, 32, '1', 'kakakakakakaka', '2015-02-07', 1, NULL, 0, NULL),
+(17, 32, '1', 'ahey', '2015-02-07', 1, NULL, 0, NULL),
+(18, 32, '1', 'ahey', '2015-02-07', 1, NULL, 0, NULL),
+(19, 32, '1', 'ahey', '2015-02-07', 1, NULL, 0, NULL),
+(20, 32, '1', 'acecaec', '2015-02-07', 1, NULL, 0, NULL),
+(22, 32, '1', 'kakaoe', '2015-02-07', 1, NULL, 0, NULL),
+(23, 32, '1', 'kakakakaodprptbsay', '2015-02-07', 1, NULL, 0, NULL),
+(24, 32, '1', 'cacat', '2015-02-07', 1, NULL, 0, NULL),
+(25, 32, '1', 'cacat', '2015-02-07', 1, NULL, 0, NULL),
+(26, 32, '1', 'cacataaaaaaaa', '2015-02-07', 1, NULL, 0, NULL),
+(27, 32, '1', 'aasadadafgagtnmishgr', '2015-02-07', 1, NULL, 0, NULL),
+(28, 32, '1', 'aaaaaaaaaaaaaaaaaaaaaaaaa', '2015-02-07', 1, NULL, 0, NULL),
+(29, 32, '1', 'lololol', '2015-02-07', 1, NULL, 0, NULL),
+(30, 32, '1', 'adasfa', '2015-02-07', 1, NULL, 0, NULL),
+(31, 32, '1', 'akakaka', '2015-02-07', 1, NULL, 0, NULL),
+(32, 32, '1', 'akakaka', '2015-02-07', 1, NULL, 0, NULL),
+(33, 32, '1', 'kakakaka', '2015-02-07', 1, NULL, 0, NULL),
+(34, 32, '1', 'kakakaka', '2015-02-07', 1, NULL, 0, NULL),
+(35, 32, '1', 'kakakakakuku', '2015-02-07', 1, NULL, 0, NULL),
+(36, 4, '1', 'pake tujuan gan', '2015-02-11', 1, -99, 1, NULL),
+(37, 4, '1', 'pake tujuan gan', '2015-02-11', 1, -99, 0, NULL),
+(38, 8, '1', 'testing', '2015-02-11', 1, -99, 0, NULL),
+(39, 11, '1', 'tsting lagi', '2015-02-11', 1, -99, 0, NULL),
+(40, 8, '1', 'pppp', '2015-02-11', 1, -99, 0, NULL),
+(41, 28, '1', 'cekz', '2015-02-11', 1, -99, 0, NULL),
+(42, 8, '1', 'kolek', '2015-02-11', 1, -99, 0, NULL),
+(43, NULL, '1', 'wasu', '2015-02-11', 1, -99, 0, NULL),
+(44, 4, '1', 'lodaya', '2015-02-11', 1, -99, 0, NULL),
+(45, 11, NULL, 'tambah disposisi dong', '2015-02-11', 1, 39, 0, NULL),
+(46, 5, NULL, 'ganti model lagi', '2015-02-16', 1, -99, 0, NULL),
+(47, 5, NULL, 'ini baru ai baru', '2015-02-16', 1, -99, 0, NULL),
+(48, 5, NULL, 'kosong', '2015-02-09', 1, -99, 1, NULL),
+(49, 19, NULL, 'disposisi buat aaaa', '2015-02-17', 5, -99, 1, NULL),
+(50, 19, NULL, 'lanjut gan!', '2015-02-17', 5, 49, 0, NULL),
+(51, 5, NULL, 'kok error sih messagenyaaaaa?', '2015-02-17', 1, 47, 0, NULL),
+(52, 41, NULL, 'test disposisi baru dong', '2015-02-22', 1, -99, 0, NULL),
+(53, 41, NULL, 'test upload disposisi', '2015-02-22', 1, -99, 0, 'luarock.png');
 
 -- --------------------------------------------------------
 
@@ -402,30 +410,32 @@ INSERT INTO `t_instruksi` (`ins_id`, `ins_nama_instruksi`) VALUES
 
 CREATE TABLE IF NOT EXISTS `t_jabatan` (
   `jbt_id` int(11) NOT NULL,
-  `jbt_nama` varchar(255) DEFAULT NULL
+  `jbt_nama` varchar(255) DEFAULT NULL,
+  `jbt_departemen` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_jabatan`
 --
 
-INSERT INTO `t_jabatan` (`jbt_id`, `jbt_nama`) VALUES
-(1, 'Kabag TU Pimpinan'),
-(2, 'Kabag Rumah Tangga'),
-(3, 'Kabag Perlengkapan'),
-(4, 'Kabag TU & Persuratan'),
-(5, 'Kasubbag Protokol'),
-(6, 'Kasubbag TU Menteri'),
-(7, 'Kasubbag TU Sekretaris Jenderal'),
-(8, 'Kasubbag Urusan Dalam'),
-(9, 'Kasubbag ANGKAMDAL'),
-(10, 'Kasubbag Kesejahteraan'),
-(11, 'Kasubbag Perencanaan & Pemanfaatan'),
-(12, 'Kasubbag Inventarisasi & Penghapusan'),
-(13, 'Kasubbag Pengadaaan & Penyaluran'),
-(14, 'Kasubbag Persuratan'),
-(15, 'Kasubbag Arsip'),
-(16, 'Kasubbag TU BIRO');
+INSERT INTO `t_jabatan` (`jbt_id`, `jbt_nama`, `jbt_departemen`) VALUES
+(1, 'Kabag TU Pimpinan', 1),
+(2, 'Kabag Rumah Tangga', 2),
+(3, 'Kabag Perlengkapan', 3),
+(4, 'Kabag TU & Persuratan', 4),
+(5, 'Kasubbag Protokol', 1),
+(6, 'Kasubbag TU Menteri', 1),
+(7, 'Kasubbag TU Sekretaris Jenderal', 1),
+(8, 'Kasubbag Urusan Dalam', 2),
+(9, 'Kasubbag ANGKAMDAL', 2),
+(10, 'Kasubbag Kesejahteraan', 2),
+(11, 'Kasubbag Perencanaan & Pemanfaatan', 3),
+(12, 'Kasubbag Inventarisasi & Penghapusan', 3),
+(13, 'Kasubbag Pengadaaan & Penyaluran', 3),
+(14, 'Kasubbag Persuratan', 4),
+(15, 'Kasubbag Arsip', 4),
+(16, 'Kasubbag TU BIRO', 4),
+(17, 'Staff Pelaksana', NULL);
 
 -- --------------------------------------------------------
 
@@ -458,7 +468,7 @@ CREATE TABLE IF NOT EXISTS `t_log` (
   `log_aksi` varchar(100) DEFAULT NULL,
   `log_tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `log_user` int(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_log`
@@ -500,7 +510,9 @@ INSERT INTO `t_log` (`log_id`, `log_nama_tabel`, `log_aksi`, `log_tanggal`, `log
 (33, 'Disposisi', 'Update', '2015-02-18 11:07:53', 5),
 (34, 'Disposisi', 'Delete', '2015-02-18 11:08:28', 5),
 (35, 'User', 'Create', '2015-02-20 22:55:45', 1),
-(36, 'User', 'Create', '2015-02-20 23:44:52', 1);
+(36, 'User', 'Create', '2015-02-20 23:44:52', 1),
+(37, 'Disposisi', 'Update', '2015-02-22 01:23:07', 1),
+(38, 'Disposisi', 'Update', '2015-02-22 01:41:47', 1);
 
 -- --------------------------------------------------------
 
@@ -653,13 +665,13 @@ CREATE TABLE IF NOT EXISTS `t_user` (
 --
 
 INSERT INTO `t_user` (`usr_id`, `usr_username`, `usr_password`, `usr_nama`, `usr_nip`, `usr_role`, `usr_no_telp`, `usr_email`, `usr_deleted`, `usr_total_read`, `usr_departemen`, `usr_jabatan`, `usr_online`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', 1, '12132434', 'kek', 0, 0, NULL, NULL, 0),
-(2, 'umum', '21232f297a57a5a743894a0e4a801fc3', 'Nur Akhwan', '19900326 201401 1 002', 2, '343242', 'trd', 0, 0, NULL, NULL, 0),
-(3, 'tantra', 'c314409d89dea3fb1d2fc4b63e88b7fc', 'Juno', '123', 3, '7566', 'sdsd', 0, 1, NULL, NULL, 0),
-(4, 'ampas', 'fba176fa69a7f4a86e1a42310304c155', 'ampas', '2323241', 2, '085795862828', 'junnotantra@gmail.com', 0, 2, NULL, NULL, 0),
-(5, 'bbbb', '21232f297a57a5a743894a0e4a801fc3', 'aaaa', '121212', 3, '25666', 'ganti', 0, 0, NULL, NULL, 0),
-(6, 'junta', '0e9b9cbe96f10e6721fc55dd6b45af6f', 'junta', '12345', 3, '085795862827', 'admin@qw.er', 0, 0, NULL, NULL, 0),
-(7, 'admini', '0192023a7bbd73250516f069df18b500', 'junta', '12345', 3, '085795862827', 'admin@s.ss', 0, 0, NULL, NULL, 0);
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', 1, '', 'kek', 0, 0, 1, 1, 0),
+(2, 'umum', '21232f297a57a5a743894a0e4a801fc3', 'Nur Akhwan', '19900326 201401 1 002', 2, '343242', 'trd', 0, 0, 2, 2, 0),
+(3, 'tantra', '21232f297a57a5a743894a0e4a801fc3', 'Juno', '123', 3, '', 'sdsd', 0, 0, 3, 3, 0),
+(4, 'ampas', '21232f297a57a5a743894a0e4a801fc3', 'ampas', '2323241', 2, '085795862828', 'junnotantra@gmail.com', 0, 3, 4, 4, 0),
+(5, 'bbbb', '21232f297a57a5a743894a0e4a801fc3', 'aaaa', '121212', 3, '25666', 'ganti', 0, 0, 1, 5, 0),
+(6, 'junta', '21232f297a57a5a743894a0e4a801fc3', 'junta', '12345', 3, '085795862827', 'admin@qw.er', 0, 0, 1, 6, 0),
+(7, 'admini', '21232f297a57a5a743894a0e4a801fc3', 'junta', '12345', 3, '085795862827', 'admin@s.ss', 0, 0, 3, 17, 0);
 
 --
 -- Indexes for dumped tables
@@ -717,7 +729,7 @@ ALTER TABLE `t_instruksi`
 -- Indexes for table `t_jabatan`
 --
 ALTER TABLE `t_jabatan`
- ADD PRIMARY KEY (`jbt_id`);
+ ADD PRIMARY KEY (`jbt_id`), ADD KEY `fk_jabatan_departemen` (`jbt_departemen`);
 
 --
 -- Indexes for table `t_jenis_surat_masuk`
@@ -774,7 +786,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 -- AUTO_INCREMENT for table `tr_disposisi_instruksi`
 --
 ALTER TABLE `tr_disposisi_instruksi`
-MODIFY `din_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=87;
+MODIFY `din_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT for table `tr_disposisi_unit_terusan`
 --
@@ -784,7 +796,7 @@ MODIFY `dut_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 -- AUTO_INCREMENT for table `tr_disposisi_user`
 --
 ALTER TABLE `tr_disposisi_user`
-MODIFY `dus_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
+MODIFY `dus_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=55;
 --
 -- AUTO_INCREMENT for table `t_chat`
 --
@@ -799,7 +811,7 @@ MODIFY `dpt_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `t_form_disposisi`
 --
 ALTER TABLE `t_form_disposisi`
-MODIFY `fds_id` bigint(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
+MODIFY `fds_id` bigint(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT for table `t_instruksi`
 --
@@ -814,7 +826,7 @@ MODIFY `jsm_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `t_log`
 --
 ALTER TABLE `t_log`
-MODIFY `log_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+MODIFY `log_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT for table `t_role`
 --
@@ -871,6 +883,12 @@ ADD CONSTRAINT `tr_disposisi_user_ibfk_2` FOREIGN KEY (`dus_user`) REFERENCES `t
 ALTER TABLE `t_form_disposisi`
 ADD CONSTRAINT `t_form_disposisi_ibfk_1` FOREIGN KEY (`fds_id_surat`) REFERENCES `t_surat_msk` (`sms_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `t_form_disposisi_ibfk_2` FOREIGN KEY (`fds_pengirim`) REFERENCES `t_user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `t_jabatan`
+--
+ALTER TABLE `t_jabatan`
+ADD CONSTRAINT `fk_jabatan_departemen` FOREIGN KEY (`jbt_departemen`) REFERENCES `t_departemen` (`dpt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `t_surat_msk`

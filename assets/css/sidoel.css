@@ -44,3 +44,17 @@ body{
   display: flex;
   align-items: center;
 }
+
+.tabs-wrapper{
+	border:solid 1px #CCC;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding:0px;
+}
+
+.tab-content-chk{
+	height:200px;
+	padding:10px;
+	overflow-Y:scroll;
+}

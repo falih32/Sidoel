@@ -136,6 +136,16 @@ class Disposisi extends CI_Controller{
 		return $data_fds;
     }
 	
+	public function upload_config(){
+		$config['upload_path'] = './uploads/disposisi';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf';
+		$config['max_size']	= '2000';
+		$config['max_width']  = '3000';
+		$config['max_height']  = '3000';
+
+		$this->load->library('upload', $config);
+	}
+	
 	function postVariabel_din(){
 		return $this->input->post('ins_instruksi');
 	}
@@ -155,6 +165,10 @@ class Disposisi extends CI_Controller{
 		$data['disposisiInstruksi'] = '';
 		$data['disposisiUnitTerusan'] = '';
 		$data['userList'] = $this->m_user->selectAll()->result();
+		$data['user_dep1'] = $this->m_user->selectByDept(1)->result();
+		$data['user_dep2'] = $this->m_user->selectByDept(2)->result();
+		$data['user_dep3'] = $this->m_user->selectByDept(3)->result();
+		$data['user_dep4'] = $this->m_user->selectByDept(4)->result();
 		$data['disposisiUser'] = '';
 		$data['fds_id_parent'] = -99;
         $this->load->view('layout',$data);
@@ -171,6 +185,10 @@ class Disposisi extends CI_Controller{
 		$data['disposisiInstruksi'] = '';
 		$data['disposisiUnitTerusan'] = '';
 		$data['userList'] = $this->m_user->selectAll()->result();
+		$data['user_dep1'] = $this->m_user->selectByDept(1)->result();
+		$data['user_dep2'] = $this->m_user->selectByDept(2)->result();
+		$data['user_dep3'] = $this->m_user->selectByDept(3)->result();
+		$data['user_dep4'] = $this->m_user->selectByDept(4)->result();
 		$data['disposisiUser'] = '';
 		$data['fds_id_parent'] = $id;
         $this->load->view('layout',$data);
@@ -179,6 +197,13 @@ class Disposisi extends CI_Controller{
     public function proses_tambah_disposisi(){      
 		$this->limitRole(3);
         $data1 = $this->postVariabel_fds();
+		
+		$this->upload_config();
+		if($this->upload->do_upload('fds_file')){
+			$updata = $this->upload->data();
+			$data1['fds_file'] = $updata['file_name'];
+		}
+		
         $AI=$this->m_disposisi->insert($data1);
 		//$AI = $this->m_disposisi->autoInc();
 		
@@ -188,13 +213,6 @@ class Disposisi extends CI_Controller{
 			$in['din_id_disposisi'] = $AI;
 	        $this->m_disposisi_instruksi->insert($in);
 		}
-		
-        //$data3 = $this->postVariabel_dut();
-//		foreach($data3 as $row){
-//			$in2['dut_id_unit_terusan'] = $row;
-//			$in2['dut_id_disposisi'] = $AI;
-//	        $this->m_disposisi_unit_terusan->insert($in2);
-//		}
 		
 		$data4 = $this->input->post('tr_disposisi_user');
 		foreach($data4 as $row){
@@ -206,11 +224,6 @@ class Disposisi extends CI_Controller{
                             
                 $data4 = $this->input->post('tr_disposisi_user');
 		foreach($data4 as $row){
-//                    $noTujuan= $this->m_user->selectbyId($row)->row()->usr_no_telp;
-//                    $message = 'Anda mendapat disposisi instruksi baru dari '.$this->session->userdata('username').' dengan ID '.$AI.'. Silahkan cek '.  base_url().'disposisi/detail_disposisi/'.$AI;
-//
-//                    $query = "INSERT INTO sms.outbox (DestinationNumber, TextDecoded, CreatorID)VALUES ('$noTujuan', '$message', 'Gammu')";
-//                    $this->db->query($query);
                     $userkey="andhika1988"; // userkey di SMS Notifikasi //
 
                     $passkey="211188"; // passkey di SMS Notifikasi //
@@ -254,6 +267,10 @@ class Disposisi extends CI_Controller{
 		$data['disposisiUnitTerusan'] = $this->m_disposisi_unit_terusan->selectByDisposisi($id)->result() ;
 		$data['userList'] = $this->m_user->selectAll()->result();
 		$data['disposisiUser'] = $this->m_disposisi_user->selectByDisposisi($id)->result();
+		$data['user_dep1'] = $this->m_user->selectByDept(1)->result();
+		$data['user_dep2'] = $this->m_user->selectByDept(2)->result();
+		$data['user_dep3'] = $this->m_user->selectByDept(3)->result();
+		$data['user_dep4'] = $this->m_user->selectByDept(4)->result();
 		$data['unitTerusan'] = $this->getAllUnitTerusan();
 		$data['instruksi'] = $this->getAllInstruksi();
         $this->load->view('layout', $data);
@@ -278,8 +295,14 @@ class Disposisi extends CI_Controller{
     public function proses_edit_disposisi(){
 		$this->limitRole(3);
 		$id = $this->input->post('fds_id');
-		
         $data1 = $this->postVariabel_fds();
+		
+		$this->upload_config();
+		if($this->upload->do_upload('fds_file')){
+			$updata = $this->upload->data();
+			$data1['fds_file'] = $updata['file_name'];
+		}
+		
         $this->m_disposisi->update($id, $data1);
 		
 		$this->m_disposisi_instruksi->deleteByDisposisi($id);
@@ -290,15 +313,6 @@ class Disposisi extends CI_Controller{
 			$in['din_id_disposisi'] = $id;
 	        $this->m_disposisi_instruksi->insert($in);
 		}
-		
-		//$this->m_disposisiUnitTerusan->deleteByDisposisi($id);
-//		
-//        $data3 = $this->postVariabel_dut();
-//		foreach($data3 as $row){
-//			$in2['dut_id_unit_terusan'] = $row;
-//			$in2['dut_id_disposisi'] = $id;
-//	        $this->m_disposisiUnitTerusan->insert($in2);
-//		}
 		
 		$this->m_disposisi_user->deleteByDisposisi($id);
 		

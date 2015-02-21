@@ -24,33 +24,30 @@ class ResetUser extends CI_Controller{
 		$username = $this->input->post('username');
 		$userData = $this->m_user->selectByUsername($username)->row();
 		$id = $userData->usr_id;
-		$telepon = $userData->usr_no_telp;
-		$randomHash = md5("sidoel".$userData->usr_id."resetpassword".date('y-m-d'));
-		$message = "Silahkan klik tautan berikut untuk reset password ".site_url('ResetUser/resetPassword')."/".$id."/".$randomHash;
-		//================
-		$userkey="andhika1988"; // userkey di SMS Notifikasi //
-
-		$passkey="211188"; // passkey di SMS Notifikasi //
+		$to = $userData->usr_email;
+		$randomHash = md5("sidoel".$id."resetpassword".date('y-m-d'));
+		$link = site_url('ResetUser/resetPassword')."/".$id."/".$randomHash;
+		$message = "
+		<html>
+		<head>
+		</head>
+		<body>
+		<p>Silahkan klik tautan berikut untuk reset password and <a href=".$link.">".$link."</a></p>
+		<p>Link tersebut hanya berlaku untuk hari ini, tanggal ".date('y-m-d').".</p>
+		<p>Jika anda merasa tidak pernah merasa </p>
+		</body>
+		</html>
+		";
+		$subject = "Link untuk reset password";
+		// Always set content-type when sending HTML email
+		$headers = "MIME-Version: 1.0" . "\r\n";
+		$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 		
-		$url = "http://reguler.sms-notifikasi.com/apps/smsapi.php";$curlHandle = curl_init();
-
-		curl_setopt($curlHandle, CURLOPT_URL, $url);
-
-		curl_setopt($curlHandle, CURLOPT_POSTFIELDS, "userkey=".$userkey."&passkey=".$passkey."&nohp=".$telepon.
-		"&pesan=".urlencode($message));
-
-		curl_setopt($curlHandle, CURLOPT_HEADER, 0);
-
-		curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, 1);
-
-		curl_setopt($curlHandle, CURLOPT_TIMEOUT,30);
-
-		curl_setopt($curlHandle, CURLOPT_POST, 1);
-
-		$results = curl_exec($curlHandle);
-
-		curl_close($curlHandle);
-		//================
+		// More headers
+		$headers .= 'From: <webmaster@sidoel.esy.es>' . "\r\n";
+		
+		mail($to,$subject,$message,$headers);
+		
 		$this->session->set_flashdata('message', array('msg' => 'Tautan untuk reset password telah dikirim ke e-mail anda. Periksa folder spam jika tidak menemukan email yang dimaksud','class' => 'warning'));
 		redirect(site_url('Login'));
 	}

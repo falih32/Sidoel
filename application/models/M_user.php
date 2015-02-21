@@ -55,13 +55,24 @@ class M_user extends CI_Model{
         return $this->db->get();
     }
     
+	function selectByDept($dep){
+        $this->db->select('*');
+        $this->db->from('t_user');
+        $this->db->where('usr_departemen', $dep);
+		$this->db->join('t_jabatan', 't_jabatan.jbt_id = t_user.usr_jabatan', 'left');
+		$this->db->order_by('usr_jabatan', 'asc');
+        return $this->db->get();
+	}
+	
 	function ajaxProcess(){
 		$this->datatables
-		->select('usr_id, usr_nama, usr_username, usr_no_telp, usr_email, rle_role_name')
+		->select('usr_id, usr_nama, usr_username,usr_nip,dpt_nama,jbt_nama,usr_jabatan, usr_no_telp, usr_email, rle_role_name')
 		->from('t_user')
 		->where('usr_deleted', '0')
 		->join('t_role', 't_role.rle_id = t_user.usr_role','left')
-		->edit_column('aksi',"".
+                ->join('t_departemen', 't_departemen.dpt_id = t_user.usr_departemen','left')
+                ->join('t_jabatan', 't_jabatan.jbt_id = t_user.usr_jabatan','left')
+              	->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
 			"<a class='btn btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='User/deleteUser/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".

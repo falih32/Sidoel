@@ -20,10 +20,6 @@
                         	<td><?php echo $dataDisposisi->usr_nama; ?></td>
                         </tr>
                     	<tr>
-                        	<th>Kasubbag</th>
-                        	<td><?php echo $dataDisposisi->fds_kasubbag;; ?></td>
-                        </tr>
-                    	<tr>
                         	<th>Instruksi</th>
                         	<td>
                             	<ul>
@@ -37,20 +33,6 @@
                                 </ul>
                             </td>
                         </tr>
-                    	<!--<tr>
-                        	<th>Unit Terusan</th>
-                        	<td>
-                            	<ul>
-                                <?php foreach($unitTerusan as $row){?>
-									<?php if ($disposisiUnitTerusan != ''){ foreach($disposisiUnitTerusan as $rowIn){?>
-                                        <?php if($row->utr_id == $rowIn->dut_id_unit_terusan){?>
-                                        <li><?php echo $row->utr_nama_unit_trsn; ?></li>
-                                        <?php }} ?>
-                                    <?php } ?>
-                                <?php } ?>
-                                </ul>
-                            </td>
-                        </tr>-->
                     	<tr>
                         	<th>Tujuan</th>
                         	<td>
@@ -69,12 +51,20 @@
                         	<th>Catatan</th>
                         	<td><?php echo $dataDisposisi->fds_catatan; ?></td>
                         </tr>
+                    	<tr>
+                        	<th>File</th>
+                        	<td>
+                            	<?php if ($dataDisposisi->fds_file == ""){echo "<i>Tidak ada file yang diunggah</i>";} else {?>
+                                <a class="btn btn-default" target="_blank" href="<?php echo base_url()."uploads/disposisi/".$dataDisposisi->fds_file; ?>"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Buka file</a>
+                                <?php } ?>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
-                        	<a class="btn btn-lg btn-danger" href="<?php echo base_url()."disposisi";?>"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                        	<a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
                         </div>
                     </div>
                 </div>

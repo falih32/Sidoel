@@ -79,7 +79,7 @@
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
-                        	<a class="btn btn-lg btn-danger" href="<?php echo base_url()."SuratMasuk";?>"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                        	<a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
                         </div>
                     </div>
                 </div>
