@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2015 at 05:40 AM
+-- Generation Time: Feb 21, 2015 at 09:19 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -89,6 +89,43 @@ BEGIN
 END$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+
+CREATE TABLE IF NOT EXISTS `chat` (
+`id` int(10) unsigned NOT NULL,
+  `from` varchar(255) NOT NULL DEFAULT '',
+  `to` varchar(255) NOT NULL DEFAULT '',
+  `message` text NOT NULL,
+  `sent` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `recd` int(10) unsigned NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`id`, `from`, `to`, `message`, `sent`, `recd`) VALUES
+(1, 'admin', 'umum', 'hallo', '2015-02-21 13:40:34', 1),
+(2, 'umum', 'admin', 'hai', '2015-02-21 13:42:29', 1),
+(3, 'umum', 'admin', 'hei', '2015-02-21 13:42:44', 1),
+(4, 'umum', 'admin', 'asdsad', '2015-02-21 13:43:45', 1),
+(5, 'undefined', 'umum', 'tes', '2015-02-21 13:46:05', 1),
+(6, 'umum', 'admin', 'tes', '2015-02-21 13:49:38', 1),
+(7, 'umum', 'admin', 'jgjkgk', '2015-02-21 13:50:13', 1),
+(8, 'admin', 'umum', ';k;k;', '2015-02-21 13:50:59', 1),
+(9, 'undefined', 'admin', 'hallo', '2015-02-21 13:52:01', 1),
+(10, 'admin', 'umum', '1312', '2015-02-21 13:56:40', 1),
+(11, 'admin', 'umum', 'tes', '2015-02-21 14:07:31', 1),
+(12, 'undefined', 'umum', 'tes', '2015-02-21 14:08:08', 1),
+(13, 'undefined', 'umum', 'huh', '2015-02-21 14:08:18', 1),
+(14, 'admin', 'umum', 'gff', '2015-02-21 14:08:26', 1),
+(15, 'admin', 'umum', 'hai', '2015-02-21 15:12:40', 1),
+(16, 'admin', 'umum', 'hlo', '2015-02-21 15:12:43', 1);
 
 -- --------------------------------------------------------
 
@@ -574,7 +611,7 @@ CREATE TABLE IF NOT EXISTS `t_user` (
 
 INSERT INTO `t_user` (`usr_id`, `usr_username`, `usr_password`, `usr_nama`, `usr_nip`, `usr_role`, `usr_no_telp`, `usr_email`, `usr_deleted`, `usr_total_read`, `usr_departemen`, `usr_jabatan`, `usr_online`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', 1, '12132434', 'kek', 0, 0, NULL, NULL, 0),
-(2, 'umum', '21232f297a57a5a743894a0e4a801fc3', 'Nur Akhwan', '19900326 201401 1 002', 2, '343242', 'trd', 0, 2, NULL, NULL, 0),
+(2, 'umum', '21232f297a57a5a743894a0e4a801fc3', 'Nur Akhwan', '19900326 201401 1 002', 2, '343242', 'trd', 0, 0, NULL, NULL, 0),
 (3, 'tantra', 'c314409d89dea3fb1d2fc4b63e88b7fc', 'Juno', '123', 3, '7566', 'sdsd', 0, 1, NULL, NULL, 0),
 (4, 'ampas', 'fba176fa69a7f4a86e1a42310304c155', 'ampas', '2323241', 2, '085795862828', 'junnotantra@gmail.com', 0, 2, NULL, NULL, 0),
 (5, 'bbbb', '21232f297a57a5a743894a0e4a801fc3', 'aaaa', '121212', 3, '25666', 'ganti', 0, 0, NULL, NULL, 0),
@@ -584,6 +621,12 @@ INSERT INTO `t_user` (`usr_id`, `usr_username`, `usr_password`, `usr_nama`, `usr
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `chat`
+--
+ALTER TABLE `chat`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tr_disposisi_instruksi`
@@ -673,6 +716,11 @@ ALTER TABLE `t_user`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `chat`
+--
+ALTER TABLE `chat`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tr_disposisi_instruksi`
 --
