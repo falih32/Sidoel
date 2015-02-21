@@ -6,7 +6,9 @@
 		$usr_nip = $userlist-> usr_nip;
 		$usr_no_telp = $userlist-> usr_no_telp;
                 $usr_role = $userlist->usr_role;
+                $usr_departemen = $userlist->usr_departemen;
                 $usr_password = $userlist->usr_password;
+                $usr_jabatan = $userlist->usr_jabatan;
                 $konfirm = "";
                 $usr_email = $userlist->usr_email;
                 
@@ -18,6 +20,8 @@
 		$usr_nip = "";
 		$usr_no_telp = "";
                 $usr_role = "";
+                $usr_departemen ="";
+                $usr_jabatan = "";
                 $usr_password ="";
                 $konfirm ="";
                 $usr_email ="";
@@ -32,7 +36,7 @@
             <div class="panel-body">
             <form method="post" action="<?php if($mode == 'edit'){echo base_url()."user/proses_editUser";}else{echo base_url()."user/proses_addUser";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="form-group">
                         <label for="usr_nama" class="col-sm-2 control-label text-left">Nama</label>
                         <div class="col-sm-10">
@@ -54,14 +58,42 @@
                             <?php }?>
                         </div>
                     </div>
-                    <div class="form-group">
+               <div class="form-group">
                         <label for="usr_nip" class="col-sm-2 control-label text-left">NIP</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>" pattern="^[0-9]*$">
+                        	
+	                        <input type="text" class="form-control" id="usr_nip" name="usr_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $usr_nip; ?>"pattern="^[0-9]*$">
                             <p class="help-block">Hanya angka</p>
                             <div class="help-block with-errors"></div>
-                             </div>
+                            
+                        </div>
+                    </div>  
+                                        
+                  <div class="form-group">
+                        <label for="usr_departemen" class="col-sm-2 control-label text-left">Unit</label>
+                        <div class="col-sm-10">
+	                   		 <select class="form-control" id="usr_departemen" name="usr_departemen">
+                            	<?php foreach ($deptlist as $row) {?>
+                            	<option value="<?php echo $row->dpt_id; ?>" <?php if($row->dpt_id == $usr_departemen){echo "selected";}?>><?php echo $row->dpt_nama; ?></option>
+                                <?php } ?>
+                            </select>
+                            
+                        </div>
                     </div>
+                  <div class="form-group">
+                        <label for="usr_jabatan" class="col-sm-2 control-label text-left">Jabatan</label>
+                        <div class="col-sm-10">
+	                   		 <select class="form-control" id="usr_jabatan" name="usr_jabatan">
+                            	<?php foreach ($jbtlist as $row) {?>
+                            	<option value="<?php echo $row->jbt_id; ?>" <?php if($row->jbt_id == $usr_jabatan){echo "selected";}?>><?php echo $row->jbt_nama; ?></option>
+                                <?php } ?>
+                            </select>
+                            
+                        </div>
+                    </div>
+                  
+                  
+                    
                <div class="form-group">
                         <label for="usr_no_telp" class="col-sm-2 control-label text-left">Nomor Handphone</label>
                         <div class="col-sm-10">

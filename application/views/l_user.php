@@ -16,6 +16,9 @@
                 <tr>
                 	<th>Nama</th>
                 	<th>Username</th>
+                        <th>NIP</th>
+                        <th>Unit</th>
+                        <th>Jabatan</th>
                 	<th>Nomor HP</th>
                 	<th>E-mail</th>
                 	<th>Role</th>
@@ -64,6 +67,9 @@ $(document).ready(function() {
 		"columns": [
                 { "data": "usr_nama" },
                 { "data": "usr_username" },
+                { "data": "usr_nip" },
+                { "data": "dpt_nama" },
+                { "data": "jbt_nama" },
                 { "data": "usr_no_telp" },
                 { "data": "usr_email" },
                 { "data": "rle_role_name" },

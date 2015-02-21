@@ -16,7 +16,8 @@ class User extends CI_Controller{
 			$this->load->model('m_log');
 			$this->load->model('m_user');
 			$this->load->model('m_role');
-
+                        $this->load->model('m_departemen');
+                        $this->load->model('m_jabatan');
 		}
     }
 	
@@ -51,7 +52,9 @@ class User extends CI_Controller{
 		$data['usr_password']           = md5($this->input->post('usr_password'));
 		$data['usr_nama']               = $this->input->post('usr_nama');
 		$data['usr_nip']                = $this->input->post('usr_nip');
-		$data['usr_role']               = $this->input->post('usr_role');
+		$data['usr_departemen']         = $this->input->post('usr_departemen');
+                $data['usr_jabatan']            = $this->input->post('usr_jabatan');
+                $data['usr_role']               = $this->input->post('usr_role');
 		$data['usr_no_telp']             = $this->input->post('usr_no_telp');
 		$data['usr_email']              = $this->input->post('usr_email');
 			
@@ -70,6 +73,8 @@ class User extends CI_Controller{
         $data['title'] = 'Tambah Pengguna';
         $data['mode']= 'add';
         $data['rolelist']=  $this->m_role->selectAll()->result();
+        $data['deptlist']= $this->m_departemen->selectAll()->result();
+        $data['jbtlist']= $this->m_jabatan->selectAll()->result();
         $this->load->view('layout', $data);
     }
         
@@ -97,6 +102,8 @@ class User extends CI_Controller{
 			$data['content'] = 'f_user';
 			$data['title'] = 'Edit User Information';
 			$data['rolelist']=  $this->m_role->selectAll()->result();
+                        $data['deptlist']= $this->m_departemen->selectAll()->result();
+                        $data['jbtlist']= $this->m_jabatan->selectAll()->result();
 			$this->load->view('layout', $data);
 		}
 		else{
@@ -127,7 +134,7 @@ class User extends CI_Controller{
  
     public function deleteUser($id){
 		$this->limitRole(1);
-        $this->m_user->delete($id);
+                $this->m_user->delete($id);
 		$this->writeLog('User','Delete');
         redirect('User');
     }
