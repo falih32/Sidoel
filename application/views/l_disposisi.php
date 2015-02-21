@@ -59,7 +59,7 @@
                     <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                 </div>
             </div>
-            <table class="table table-responsive table-hover table-striped">
+            <table class="table table-responsive table-hover table-striped" id="tabel-disposisi">
             	<thead>
                 <tr>
                 	<th>No. Surat</th>
@@ -96,7 +96,7 @@ function makeTooltip(){
 }
 
 function moveSearch(){
-	var newParent = document.getElementById('DataTables_Table_0_filter');
+	var newParent = document.getElementById('tabel-disposisi_filter');
 	var oldParent = document.getElementById('date_search');
 	
 	while (oldParent.childNodes.length > 0) {
@@ -106,7 +106,7 @@ function moveSearch(){
 //-->
 
 $(document).ready(function() {
-	var table = $('.table').DataTable( {
+	var table = $('#tabel-disposisi').DataTable( {
     	"paging": true, 
 		"ordering": true, 
 		"scrollX":true,

@@ -84,7 +84,10 @@
 <body>
 	<div id="container">
     	<div id="header"><?php $this->load->view('head'); ?></div>
-        <div id="content"><?php $this->load->view($content); ?></div>
+        <div class="row" style="margin:0px;">
+            <div id="content" class="col-md-10" style="padding:0px"><?php $this->load->view($content); ?></div>
+            <div id="sidebar" class="col-md-2" style="padding:0px"><?php $this->load->view('sidebar'); ?></div>
+        </div>
         <div id="footer"><?php $this->load->view('footer'); ?></div>
 	</div>
 </body>

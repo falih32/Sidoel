@@ -9,7 +9,9 @@
                 <?php } ?>
                 </h3>
             </div>
-            <table class="table table-responsive table-hover table-striped">
+            <div class="panel-body" style="background: #CCC;">
+            </div>
+            <table class="table table-responsive table-hover table-striped" id="tabel-unitterusan">
             	<thead>
                 <tr>
                 	<th>Nomor</th>
@@ -44,7 +46,7 @@ function makeTooltip(){
 
 $(document).ready(function() {
 	
-	var table = $('.table').DataTable( {
+	var table = $('#tabel-unitterusan').DataTable( {
     	"paging": true, 
 		"search":true,  
 		"ordering": true, 

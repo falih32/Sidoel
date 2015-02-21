@@ -9,7 +9,9 @@
                 <?php } ?>
                 </h3>
             </div>
-            <table class="table table-responsive table-hover table-striped">
+            <div class="panel-body" style="background: #CCC;">
+            </div>
+            <table class="table table-responsive table-hover table-striped" id="tabel-user">
             	<thead>
                 <tr>
                 	<th>Nama</th>
@@ -47,7 +49,7 @@ function makeTooltip(){
 
 $(document).ready(function() {
 	
-	var table = $('.table').DataTable( {
+	var table = $('#tabel-user').DataTable( {
     	"paging": true, 
 		"search":true,  
 		"scrollX":true,

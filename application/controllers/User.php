@@ -183,5 +183,9 @@ class User extends CI_Controller{
 			die(json_encode(array('message' => 'ERROR', 'code' => 410)));
 		}
 	}
+	
+	public function ajaxUserOnline(){
+		echo $this->m_user->ajaxUserOnline();
+	}
 }
 ?>
