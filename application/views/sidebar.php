@@ -23,6 +23,8 @@ $ore = $_SESSION['username'];
     </div>
 </div>
 <script type="text/javascript">
+    
+
 $(document).ready(function() {
 	var table = $('#chat-table').DataTable( {
     	"paging": false, 
@@ -43,4 +45,6 @@ $(document).ready(function() {
               ]
 	} );
 });
+ 
+setUsername('<?php echo $this->session->userdata('username'); ?>');
 </script>

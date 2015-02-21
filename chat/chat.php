@@ -35,9 +35,9 @@ global $dbh;
 $dbh = mysql_connect(DBPATH,DBUSER,DBPASS);
 mysql_selectdb(DBNAME,$dbh);
 
-if($_GET['nameuser'] = ""){
+//if($_GET['nameuser'] = ""){
     $_SESSION['usernam'] = $_GET['nameuser'];
-}
+//}
 if ($_GET['action'] == "chatheartbeat")
 {
     //$_SESSION['usernam'] = $_GET['nameuser'];
