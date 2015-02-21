@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2015 at 09:19 AM
+-- Generation Time: Feb 21, 2015 at 01:17 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -278,8 +278,18 @@ CREATE TABLE IF NOT EXISTS `t_chat` (
 
 CREATE TABLE IF NOT EXISTS `t_departemen` (
 `dpt_id` int(11) NOT NULL,
-  `dpt_nama` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `dpt_nama` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_departemen`
+--
+
+INSERT INTO `t_departemen` (`dpt_id`, `dpt_nama`) VALUES
+(1, 'TU Pimpinan'),
+(2, 'Rumah Tangga'),
+(3, 'Perlengkapan'),
+(4, 'TU dan Persuratan');
 
 -- --------------------------------------------------------
 
@@ -383,6 +393,39 @@ INSERT INTO `t_instruksi` (`ins_id`, `ins_nama_instruksi`) VALUES
 (11, 'Jadwalkan'),
 (12, 'Siapkan Bahan'),
 (13, 'Beri Saran');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t_jabatan`
+--
+
+CREATE TABLE IF NOT EXISTS `t_jabatan` (
+  `jbt_id` int(11) NOT NULL,
+  `jbt_nama` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `t_jabatan`
+--
+
+INSERT INTO `t_jabatan` (`jbt_id`, `jbt_nama`) VALUES
+(1, 'Kabag TU Pimpinan'),
+(2, 'Kabag Rumah Tangga'),
+(3, 'Kabag Perlengkapan'),
+(4, 'Kabag TU & Persuratan'),
+(5, 'Kasubbag Protokol'),
+(6, 'Kasubbag TU Menteri'),
+(7, 'Kasubbag TU Sekretaris Jenderal'),
+(8, 'Kasubbag Urusan Dalam'),
+(9, 'Kasubbag ANGKAMDAL'),
+(10, 'Kasubbag Kesejahteraan'),
+(11, 'Kasubbag Perencanaan & Pemanfaatan'),
+(12, 'Kasubbag Inventarisasi & Penghapusan'),
+(13, 'Kasubbag Pengadaaan & Penyaluran'),
+(14, 'Kasubbag Persuratan'),
+(15, 'Kasubbag Arsip'),
+(16, 'Kasubbag TU BIRO');
 
 -- --------------------------------------------------------
 
@@ -601,7 +644,7 @@ CREATE TABLE IF NOT EXISTS `t_user` (
   `usr_deleted` int(11) DEFAULT '0',
   `usr_total_read` int(11) DEFAULT '0',
   `usr_departemen` int(11) DEFAULT NULL,
-  `usr_jabatan` varchar(200) DEFAULT NULL,
+  `usr_jabatan` int(11) DEFAULT NULL,
   `usr_online` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
@@ -671,6 +714,12 @@ ALTER TABLE `t_instruksi`
  ADD PRIMARY KEY (`ins_id`);
 
 --
+-- Indexes for table `t_jabatan`
+--
+ALTER TABLE `t_jabatan`
+ ADD PRIMARY KEY (`jbt_id`);
+
+--
 -- Indexes for table `t_jenis_surat_masuk`
 --
 ALTER TABLE `t_jenis_surat_masuk`
@@ -710,7 +759,7 @@ ALTER TABLE `t_unit_tujuan`
 -- Indexes for table `t_user`
 --
 ALTER TABLE `t_user`
- ADD PRIMARY KEY (`usr_id`), ADD KEY `user_role_fk` (`usr_role`) USING BTREE, ADD KEY `usr_dpt_fk` (`usr_departemen`);
+ ADD PRIMARY KEY (`usr_id`), ADD KEY `user_role_fk` (`usr_role`) USING BTREE, ADD KEY `usr_dpt_fk` (`usr_departemen`), ADD KEY `usr_jbt_fk` (`usr_jabatan`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -745,7 +794,7 @@ MODIFY `cht_id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `t_departemen`
 --
 ALTER TABLE `t_departemen`
-MODIFY `dpt_id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `dpt_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `t_form_disposisi`
 --
@@ -836,7 +885,8 @@ ADD CONSTRAINT `t_surat_msk_ibfk_3` FOREIGN KEY (`sms_edited_by`) REFERENCES `t_
 --
 ALTER TABLE `t_user`
 ADD CONSTRAINT `t_user_ibfk_1` FOREIGN KEY (`usr_role`) REFERENCES `t_role` (`rle_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-ADD CONSTRAINT `usr_dpt_fk` FOREIGN KEY (`usr_departemen`) REFERENCES `t_departemen` (`dpt_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ADD CONSTRAINT `usr_dpt_fk` FOREIGN KEY (`usr_departemen`) REFERENCES `t_departemen` (`dpt_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+ADD CONSTRAINT `usr_jbt_fk` FOREIGN KEY (`usr_jabatan`) REFERENCES `t_jabatan` (`jbt_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
