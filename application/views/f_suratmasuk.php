@@ -66,17 +66,17 @@
                             <p class="help-block"><i>Tanggal surat diterima</i></p>
                         </div>
                         
-                        <div class="col-sm-3">
+                        <!-- <div class="col-sm-3">
 	                        <input type="text" class="form-control tgl" id="tgl_srt_dtlanjut" name="sms_tgl_srt_dtlanjut" placeholder="yyyy-mm-dd" value="<?php echo $sms_tgl_srt_dtlanjut; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                             <p class="help-block"><i>Tenggat Waktu untuk ditindaklanjuti</i></p>
-                        </div>
+                        </div> !-->
                         
-                        <div class="col-sm-1">
+                       <!-- <div class="col-sm-1">
                             <label>
                               <input type="checkbox" id="tenggat_wkt" name="sms_tenggat_wkt" value="1"  <?php if($sms_tenggat_wkt == 1){echo "checked";} ?>>
                             </label>
                             <p class="help-block"><i>Tanpa tenggat waktu</i></p>
-                        </div>
+                        </div> !-->
                     </div>
                     <div class="form-group">
                         <label for="perihal" class="col-sm-2 control-label text-left">Perihal</label>
@@ -96,13 +96,13 @@
                                 <?php } ?>
                             </select>
                         </div>
-                        <label for="no_agenda" class="col-sm-2 control-label text-left">Agenda</label>
+                        <!--<label for="no_agenda" class="col-sm-2 control-label text-left">Agenda</label>
                         <div class="col-sm-4">
 	                        <input type="text" class="form-control" id="no_agenda" name="sms_no_agenda" placeholder="Agenda" value="<?php echo $sms_agenda; ?>" required>
                             <div class="help-block with-errors"></div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="unit_tujuan" class="col-sm-2 control-label text-left">Unit Tujuan</label>
                         <div class="col-sm-10">
 	                        <select class="form-control" id="unit_tujuan" name="sms_unit_tujuan" required>
@@ -111,7 +111,7 @@
                                 <?php } ?>
                             </select>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label for="file_upload" class="col-sm-2 control-label text-left">Upload file</label>
                         <div class="col-sm-10">
@@ -119,13 +119,13 @@
                             <p class="help-block"><i>Format: JPG, JPEG, PNG, GIF, PDF <br>Max dimension: 3000x3000 px | Max file size: 2000KB.</i></p>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="keterangan" class="col-sm-2 control-label text-left">Keterangan</label>
                         <div class="help-block with-errors"></div>
                         <div class="col-sm-10">
 	                        <textarea rows="5" class="form-control" id="keterangan" name="sms_keterangan" required><?php echo $sms_keterangan; ?></textarea>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">

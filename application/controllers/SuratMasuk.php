@@ -14,7 +14,9 @@ class SuratMasuk extends CI_Controller{
 			$this->load->helper('date');
 			$this->load->database();
 			$this->load->model('m_surat_masuk');
-			$this->load->model('m_unit_tujuan');
+			$this->load->model('m_instruksi');
+                        $this->load->model('m_unit_terusan');
+                        $this->load->model('m_unit_tujuan');
 			$this->load->model('m_jenis_smasuk');
 			$this->load->model('m_log');
 		}
@@ -176,6 +178,15 @@ class SuratMasuk extends CI_Controller{
         redirect('SuratMasuk');
     }
     
+    public function disposisi_cetak($id) {
+                $data['suratMasuk']=  $this->m_surat_masuk->selectById($id);
+                $data['instruksi'] = $this->m_instruksi->selectAll()->result();
+                $data['disposisiInstruksi'] = '';
+                $data['unitTerusan'] = $this->m_unit_terusan->selectAll()->result();
+                $data['disposisiUnitTerusan'] = '';
+		$this->load->view('v_cetakdisposisi',$data);
+	}
+
 	public function search(){
 		$this->limitRole(2);
 		$s_key = $this->input->post('s_key');

@@ -39,7 +39,8 @@ class M_surat_masuk extends CI_Model{
 			"<a class='btn btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='SuratMasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
 			"<a class='btn btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='SuratMasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
 			"<a class='btn btn-success' data-toggle='tooltip' data-placement='top' title='Buat Disposisi' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
-			"</div>".
+			"<a target= '_blank' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Print' href='SuratMasuk/disposisi_cetak/$1'><span class='glyphicon glyphicon-print' aria-hidden='true'></span></a>".
+                        "</div>".
 			"</form>".
 		"",'sms_id');
 		$this->datatables->edit_column('sms_view',"".
