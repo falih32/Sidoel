@@ -11,10 +11,8 @@ class Login extends CI_Controller{
     }
         // melihat halam qqan login
     public function index(){
-		if($this->session->userdata('id_user') == ''){
-			$data['content'] = 'login';
-			$data['title'] = 'login';       
-			$this->load->view('layout', $data);
+		if($this->session->userdata('id_user') == ''){   
+			$this->load->view('login');
 		}
 		else{
 			redirect('Dashboard');

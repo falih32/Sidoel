@@ -73,14 +73,17 @@ class M_user extends CI_Model{
 	}
     
 	function ajaxUserOnline(){
+                 $ore = $this->session->userdata('username');
 		$this->datatables
 		->select('usr_username, usr_online')
 		->from('t_user')
 		->where('usr_deleted', '0')
-		->edit_column('usr_chat',"<a href=".base_url()."Chat/$1>$1</a>",'usr_username, usr_online');
+		->edit_column('usr_chat',"<a onclick='javascript:chatWith(\"$1\",\"$ore\")' href='javascript:void(0)' >$1</a>",'usr_username');
 		return $this->datatables->generate();
 	}
 	
+        
+        
     function update($id, $data){
         $this->db->where('usr_id', $id);
         $this->db->update('t_user', $data);

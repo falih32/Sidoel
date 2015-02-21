@@ -50,20 +50,7 @@
   </div>
 </nav>
 <?php if($onpage == "login" || $onpage == ""){?>
-<div class="container-fluid">
-    <div class="row-fluid">
-    	<div class="panel panel-default" style="background-color:rgba(255, 255, 255, 0.75)">
-        	<div class="panel-body">
-                <div class="col-sm-2"><img src="<?php echo base_url();?>assets/css/images/logokelautan.png" alt="logo kelautan" width="100%"></div>
-                <div class="col-md-10 text-center">
-                	<h1>SISTEM DISPOSISI ELEKTRONIK (SIDOEL)</h1>
-                    <h2>KEMENTERIAN KELAUTAN DAN PERIKANAN REPUBLIK INDONESIA<br>
-                    <small>Ministry of Marine Affairs and Fisheries Republic of Indonesia</small></h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 <?php } ?>
 <?php if($this->session->flashdata('message') != ""){ $msg=$this->session->flashdata('message');?>
 <div class="container-fluid">

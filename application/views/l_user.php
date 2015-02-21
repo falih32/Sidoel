@@ -9,7 +9,7 @@
                 <?php } ?>
                 </h3>
             </div>
-            <div class="panel-body" style="background: #CCC;">
+            <div class="panel-body">
             </div>
             <table class="table table-responsive table-hover table-striped" id="tabel-user">
             	<thead>

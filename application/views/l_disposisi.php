@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi <?php if ($mode=='byUserMasuk'){echo"Masuk";} elseif($mode=='byUserKeluar'){echo "Keluar";}?></h3>
             </div>
-            <div class="panel-body" style="background: #CCC;" id="conchart">
+            <div class="panel-body" id="conchart">
             	<div class="col-md-12">                
 					<?php if($mode == "bySurat"){?>
                         <div id="mynetwork"></div>

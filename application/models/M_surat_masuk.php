@@ -23,7 +23,7 @@ class M_surat_masuk extends CI_Model{
     
 	function selectAjax($min, $max){
 		$this->datatables
-			->select('sms_id, sms_no_agenda, sms_nomor_surat, sms_tgl_srt, sms_pengirim, sms_perihal, sms_tgl_srt_diterima, sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, usr_userName, usr_nama')
+			->select('sms_id, sms_no_agenda, sms_nomor_surat, sms_tgl_srt, sms_pengirim, sms_perihal, DATE_FORMAT(sms_tgl_srt_diterima,"%d-%m-%Y") as sms_tgl_srt_diterima, DATE_FORMAT(sms_tgl_srt_dtlanjut,"%d-%m-%Y") as sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, usr_userName, usr_nama')
 			->from('t_surat_msk')
 			->where('sms_deleted','0')
 			->where('sms_tgl_srt_diterima >= ', $min)

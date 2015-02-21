@@ -9,7 +9,7 @@
                 <?php } ?>
                 </h3>
             </div>
-            <div class="panel-body" style="background: #CCC;">
+            <div class="panel-body">
                 <div class="col-md-6 col-md-offset-6 text-right" id="date_search">
                     <input type="text" class="form-control input-sm tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
                     <input type="text" class="form-control input-sm tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">
@@ -19,20 +19,14 @@
             <table class="table table-hover table-striped" id="tabel-suratmasuk">
             	<thead>
                 <tr>
-                	<th>No.Agenda</th>
-                	<th>No. Surat / Tgl. Surat</th>
-                	<th>Pengirim / Perihal</th>
-                	<th>Tgl. Terima / Tenggat</th>
-                	<th>Keterangan</th>
-                	<th>Terkirim</th>
-                	<th>Direkam oleh</th>
-                	<th>Aksi</th>
+                	<th>ID surat</th>
                 	<th>No. Surat</th>
                 	<th>Tgl. Surat</th>
                 	<th>Tgl. Terima</th>
-                	<th>Tenggat</th>
                 	<th>Pengirim</th>
                 	<th>Perihal</th>
+                	<th>Direkam oleh</th>
+                	<th>Aksi</th>
                 </tr>
                 </thead>
             </table>
@@ -89,28 +83,20 @@ $(document).ready(function() {
 			}
 		},
 		"columns": [
-                { "data": "sms_no_agenda" },
-                { "data": "no_tgl" },
-                { "data": "pengirim_perihal" },
-                { "data": "terima_tenggat" },
-                { "data": "sms_keterangan" },
-                { "data": "sms_status_terkirim" },
-                { "data": "usr_nama" },
-                { "data": "<?php if($role > 2) {echo"sms_view";} else{echo "sms_aksi";}?>" },
-                { "data": "sms_nomor_surat"},
+                { "data": "sms_id" },
+                { "data": "sms_nomor_surat" },
                 { "data": "sms_tgl_srt" },
+                { "data": "sms_tgl_srt_diterima" },
                 { "data": "sms_pengirim" },
                 { "data": "sms_perihal" },
-                { "data": "sms_tgl_srt_diterima" },
-                { "data": "sms_tgl_srt_dtlanjut" },
-				{ "data": "sms_id" }
+                { "data": "usr_nama" },
+                { "data": "<?php if($role > 2) {echo"sms_view";} else{echo "sms_aksi";}?>" }
               ],
 		"columnDefs": [
-				{ "searchable": true, "orderable":true, "targets": [0, 4, 5, 6] },
-				{ "searchable": false, "orderable":false, "targets": [1, 2, 3, 4, 5, 6, 7] },
-				{ "visible": false, "orderable":true, "targets": [8, 9, 10, 11, 12, 13, 14] }
+				{ "searchable": false, "orderable":false, "targets": [7] },
+				{ "searchable": false, "visible":false, "targets": [0]}
 			],
-		"order": [[ 14, "desc" ]],
+		"order": [[ 0, "desc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			makeTooltip();
