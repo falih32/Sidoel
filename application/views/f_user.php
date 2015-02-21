@@ -45,7 +45,7 @@
                         <label for="usr_username" class="col-sm-2 control-label text-left">Username</label>
                         <div class="col-sm-10">
                         	<?php if($mode == "add"){?>
-	                        <input type="text" class="form-control" id="usr_username" name="usr_username" placeholder="Username" value="<?php echo $usr_username; ?>" required data-minlength="5" pattern="^[a-zA-Z0-9]*$">
+	                        <input type="text" class="form-control" id="usr_username" name="usr_username" placeholder="Username" value="<?php echo $usr_username; ?>" required data-minlength="5" pattern="^[a-zA-Z0-9]*$" data-remote="<?php echo site_url('User/checkUserAjax'); ?>">
                             <p class="help-block">Minimal 5 karakter, hanya huruf dan angka</p>
                             <div class="help-block with-errors"></div>
                             <?php } else {?>

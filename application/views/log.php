@@ -5,7 +5,9 @@
             <div class="panel-heading">
                 <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> User Log </h3>
             </div>
-            <table class="table table-responsive table-hover table-striped">
+            <div class="panel-body" style="background: #CCC;">
+            </div>
+            <table class="table table-responsive table-hover table-striped" id="tabel-log">
             	<thead>
                 <tr>
                 	<th>No.</th>
@@ -43,7 +45,7 @@ function makeTooltip(){
 
 $(document).ready(function() {
 	
-	var table = $('.table').DataTable( {
+	var table = $('#tabel-log').DataTable( {
     	"paging": true, 
 		"search":true,  
 		"ordering": true, 

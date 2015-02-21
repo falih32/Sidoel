@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2015 at 03:13 AM
+-- Generation Time: Feb 21, 2015 at 05:40 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `tr_disposisi_instruksi` (
   `din_id_disposisi` bigint(20) DEFAULT NULL,
   `din_id_instruksi` int(11) DEFAULT NULL,
 `din_id` bigint(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tr_disposisi_instruksi`
@@ -137,7 +137,16 @@ INSERT INTO `tr_disposisi_instruksi` (`din_id_disposisi`, `din_id_instruksi`, `d
 (40, 13, 64),
 (40, 9, 65),
 (45, 11, 66),
-(45, 5, 67);
+(45, 5, 67),
+(46, 11, 72),
+(46, 5, 73),
+(47, 8, 74),
+(47, 3, 75),
+(50, 7, 78),
+(51, 5, 81),
+(51, 4, 82),
+(49, 13, 85),
+(49, 7, 86);
 
 -- --------------------------------------------------------
 
@@ -184,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `tr_disposisi_user` (
 `dus_id` bigint(20) NOT NULL,
   `dus_disposisi` bigint(20) DEFAULT NULL,
   `dus_user` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tr_disposisi_user`
@@ -200,7 +209,14 @@ INSERT INTO `tr_disposisi_user` (`dus_id`, `dus_disposisi`, `dus_user`) VALUES
 (31, 40, 1),
 (32, 40, 4),
 (33, 45, 2),
-(34, 45, 5);
+(34, 45, 5),
+(39, 46, 2),
+(40, 46, 4),
+(41, 47, 2),
+(42, 47, 5),
+(44, 50, 3),
+(46, 51, 4),
+(48, 49, 5);
 
 -- --------------------------------------------------------
 
@@ -243,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `t_form_disposisi` (
   `fds_pengirim` int(11) DEFAULT NULL,
   `fds_id_parent` bigint(11) DEFAULT NULL,
   `fds_deleted` int(11) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_form_disposisi`
@@ -293,7 +309,13 @@ INSERT INTO `t_form_disposisi` (`fds_id`, `fds_id_surat`, `fds_kasubbag`, `fds_c
 (42, 8, '1', 'kolek', '2015-02-11', 1, -99, 0),
 (43, NULL, '1', 'wasu', '2015-02-11', 1, -99, 0),
 (44, 4, '1', 'lodaya', '2015-02-11', 1, -99, 0),
-(45, 11, NULL, 'tambah disposisi dong', '2015-02-11', 1, 39, 0);
+(45, 11, NULL, 'tambah disposisi dong', '2015-02-11', 1, 39, 0),
+(46, 5, NULL, 'ganti model lagi', '2015-02-16', 1, -99, 0),
+(47, 5, NULL, 'ini baru ai baru', '2015-02-16', 1, -99, 0),
+(48, 5, NULL, 'kosong', '2015-02-09', 1, -99, 1),
+(49, 19, NULL, 'disposisi buat aaaa', '2015-02-17', 5, -99, 1),
+(50, 19, NULL, 'lanjut gan!', '2015-02-17', 5, 49, 0),
+(51, 5, NULL, 'kok error sih messagenyaaaaa?', '2015-02-17', 1, 47, 0);
 
 -- --------------------------------------------------------
 
@@ -356,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `t_log` (
   `log_aksi` varchar(100) DEFAULT NULL,
   `log_tanggal` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `log_user` int(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_log`
@@ -373,7 +395,32 @@ INSERT INTO `t_log` (`log_id`, `log_nama_tabel`, `log_aksi`, `log_tanggal`, `log
 (8, 'Disposisi', 'Create', '2015-02-11 19:52:27', 1),
 (9, 'Surat Masuk', 'Create', '2015-02-12 11:41:26', 1),
 (10, 'Disposisi', 'Update', '2015-02-15 01:42:52', 1),
-(11, 'Disposisi', 'Create', '2015-02-15 08:43:15', 1);
+(11, 'Disposisi', 'Create', '2015-02-15 08:43:15', 1),
+(12, 'Surat Masuk', 'Create', '2015-02-16 14:52:26', 1),
+(13, 'Disposisi', 'Update', '2015-02-16 14:55:25', 1),
+(14, 'Disposisi', 'Update', '2015-02-16 14:56:17', 1),
+(15, 'Surat Masuk', 'Update', '2015-02-16 15:09:05', 1),
+(16, 'Surat Masuk', 'Update', '2015-02-16 15:09:32', 1),
+(17, 'Surat Masuk', 'Update', '2015-02-16 15:10:12', 1),
+(18, 'Surat Masuk', 'Create', '2015-02-16 16:35:52', 1),
+(19, 'Unit Tujuan', 'Update', '2015-02-17 16:26:45', 1),
+(20, 'Unit Terusan', 'Update', '2015-02-17 16:44:15', 1),
+(21, 'Unit Terusan', 'Update', '2015-02-17 16:44:22', 1),
+(22, 'Surat Masuk', 'Create', '2015-02-17 22:16:29', 1),
+(23, 'User', 'Update', '2015-02-17 23:25:52', 1),
+(24, 'User', 'Update', '2015-02-17 23:56:02', 4),
+(25, 'User', 'Update', '2015-02-17 23:58:20', 1),
+(26, 'User', 'Update', '2015-02-18 00:02:24', 1),
+(27, 'User', 'Update', '2015-02-18 01:00:09', 4),
+(28, 'User', 'Update', '2015-02-18 01:32:30', 1),
+(29, 'Disposisi', 'Delete', '2015-02-18 02:38:38', 1),
+(30, 'Disposisi', 'Update', '2015-02-18 02:38:57', 1),
+(31, 'Surat Masuk', 'Create', '2015-02-18 02:54:26', 1),
+(32, 'Disposisi', 'Update', '2015-02-18 11:05:53', 5),
+(33, 'Disposisi', 'Update', '2015-02-18 11:07:53', 5),
+(34, 'Disposisi', 'Delete', '2015-02-18 11:08:28', 5),
+(35, 'User', 'Create', '2015-02-20 22:55:45', 1),
+(36, 'User', 'Create', '2015-02-20 23:44:52', 1);
 
 -- --------------------------------------------------------
 
@@ -418,7 +465,7 @@ CREATE TABLE IF NOT EXISTS `t_surat_msk` (
   `sms_file` varchar(255) DEFAULT NULL,
   `sms_pengirim` varchar(255) DEFAULT NULL,
   `sms_deleted` int(11) DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_surat_msk`
@@ -427,7 +474,7 @@ CREATE TABLE IF NOT EXISTS `t_surat_msk` (
 INSERT INTO `t_surat_msk` (`sms_id`, `sms_nomor_surat`, `sms_tgl_srt`, `sms_tgl_srt_diterima`, `sms_tgl_srt_dtlanjut`, `sms_tenggat_wkt`, `sms_perihal`, `sms_jenis_surat`, `sms_no_agenda`, `sms_unit_tujuan`, `sms_keterangan`, `sms_edited_by`, `sms_status_terkirim`, `sms_file`, `sms_pengirim`, `sms_deleted`) VALUES
 (2, 'BAAA1', '2015-02-24', '2015-01-28', '2015-01-29', 0, 'Testimoni', 2, 667, 2, 'jkkljhlkjhlkhl', 1, '', NULL, 'Junno', 0),
 (4, '123', '0000-00-00', '2015-02-19', '2015-02-04', 1, 'per', 1, 0, 2, 'keter', 1, NULL, NULL, 'Tantra', 0),
-(5, '1234', '0000-00-00', '2015-02-24', '2015-02-26', NULL, 'hal', 2, 1, 2, 'HHAHAHAHAHA', 1, NULL, NULL, 'Saya', 0),
+(5, '1234', '2015-02-16', '2015-02-24', '2015-02-26', NULL, 'hal', 2, 1, 2, 'HHAHAHAHAHA', 1, NULL, NULL, 'Saya', 0),
 (6, '1234', '2015-02-04', '2015-02-04', '2015-02-04', 1, 'hal', NULL, 1, 1, 'ket', NULL, NULL, NULL, 'Saya', 0),
 (7, '2', '2015-02-04', '2015-02-04', '2015-02-04', 1, 'KET', NULL, 1, 1, 'asasa', NULL, NULL, NULL, 'Saya', 0),
 (8, '23', '2015-02-04', '2015-02-04', '2015-02-04', NULL, '', NULL, 0, NULL, '', NULL, NULL, NULL, '23', 0),
@@ -451,7 +498,11 @@ INSERT INTO `t_surat_msk` (`sms_id`, `sms_nomor_surat`, `sms_tgl_srt`, `sms_tgl_
 (34, '280691', '2015-02-10', '2015-02-11', '2015-02-18', NULL, 'Coba log', 2, 1, 3, 'Mari kita coba log untuk surat masuk', 1, NULL, 'joint1.png', 'Junno', 0),
 (35, '280691', '2015-02-10', '2015-02-11', '2015-02-18', NULL, 'Coba log', 2, 1, 3, 'Mari kita coba log untuk surat masuk', 1, NULL, 'joint2.png', 'Junno', 0),
 (36, '132', '2015-02-11', '2015-02-11', '2015-02-11', NULL, '', 2, 0, 3, '', 1, NULL, NULL, '2432354', 0),
-(37, '280691', '2015-02-12', '2015-02-12', '0000-00-00', NULL, 'Perihal', 2, 1, 3, 'alert pliss', 1, NULL, NULL, 'Junno', 0);
+(37, '280691', '2015-02-12', '2015-02-12', '0000-00-00', NULL, 'Perihal', 2, 1, 3, 'alert pliss', 1, NULL, NULL, 'Junno', 0),
+(38, '280691', '2015-02-16', '2015-02-16', '2015-02-16', 1, 'Perihal', 1, 1, 1, 'tes ganti model', 1, NULL, NULL, 'Junno', 0),
+(39, '280691', '2015-02-16', '2015-02-16', '2015-02-16', NULL, 'Perihal', 2, 1, 3, 'tes ai baru', 1, NULL, NULL, 'Junno', 0),
+(40, '280691', '2015-02-17', '2015-02-17', '2015-02-17', 1, 'Perihal', 2, 1, 3, 'coba pengirim admin', 1, NULL, NULL, 'Junno', 0),
+(41, '280691', '2015-02-18', '2015-02-18', '2015-02-18', 1, 'Perihal', 2, 1, 3, 'test upload pdf', 1, NULL, 'img002.pdf', 'Junno', 0);
 
 -- --------------------------------------------------------
 
@@ -491,7 +542,7 @@ CREATE TABLE IF NOT EXISTS `t_unit_tujuan` (
 --
 
 INSERT INTO `t_unit_tujuan` (`utj_id`, `utj_unit_tujuan`) VALUES
-(1, 'Menteri'),
+(1, 'Menterii'),
 (2, 'Staf Ahli Menteri'),
 (3, 'Om Janitor ');
 
@@ -513,19 +564,22 @@ CREATE TABLE IF NOT EXISTS `t_user` (
   `usr_deleted` int(11) DEFAULT '0',
   `usr_total_read` int(11) DEFAULT '0',
   `usr_departemen` int(11) DEFAULT NULL,
-  `usr_jabatan` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `usr_jabatan` varchar(200) DEFAULT NULL,
+  `usr_online` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_user`
 --
 
-INSERT INTO `t_user` (`usr_id`, `usr_username`, `usr_password`, `usr_nama`, `usr_nip`, `usr_role`, `usr_no_telp`, `usr_email`, `usr_deleted`, `usr_total_read`, `usr_departemen`, `usr_jabatan`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', 1, '12132434', 'kek', 0, 0, NULL, NULL),
-(2, 'umum', '21232f297a57a5a743894a0e4a801fc3', 'Nur Akhwan', '19900326 201401 1 002', 2, '343242', 'trd', 0, 0, NULL, NULL),
-(3, 'tantra', 'c314409d89dea3fb1d2fc4b63e88b7fc', 'Juno', '123', 3, '7566', 'sdsd', 0, 0, NULL, NULL),
-(4, 'asasa', '4cfdc2e157eefe6facb983b1d557b3a1', 'ampas', '232324', 2, '879', 'sdsd', 0, 0, NULL, NULL),
-(5, 'bbbb', '21232f297a57a5a743894a0e4a801fc3', 'aaaa', '121212', 3, '25666', 'ganti', 0, 0, NULL, NULL);
+INSERT INTO `t_user` (`usr_id`, `usr_username`, `usr_password`, `usr_nama`, `usr_nip`, `usr_role`, `usr_no_telp`, `usr_email`, `usr_deleted`, `usr_total_read`, `usr_departemen`, `usr_jabatan`, `usr_online`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', '19900326 201401 1 002', 1, '12132434', 'kek', 0, 0, NULL, NULL, 0),
+(2, 'umum', '21232f297a57a5a743894a0e4a801fc3', 'Nur Akhwan', '19900326 201401 1 002', 2, '343242', 'trd', 0, 2, NULL, NULL, 0),
+(3, 'tantra', 'c314409d89dea3fb1d2fc4b63e88b7fc', 'Juno', '123', 3, '7566', 'sdsd', 0, 1, NULL, NULL, 0),
+(4, 'ampas', 'fba176fa69a7f4a86e1a42310304c155', 'ampas', '2323241', 2, '085795862828', 'junnotantra@gmail.com', 0, 2, NULL, NULL, 0),
+(5, 'bbbb', '21232f297a57a5a743894a0e4a801fc3', 'aaaa', '121212', 3, '25666', 'ganti', 0, 0, NULL, NULL, 0),
+(6, 'junta', '0e9b9cbe96f10e6721fc55dd6b45af6f', 'junta', '12345', 3, '085795862827', 'admin@qw.er', 0, 0, NULL, NULL, 0),
+(7, 'admini', '0192023a7bbd73250516f069df18b500', 'junta', '12345', 3, '085795862827', 'admin@s.ss', 0, 0, NULL, NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -623,7 +677,7 @@ ALTER TABLE `t_user`
 -- AUTO_INCREMENT for table `tr_disposisi_instruksi`
 --
 ALTER TABLE `tr_disposisi_instruksi`
-MODIFY `din_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=68;
+MODIFY `din_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=87;
 --
 -- AUTO_INCREMENT for table `tr_disposisi_unit_terusan`
 --
@@ -633,7 +687,7 @@ MODIFY `dut_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=41;
 -- AUTO_INCREMENT for table `tr_disposisi_user`
 --
 ALTER TABLE `tr_disposisi_user`
-MODIFY `dus_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=35;
+MODIFY `dus_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `t_chat`
 --
@@ -648,7 +702,7 @@ MODIFY `dpt_id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `t_form_disposisi`
 --
 ALTER TABLE `t_form_disposisi`
-MODIFY `fds_id` bigint(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
+MODIFY `fds_id` bigint(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `t_instruksi`
 --
@@ -663,7 +717,7 @@ MODIFY `jsm_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `t_log`
 --
 ALTER TABLE `t_log`
-MODIFY `log_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `log_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `t_role`
 --
@@ -673,7 +727,7 @@ MODIFY `rle_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `t_surat_msk`
 --
 ALTER TABLE `t_surat_msk`
-MODIFY `sms_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+MODIFY `sms_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `t_unit_terusan`
 --
@@ -688,7 +742,7 @@ MODIFY `utj_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `t_user`
 --
 ALTER TABLE `t_user`
-MODIFY `usr_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `usr_id` int(2) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
