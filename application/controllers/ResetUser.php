@@ -8,16 +8,12 @@ class ResetUser extends CI_Controller{
     }
 	
     public function index(){
-		$data['content'] = 'l_user';
-		$data['title']= 'Daftar User';
-		$this->load->view('layout',$data);
+		$this->forgot_password();
     }
 	
 	
 	public function forgot_password(){
-		$data['content'] = 'password_forgot';
-		$data['title'] = 'Forgot password';
-        $this->load->view('layout', $data);
+        $this->load->view('password_forgot');
 	}
 	
 	public function send_sms_forgot(){
@@ -32,9 +28,8 @@ class ResetUser extends CI_Controller{
 		<head>
 		</head>
 		<body>
-		<p>Silahkan klik tautan berikut untuk reset password and <a href=".$link.">".$link."</a></p>
-		<p>Link tersebut hanya berlaku untuk hari ini, tanggal ".date('y-m-d').".</p>
-		<p>Jika anda merasa tidak pernah merasa </p>
+		<p>Silahkan klik tautan berikut untuk melakukan reset password <a href=".$link.">".$link."</a>. Link tersebut hanya berlaku untuk hari ini, tanggal ".date('d-m-Y').".</p>
+		<p>Jika anda merasa tidak pernah meminta layanan ini, harap abaikan pesan ini. </p>
 		</body>
 		</html>
 		";
@@ -57,8 +52,7 @@ class ResetUser extends CI_Controller{
 		if($hash == md5("sidoel".$id."resetpassword".date('y-m-d'))){
 			$data['userData'] = $this->m_user->selectById($id)->row();
 			$data['title'] = 'Ubah Password';
-			$data['content'] = 'password_reset';
-			$this->load->view('layout', $data);
+			$this->load->view('password_reset', $data);
 		}
 		else{
 			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));

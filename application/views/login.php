@@ -15,9 +15,9 @@
         	<div class="panel-body">
                 <div class="col-sm-2"><img src="<?php echo base_url();?>assets/css/images/logokelautan.png" alt="logo kelautan" width="75%"></div>
                 <div class="col-md-10 text-center">
-                	<h2>SISTEM DISPOSISI ELEKTRONIK (SIDOEL)</h2>
+                	<a href="<?php echo base_url(); ?>"><h2>SISTEM DISPOSISI ELEKTRONIK (SIDOEL)</h2>
                     <h3>KEMENTERIAN KELAUTAN DAN PERIKANAN REPUBLIK INDONESIA<br>
-                    <small>Ministry of Marine Affairs and Fisheries Republic of Indonesia</small></h3>
+                    <small>Ministry of Marine Affairs and Fisheries Republic of Indonesia</small></h3></a>
                 </div>
             </div>
         </div>

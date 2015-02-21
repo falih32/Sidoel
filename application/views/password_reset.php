@@ -1,3 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="KeyWords" content="kementrian, perikanan, kelautan, indonesia">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Sistem Disposisi Elektronik</title>
+    <link rel="icon" href="<?php echo base_url();?>assets/css/images/icon.ico">
+    <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/sidoel.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+    	<div class="panel panel-default" style="background-color:rgba(255, 255, 255, 0.75)">
+        	<div class="panel-body">
+                <div class="col-sm-2"><img src="<?php echo base_url();?>assets/css/images/logokelautan.png" alt="logo kelautan" width="75%"></div>
+                <div class="col-md-10 text-center">
+                	<a href="<?php echo base_url(); ?>"><h2>SISTEM DISPOSISI ELEKTRONIK (SIDOEL)</h2>
+                    <h3>KEMENTERIAN KELAUTAN DAN PERIKANAN REPUBLIK INDONESIA<br>
+                    <small>Ministry of Marine Affairs and Fisheries Republic of Indonesia</small></h3></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="login-panel panel panel-info">
@@ -31,7 +56,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="new_pass" class="col-sm-4 control-label">Password Baru</label>
+                        <label for="new_pass" class="col-sm-4 control-label">Ulangi Password Baru</label>
                         <div class="col-sm-8">
                             <input class="form-control" id="new_pass2" placeholder="Tulis ulang password baru" name="new_pass2" value=""  type="password"  required data-minlength="5" data-match="#new_pass">
                             <div class="help-block with-errors"></div>
@@ -53,3 +78,5 @@
         </div>
     </div>
 </div>
+</body>
+</html>
