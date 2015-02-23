@@ -3,6 +3,7 @@
 class M_jabatan extends CI_Model{
     function __construct(){
         parent::__construct();
+        	$this->load->library('Datatables');
     }
     
     function insert($data){
@@ -22,6 +23,20 @@ class M_jabatan extends CI_Model{
         return $this->db->get();
     }
      
+    function ajaxProcess(){
+		$this->datatables
+		->select('jbt_id, jbt_nama')
+		->from('t_jabatan')
+		->edit_column('aksi',"".
+			"<form>".
+			"<div class='form-group'>".
+			"<a class='btn btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='delete_jabatan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='Jabatan/edit_jabatan/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"</div>".
+			"</form>".
+		"",'jbt_id');
+		return $this->datatables->generate();
+	}
     function update($id, $data){
         $this->db->where('jbt_id', $id);
         $this->db->update('t_jabatan', $data);
