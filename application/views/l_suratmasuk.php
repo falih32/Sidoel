@@ -74,6 +74,7 @@ $(document).ready(function() {
 		"scrollX":true,
 		"processing":true, 
 		"serverSide": true,
+		"pageLength": 50,
 		"ajax":{
 			"url":"<?php echo site_url('SuratMasuk/ajaxProcess');?>",
 			"type":"POST",

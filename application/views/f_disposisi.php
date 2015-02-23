@@ -10,6 +10,18 @@
 		$utr_unitTerusan = $unitTerusan;
 		$ins_instruksi  = $instruksi;
 	}
+	elseif($mode == "add"){
+		$fds_file = $fileDisposisi;
+		$fds_id_surat = $id_surat;
+		$fds_kasubbag = '';
+		$fds_catatan = '';
+		$fds_pengirim = '';
+		$fds_tgl_disposisi = '';
+		$fds_id_parent = $fds_id_parent;
+		$fds_id = '';
+		$utr_unitTerusan = $unitTerusan;
+		$ins_instruksi  = $instruksi;
+	}
 	else{
 		$fds_id_surat = $id_surat;
 		$fds_kasubbag = '';
@@ -40,6 +52,7 @@
 	                        <p class="form-control-static"><a class="btn btn-default" href="<?php echo base_url()."SuratMasuk/detail_surat_masuk/".$fds_id_surat; ?>" target="_blank"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Lihat detail</a></p>
                         </div>
                     </div>
+                    <?php if ($mode == "new"){?>
                     <div class="form-group">
                         <label for="file_upload" class="col-sm-2 control-label text-center">Upload lembar disposisi</label>
                         <div class="col-sm-10">
@@ -47,6 +60,9 @@
                             <p class="help-block"><i>Format: JPG, JPEG, PNG, GIF, PDF <br>Max dimension: 3000x3000 px | Max file size: 2000KB.</i></p>
                         </div>
                     </div>
+                    <?php } elseif($mode == "add"){?>
+                    <input type="hidden" id="fds_file_2" name="fds_file_2" value="<?php echo $fds_file?>" />
+                    <?php } ?>
                     <!--<div class="form-group">
                         <label for="fds_kasubbag" class="col-sm-2 control-label text-left">Kasubag</label>
                         <div class="col-sm-10">

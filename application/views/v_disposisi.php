@@ -11,6 +11,12 @@
                         	<th>Nomor Surat</th>
                         	<td><?php echo $dataDisposisi->sms_nomor_surat; ?> <a class="btn btn-default btn-sm" target="_blank" href="<?php echo site_url('SuratMasuk/detail_surat_masuk')."/".$dataDisposisi->fds_id_surat; ?>"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Lihat detail surat</a></td>
                         </tr>
+                        <?php if($dataDisposisi->fds_id_parent != "-99"){?>
+                    	<tr>
+                        	<th>Disposisi sebelumnya</th>
+                        	<td><a class="btn btn-default btn-sm" target="_blank" href="<?php echo site_url('Disposisi/detail_disposisi')."/".$dataDisposisi->fds_id_parent; ?>"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Lihat detail disposisi</a></td>
+                        </tr>
+                        <?php } ?>
                     	<tr>
                         	<th>Tanggal Disposisi</th>
                         	<td><?php echo $dataDisposisi->fds_tgl_disposisi; ?></td>
@@ -65,6 +71,7 @@
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
                         	<a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                        	<a class="btn btn-lg btn-primary" href="<?php echo site_url('Disposisi/tracking')."/".$dataDisposisi->fds_id_surat; ?>"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Tracking</a>
                         </div>
                     </div>
                 </div>

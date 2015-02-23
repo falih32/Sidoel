@@ -133,6 +133,7 @@ class Disposisi extends CI_Controller{
 		$data_fds['fds_tgl_disposisi']	= $this->input->post('fds_tgl_disposisi');
 		$data_fds['fds_id_parent']		= $this->input->post('fds_id_parent');
 		$data_fds['fds_id']        		= $this->input->post('fds_id');
+		$data_fds['fds_file']        	= $this->input->post('fds_file_2');
 		return $data_fds;
     }
 	
@@ -158,7 +159,7 @@ class Disposisi extends CI_Controller{
 		$this->limitRole(2);
         $data['content'] = 'f_disposisi';
 		$data['title'] = 'Tambah disposisi';
-		$data['mode'] = 'add';          
+		$data['mode'] = 'new';          
 		$data['id_surat'] = $id;
 		$data['unitTerusan'] = $this->getAllUnitTerusan();
 		$data['instruksi'] = $this->getAllInstruksi();
@@ -176,10 +177,12 @@ class Disposisi extends CI_Controller{
 	
     public function tambah_disposisi($id){
 		$this->limitRole(3);
-		$data['id_surat'] = $this->m_disposisi->selectById($id)->row()->fds_id_surat;
+		$disposisiParent =$this->m_disposisi->selectById($id)->row();
+		$data['id_surat'] = $disposisiParent->fds_id_surat;
         $data['content'] = 'f_disposisi';
 		$data['title'] = 'Tambah disposisi';
 		$data['mode'] = 'add';
+		$data['fileDisposisi'] = $disposisiParent->fds_file;
 		$data['unitTerusan'] = $this->getAllUnitTerusan();
 		$data['instruksi'] = $this->getAllInstruksi();
 		$data['disposisiInstruksi'] = '';

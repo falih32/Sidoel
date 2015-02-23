@@ -113,6 +113,7 @@ $(document).ready(function() {
 		"search":true, 
 		"processing":true, 
 		"serverSide": true,
+		"pageLength": 50,
 		"ajax":{
 			"url":"<?php 
 				if($mode == "normal"){echo site_url('Disposisi/ajaxProcess');}
