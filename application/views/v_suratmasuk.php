@@ -55,18 +55,6 @@
                         	<td><?php echo $jsm_nama_jenis; ?></td>
                         </tr>
                     	<tr>
-                        	<th>Agenda</th>
-                        	<td><?php echo $sms_agenda; ?></td>
-                        </tr>
-                    	<tr>
-                        	<th>Unit Tujuan</th>
-                        	<td><?php echo $utj_unit_tujuan; ?></td>
-                        </tr>
-                    	<tr>
-                        	<th>Keterangan</th>
-                        	<td><?php echo $sms_keterangan; ?></td>
-                        </tr>
-                    	<tr>
                         	<th>File</th>
                         	<td>
                             	<?php if ($sms_file == ""){echo "<i>Tidak ada file yang diunggah</i>";} else {?>
