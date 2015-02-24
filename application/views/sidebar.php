@@ -2,8 +2,6 @@
 $_SESSION['username'] = $this->session->userdata('username'); // Must be already set
 $ore = $_SESSION['username'];
 ?>
-<link type="text/css" rel="stylesheet" media="all" href="<?=base_url()?>chat/css/chat.css" />
-<script type="text/javascript" src="<?=base_url()?>chat/js/chat.js"></script>
 
 <div class="container-fluid">
     <div class="row-fluid">

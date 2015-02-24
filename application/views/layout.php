@@ -25,7 +25,10 @@
     <script src="<?php echo base_url();?>assets/js/Chart.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/vis.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/dependent-dropdown.min.js"></script>
-	<script type="text/javascript">
+<link type="text/css" rel="stylesheet" media="all" href="<?=base_url()?>chat/css/chat.css" />
+<script type="text/javascript" src="<?=base_url()?>chat/js/chat.js"></script>
+
+    <script type="text/javascript">
 	// <![CDATA[
 	$(document).ready(function () {
 		$(function () {

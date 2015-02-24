@@ -58,7 +58,11 @@ if ($_GET['action'] == "startchatsession")
     //$_SESSION['usernam'] = $_GET['nameuser'];
     startChatSession();
 } 
-
+if ($_GET['action'] == "destroy")
+{
+    //$_SESSION['usernam'] = $_GET['nameuser'];
+    destroy();
+}
 if (!isset($_SESSION['chatHistory']))
 {
     //$_SESSION['usernam'] = $_GET['nameuser'];
@@ -265,4 +269,8 @@ function sanitize($text)
 	$text = str_replace("\r\n","\n",$text);
 	$text = str_replace("\n","<br>",$text);
 	return $text;
+}
+
+function destroy(){
+    session_destroy();
 }

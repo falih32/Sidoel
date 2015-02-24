@@ -68,6 +68,15 @@ function chatWith(chatuser,namaUser) {
 	$("#chatbox_"+chatuser+" .chatboxtextarea").focus();
 }
 
+function destroySession(){
+        $.ajax ({
+        url: baseUrl+"chat.php?action=destroy",
+        success: function() {
+            //do something after you receive the result
+        }
+    });
+ }
+
 function setUsername(namaUser) {
         username = namaUser;
 }
