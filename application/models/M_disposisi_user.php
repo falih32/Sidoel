@@ -20,6 +20,7 @@ class M_disposisi_user extends CI_Model{
         $this->db->select('*');
         $this->db->from('tr_disposisi_user');
         $this->db->where('dus_disposisi', $id);
+		$this->db->join('t_user', 't_user.usr_id = tr_disposisi_user.dus_user', 'left');
         return $this->db->get();
     }
 	

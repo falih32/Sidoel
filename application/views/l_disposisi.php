@@ -12,27 +12,10 @@
                                         
                         <script type="text/javascript">
                           // create an array with nodes
-                          var nodes = [
-                            <?php 
-                            $tot=count($graphData); 
-                            $i=0;
-                            foreach($graphData as $row){
-                                $i=$i+1;?>
-                                {id: <?php echo $row->fds_id; ?>, label: <?php echo "\"".$row->usr_username."\""; ?>}<?php if($i != $tot){echo ",";} ?>
-                            <?php } ?>
-                          ];
+                          var nodes = <?php echo $nodes; ?>;
                         
                           // create an array with edges
-                          var edges = [
-                          <?php
-                            $i=0;
-                            foreach($graphData as $row){
-                                $i=$i+1;?>
-                                <?php if($row->fds_id_parent != "-99"){?>
-                                    {from: <?php echo $row->fds_id_parent; ?>, to: <?php echo $row->fds_id; ?>}<?php if($i != $tot){echo ",";} ?>
-                                <?php } ?>
-                            <?php } ?>
-                          ];
+                          var edges = <?php echo $edges; ?>;
                         
                           // create a network
                           var container = document.getElementById('mynetwork');

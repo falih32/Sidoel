@@ -72,6 +72,27 @@ class Disposisi extends CI_Controller{
 		$data['content'] = 'l_disposisi';
 		$data['title'] = 'Daftar disposisi';
 		$data['graphData'] = $this->m_disposisi->getTrackingData($id_surat);
+		
+		$dispo = $this->m_disposisi->getTrackingData($id_surat);
+		$users = array();
+		$nodes = array();
+		$edges = array();
+		foreach($dispo as $row){
+			if(!in_array($row->fds_pengirim, $users)){
+				array_push($users, $row->fds_pengirim);
+				array_push($nodes, array('id' => $row->fds_pengirim, 'label' => $row->usr_username));
+			}
+			$tujuan = $this->m_disposisi_user->selectByDisposisi($row->fds_id)->result();
+			foreach($tujuan as $row2){
+				if(!in_array($row2->dus_user, $users)){
+					array_push($users, $row2->dus_user);
+					array_push($nodes, array('id' => $row2->dus_user, 'label' => $row2->usr_username));
+				}
+				array_push($edges, array('from' => $row->fds_pengirim, 'to' => $row2->dus_user));
+			}
+		}
+		$data['nodes'] = json_encode($nodes);
+		$data['edges'] = json_encode($edges);
 		$this->load->view('layout',$data);
     }
     
@@ -227,7 +248,7 @@ class Disposisi extends CI_Controller{
                             
                 $data4 = $this->input->post('tr_disposisi_user');
 		foreach($data4 as $row){
-                    $userkey="andhika1988"; // userkey di SMS Notifikasi //
+                    /*$userkey="andhika1988"; // userkey di SMS Notifikasi //
 
                     $passkey="211188"; // passkey di SMS Notifikasi //
                     
@@ -252,7 +273,7 @@ class Disposisi extends CI_Controller{
 
                     $results = curl_exec($curlHandle);
 
-                    curl_close($curlHandle);
+                    curl_close($curlHandle);*/
 
                 }
 		$this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));

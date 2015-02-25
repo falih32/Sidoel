@@ -14,7 +14,6 @@
             <table class="table table-responsive table-hover table-striped" id="tabel-unitterusan">
             	<thead>
                 <tr>
-                	<th>Nomor</th>
                 	<th>Unit Terusan</th>
                 	<th>Aksi</th>
                 </tr>
@@ -58,13 +57,12 @@ $(document).ready(function() {
 			"type":"POST"
 		},
 		"columns": [
-                { "data": "utr_id" },
                 { "data": "utr_nama_unit_trsn" },
                 { "data": "aksi" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 2 },
-				{ "visible":false, "targets": [<?php if($role > 1) echo"2"; ?>]}
+				{ "searchable": false, "orderable":false, "targets": 1 },
+				{ "visible":false, "targets": [<?php if($role > 1) echo"1"; ?>]}
 			],
 		"order": [[ 0, "asc" ]],
 		"drawCallback": function( settings ) {

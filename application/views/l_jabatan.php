@@ -14,8 +14,7 @@
             <table class="table table-responsive table-hover table-striped" id="tabel-jabatan">
             	<thead>
                 <tr>
-                        <th>Nomor</th>
-                        <th>Jabatan</th>
+                	<th>Jabatan</th>
                 	<th>Aksi</th>
                 </tr>
                 </thead>
@@ -58,13 +57,12 @@ $(document).ready(function() {
 			"type":"POST"
 		},
 		"columns": [
-                { "data": "jbt_id" },
                 { "data": "jbt_nama" },
                 { "data": "aksi" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 2 },
-				{ "visible":false, "targets": [<?php if($role > 1) echo"2"; ?>]}
+				{ "searchable": false, "orderable":false, "targets": 1 },
+				{ "visible":false, "targets": [<?php if($role > 1) echo"1"; ?>]}
 			],
 		"order": [[ 0, "asc" ]],
 		"drawCallback": function( settings ) {

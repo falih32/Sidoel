@@ -45,7 +45,7 @@ class Login extends CI_Controller{
             }
             else {
 				// kalau ga ada diredirect lagi ke halaman login
-				$this->session->set_flashdata('message', array('msg' => 'Login gagal','class' => 'danger'));
+				$this->session->set_flashdata('message', array('msg' => '<strong>Login gagal</strong>, periksa kembali username dan password Anda.','class' => 'danger'));
 				redirect(site_url('login'));
             }
         }

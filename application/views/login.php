@@ -23,6 +23,16 @@
         </div>
     </div>
 </div>
+<?php if($this->session->flashdata('message') != ""){ $msg=$this->session->flashdata('message');?>
+<div class="container-fluid">
+    <div class="row-fluid">
+    	<div class="alert alert-<?php echo $msg['class']?> alert-dismissible" role="alert">
+        <?php echo $msg['msg']; ?>
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        </div>
+    </div>
+</div>
+<?php } ?>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="col-md-4 col-md-offset-4">

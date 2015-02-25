@@ -10,12 +10,11 @@
             <table class="table table-responsive table-hover table-striped" id="tabel-log">
             	<thead>
                 <tr>
-                	<th>No.</th>
+                    <th>Waktu</th>
                 	<th>Nama User</th>
                 	<th>Role</th>
                     <th>Tabel</th>
                     <th>Aksi</th>
-                    <th>Waktu</th>
                 </tr>
                 </thead>
             </table>
@@ -57,12 +56,11 @@ $(document).ready(function() {
 			"type":"POST"
 		},
 		"columns": [
-                { "data": "log_id" },
+                { "data": "log_tanggal" },
                 { "data": "usr_nama" },
                 { "data": "rle_role_name" },
                 { "data": "log_nama_tabel" },
-                { "data": "log_aksi" },
-                { "data": "log_tanggal" }
+                { "data": "log_aksi" }
               ],
 		"order": [[ 0, "desc" ]],
 		"drawCallback": function( settings ) {
