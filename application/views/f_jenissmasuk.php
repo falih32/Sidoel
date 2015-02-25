@@ -1,14 +1,12 @@
 <?php
 	if($mode == 'edit'){
-		$id = $dataUnit->jbt_id;
-		$jbt_nama = $dataUnit->jbt_nama;
-                $jbt_departemen = $dataUnit ->jbt_departemen;
+		$id = $dataJenis->jsm_id;
+		$jsm_nama_jenis = $dataJenis-> jsm_nama_jenis;
                 
 			}
 	else{
 		
-		$jbt_nama = "";
-                $jbt_departemen = "";
+		$jsm_nama_jenis = "";
 			}
 ?>
 <div class="container-fluid">
@@ -18,30 +16,18 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."Jabatan/proses_edit_jabatan";}else{echo base_url()."Jabatan/proses_tambah_jabatan";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."jenissmasuk/proses_edit_jmasuk";}else{echo base_url()."jenissmasuk/proses_tambah_jmasuk";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="jbt_nama" class="col-sm-2 control-label text-left">Jabatan</label>
-                        <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="jbt_nama" name="jbt_nama" placeholder="Jabatan" value="<?php echo $jbt_nama; ?>" required>
+                        <label for="jsm_nama_jenis" class="col-sm-4 control-label text-left">Jenis Surat Masuk</label>
+                        <div class="col-sm-8">
+	                        <input type="text" class="form-control" id="jsm_nama_jenis" name="jsm_nama_jenis" placeholder="Jenis Surat Masuk" value="<?php echo $jsm_nama_jenis; ?>" required>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
               
-                    <div class="form-group">
-                        <label for="jbt_departemen" class="col-sm-2 control-label text-left">Unit</label>
-                        <div class="col-sm-10">
-	                   		 <select class="form-control" id="jbt_departemen" name="jbt_departemen">
-                            	<?php foreach ($deptlist as $row) {?>
-                            	<option value="<?php echo $row->dpt_id; ?>" <?php if($row->dpt_id == $jbt_departemen){echo "selected";}?>><?php echo $row->dpt_nama; ?></option>
-                                <?php } ?>
-                            </select>
-                            
-                        </div>
                     </div>
-                    </div>
-            
                 
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">

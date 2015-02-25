@@ -29,9 +29,10 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Referensi <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="<?php echo site_url("User"); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> User</a></li>
-            <li><a href="<?php echo site_url("UnitTerusan"); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Departemen </a></li>
+            <li><a href="<?php echo site_url("UnitTerusan"); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Unit </a></li>
              <li><a href="<?php echo site_url("Jabatan"); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Jabatan</a></li>
-            <li><a href="<?php echo site_url("Log"); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Log</a></li>
+             <li><a href="<?php echo site_url("JenisSMasuk"); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Jenis Surat Masuk</a></li>
+             <li><a href="<?php echo site_url("Log"); ?>"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> Log</a></li>
           </ul>
         </li>
        </ul>
