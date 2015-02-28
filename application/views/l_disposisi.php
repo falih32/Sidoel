@@ -6,12 +6,35 @@
                 <h3><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Disposisi <?php if ($mode=='byUserMasuk'){echo"Masuk";} elseif($mode=='byUserKeluar'){echo "Keluar";}?></h3>
             </div>
             <div class="panel-body" id="conchart">
-            	<div class="col-md-12">                
+            	<div class="col-md-9">                
 					<?php if($mode == "bySurat"){?>
                         <div id="mynetwork"></div>
                                         
                         <script type="text/javascript">
-                          // create an array with nodes
+						  // set option
+                          var options = {
+                            width: document.getElementById('conchart').offsetWidth * 0.9,
+                            height: '500px',
+                            edges:{
+                                color: 'red',
+                                style: 'arrow'
+                            },
+							groups: {
+							  finished: {
+								color: {
+								  border: '#006600',
+								  background: '#66ff00',
+								  highlight: {
+									border: 'black',
+									background: '#99ff00'
+								  }
+								},
+								fontColor: 'black'
+							  }
+							}
+                          };
+						  
+						  // create an array with nodes
                           var nodes = <?php echo $nodes; ?>;
                         
                           // create an array with edges
@@ -23,19 +46,20 @@
                             nodes: nodes,
                             edges: edges,
                           };
-                          var options = {
-                            width: document.getElementById('conchart').offsetWidth * 0.9,
-                            height: '500px',
-                            edges:{
-                                color: 'red',
-                                style: 'arrow'
-                            }
-                          };
                           var network = new vis.Network(container, data, options);
                         </script>
         
                     <?php } ?>
                 </div>
+                <?php if ($mode == 'bySurat'){?>
+                <div class="col-md-3">
+                	<ul class="bar-legend">
+                    	<li><strong>Status:</strong></li>
+                    	<li><span style="background-color:#6F0"></span> Selesai</li>
+                    	<li><span style="background-color:#0CF"></span> Belum Selesai</li>
+                    </ul>
+                </div>
+                <?php } ?>
                 <div class="col-md-6 col-md-offset-6 text-right" id="date_search">
                     <input type="text" class="form-control input-sm tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal">
                     <input type="text" class="form-control input-sm tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir">

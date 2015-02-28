@@ -69,8 +69,6 @@ class M_disposisi extends CI_Model{
 			"<form>".
 			"<div class='form-group'>".
 			"<a class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Lihat detail' href=".base_url()."disposisi/detail_disposisi/$1><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
-			"<a class='btn btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href=".base_url()."disposisi/hapus_disposisi/$1><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
-			"<a class='btn btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href=".base_url()."disposisi/edit_disposisi/$1><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
 			"<a class='btn btn-success' data-toggle='tooltip' data-placement='top' title='Tambahkan disposisi' href=".base_url()."disposisi/tambah_disposisi/$1><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
 			"<a class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Tracking disposisi' href=".base_url()."disposisi/tracking/$2><span class='glyphicon glyphicon-search' aria-hidden='true'></span></a>".
 			"</div>".

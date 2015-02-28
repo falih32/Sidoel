@@ -128,7 +128,7 @@ EOD;
                 $now = time()-strtotime($time);
                 $time = date('g:iA M dS', strtotime($time));
 
-                $message = "Sent at $time";
+                $message = "";
                 if ($now > 180)
                 {
                     $items .= <<<EOD

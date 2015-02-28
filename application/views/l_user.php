@@ -76,8 +76,8 @@ $(document).ready(function() {
                 { "data": "aksi" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 5 },
-				{ "visible":false, "targets": [<?php if($role > 1) echo"5"; ?>]}
+				{ "searchable": false, "orderable":false, "targets": 8 },
+				{ "visible":false, "targets": [<?php if($role > 1) echo"8"; ?>]}
 			],
 		"order": [[ 7, "asc" ]],
 		"drawCallback": function( settings ) {

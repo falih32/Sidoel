@@ -31,38 +31,6 @@
     <script type="text/javascript">
 	// <![CDATA[
 	$(document).ready(function () {
-		$(function () {
-			$( "#kode_surat" ).autocomplete({
-				source: function(request, response) {
-					$.ajax({ 
-						url: "<?php echo site_url('admin/get_klasifikasi'); ?>",
-						data: { kode: $("#kode_surat").val()},
-						dataType: "json",
-						type: "POST",
-						success: function(data){
-							response(data);
-						}    
-					});
-				},
-			});
-		});
-		
-		$(function () {
-			$( "#dari" ).autocomplete({
-				source: function(request, response) {
-					$.ajax({ 
-						url: "<?php echo site_url('admin/get_instansi_lain'); ?>",
-						data: { kode: $("#dari").val()},
-						dataType: "json",
-						type: "POST",
-						success: function(data){
-							response(data);
-						}    
-					});
-				},
-			});
-		});
-		
 		
 		$(function() {
 			$( ".tgl" ).datepicker({

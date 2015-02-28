@@ -89,6 +89,7 @@ class M_user extends CI_Model{
 		->select('usr_username, usr_online')
 		->from('t_user')
 		->where('usr_deleted', '0')
+		->where('usr_id <>', $this->session->userdata('id_user'))
 		->edit_column('usr_chat',"<a onclick='javascript:chatWith(\"$1\",\"$ore\")' href='javascript:void(0)' >$1</a>",'usr_username');
 		return $this->datatables->generate();
 	}

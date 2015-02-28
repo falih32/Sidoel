@@ -36,6 +36,12 @@ class M_disposisi_user extends CI_Model{
         $this->db->update('tr_disposisi_user', $data);
     }
     
+	function updateByDisposisiUser($disp, $user, $data){
+        $this->db->where('dus_disposisi', $disp);
+        $this->db->where('dus_user', $user);
+        $this->db->update('tr_disposisi_user', $data);
+	}
+	
     function delete($id){
         $this->db->where('dus_id', $id);
         $this->db->delete('tr_disposisi_user');

@@ -85,8 +85,10 @@ class Disposisi extends CI_Controller{
 			$tujuan = $this->m_disposisi_user->selectByDisposisi($row->fds_id)->result();
 			foreach($tujuan as $row2){
 				if(!in_array($row2->dus_user, $users)){
+					$stat = $row2->dus_status;
+					if($stat == '1'){$group = 'finished';} else{$group = 'unfinished';}
 					array_push($users, $row2->dus_user);
-					array_push($nodes, array('id' => $row2->dus_user, 'label' => $row2->usr_username));
+					array_push($nodes, array('id' => $row2->dus_user, 'label' => $row2->usr_username, 'group' => $group));
 				}
 				array_push($edges, array('from' => $row->fds_pengirim, 'to' => $row2->dus_user));
 			}
@@ -94,6 +96,7 @@ class Disposisi extends CI_Controller{
 		$data['nodes'] = json_encode($nodes);
 		$data['edges'] = json_encode($edges);
 		$this->load->view('layout',$data);
+		//echo $data['nodes'];
     }
     
     public function updateNotifZero(){
@@ -283,21 +286,27 @@ class Disposisi extends CI_Controller{
     public function edit_disposisi($id){
 		$this->limitRole(3);
         $data['dataDisposisi'] = $this->m_disposisi->selectById($id)->row();
-		$data['id'] = $id;
-		$data['mode'] = 'edit';
-		$data['content'] = 'f_disposisi';
-		$data['title'] = 'Edit disposisi';
-		$data['disposisiInstruksi'] = $this->m_disposisi_instruksi->selectByDisposisi($id)->result() ;
-		$data['disposisiUnitTerusan'] = $this->m_disposisi_unit_terusan->selectByDisposisi($id)->result() ;
-		$data['userList'] = $this->m_user->selectAll()->result();
-		$data['disposisiUser'] = $this->m_disposisi_user->selectByDisposisi($id)->result();
-		$data['user_dep1'] = $this->m_user->selectByDept(1)->result();
-		$data['user_dep2'] = $this->m_user->selectByDept(2)->result();
-		$data['user_dep3'] = $this->m_user->selectByDept(3)->result();
-		$data['user_dep4'] = $this->m_user->selectByDept(4)->result();
-		$data['unitTerusan'] = $this->getAllUnitTerusan();
-		$data['instruksi'] = $this->getAllInstruksi();
-        $this->load->view('layout', $data);
+		if($dataDisposisi->fds_pengirim == $this->session->userdata('id_user') || $this->session->userdata('id_role') == '1'){
+			$data['id'] = $id;
+			$data['mode'] = 'edit';
+			$data['content'] = 'f_disposisi';
+			$data['title'] = 'Edit disposisi';
+			$data['disposisiInstruksi'] = $this->m_disposisi_instruksi->selectByDisposisi($id)->result() ;
+			$data['disposisiUnitTerusan'] = $this->m_disposisi_unit_terusan->selectByDisposisi($id)->result() ;
+			$data['userList'] = $this->m_user->selectAll()->result();
+			$data['disposisiUser'] = $this->m_disposisi_user->selectByDisposisi($id)->result();
+			$data['user_dep1'] = $this->m_user->selectByDept(1)->result();
+			$data['user_dep2'] = $this->m_user->selectByDept(2)->result();
+			$data['user_dep3'] = $this->m_user->selectByDept(3)->result();
+			$data['user_dep4'] = $this->m_user->selectByDept(4)->result();
+			$data['unitTerusan'] = $this->getAllUnitTerusan();
+			$data['instruksi'] = $this->getAllInstruksi();
+			$this->load->view('layout', $data);
+		}
+		else{
+			$this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+			redirect('Dashboard');
+		}
     }
     
     public function detail_disposisi($id){
@@ -350,6 +359,12 @@ class Disposisi extends CI_Controller{
 		$this->writeLog('Disposisi','Update');
         redirect(site_url('Disposisi/disposisi_keluar'));
     }
+	
+	public function set_selesai($disposisi, $user){
+		$data['dus_status'] = '1';
+		$this->m_disposisi_user->updateByDisposisiUser($disposisi, $user, $data);
+        redirect(site_url('Disposisi/disposisi_masuk'));
+	}
     
     public function hapus_disposisi($id){
 		$this->limitRole(3);

@@ -30,7 +30,7 @@ $(document).ready(function() {
 		"responsive": false,
 		"info": false,
 		"scrollX":false,
-		"scrollY":200,
+		"scrollY":350,
 		"processing":false, 
 		"serverSide": false,
 		"ajax":{

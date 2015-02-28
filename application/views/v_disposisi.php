@@ -43,13 +43,26 @@
                         	<th>Tujuan</th>
                         	<td>
                             	<ul>
-                                <?php foreach($userList as $row){?>
-									<?php if ($disposisiUser!= ''){ foreach($disposisiUser as $rowIn){?>
-                                        <?php if($row->usr_id == $rowIn->dus_user){?>
-                                        <li><?php echo $row->usr_nama; ?></li>
-                                        <?php }} ?>
-                                    <?php } ?>
-                                <?php } ?>
+                                <?php 
+								$finish = false;
+								$showStatusBtn = false;
+								foreach($userList as $row){
+									if ($disposisiUser!= ''){ 
+										foreach($disposisiUser as $rowIn){
+											if($row->usr_id == $rowIn->dus_user){
+												echo "<li>".$row->usr_nama;
+												if($rowIn->dus_status == '1'){
+													echo ' <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>';
+												}
+												echo "</li>";
+												if($rowIn->dus_user == $this->session->userdata('id_user')){
+													$showStatusBtn = true;
+													if($rowIn->dus_status == '1'){$finish=true;}
+												}
+											}
+										}
+                                    }
+                                } ?>
                                 </ul>
                             </td>
                         </tr>
@@ -72,6 +85,9 @@
                         <div class="btn-group" role="group" aria-label="...">
                         	<a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
                         	<a class="btn btn-lg btn-primary" href="<?php echo site_url('Disposisi/tracking')."/".$dataDisposisi->fds_id_surat; ?>"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Tracking</a>
+                            <?php if($showStatusBtn != ""){?>
+                        	<a class="btn btn-lg btn-success" <?php if($finish){echo "disabled";}?> id="set_status" data-confirm='Anda yakin telah menyelesaikan disposisi ini?' href="<?php echo site_url('Disposisi/set_selesai')."/".$dataDisposisi->fds_id."/".$this->session->userdata('id_user'); ?>"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Set Selesai</a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -79,3 +95,22 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$('[data-toggle="tooltip"]').tooltip({});
+	
+	var deleteLinks = document.querySelectorAll('#set_status');
+	for (var i = 0, length = deleteLinks.length; i < length; i++) {
+		deleteLinks[i].addEventListener('click', function(event) {
+			event.preventDefault();
+		
+			var choice = confirm(this.getAttribute('data-confirm'));
+		
+			if (choice) {
+				window.location.href = this.getAttribute('href');
+			}
+		});
+	}
+});
+</script>

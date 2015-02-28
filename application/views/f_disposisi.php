@@ -110,8 +110,11 @@
                                         <div class="checkbox">
                                         <label>
                                         <input type="checkbox" id="tr_disposisi_user" name="tr_disposisi_user[<?php echo $row->usr_id; ?>]" value="<?php echo $row->usr_id?>"
+                                        <?php if ($row->usr_id == $this->session->userdata('id_user')){echo "disabled";}?>
                                         <?php if ($disposisiUser != ''){ foreach($disposisiUser as $rowIn){?>
-                                            <?php if($row->usr_id == $rowIn->dus_user){echo "checked";}?>
+                                            <?php 
+												if($row->usr_id == $rowIn->dus_user){echo "checked";}
+											?>
                                         <?php }} ?>>
                                         <?php echo $row->usr_nama." (".$row->jbt_nama.")"; ?>
                                         </label>
