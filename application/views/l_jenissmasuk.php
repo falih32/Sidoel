@@ -4,7 +4,7 @@
     	<div class="panel panel-primary">
             <div class="panel-heading">
                 <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Jenis Surat Masuk 
-                <?php if($role <= 2){?>
+                <?php if($role <= 1){?>
                 <a class="btn btn-success" href="<?php echo base_url()."jenissmasuk/";?>tambah_jmasuk"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <?php } ?>
                 </h3>
@@ -15,7 +15,8 @@
             	<thead>
                 <tr>
                 	<th>Jenis</th>
-                	<th>Aksi</th>
+                        <th>Keterangan</th>
+                        <th>Aksi</th>
                 </tr>
                 </thead>
             </table>
@@ -47,7 +48,8 @@ $(document).ready(function() {
 	
 	var table = $('#tabel-jenissmasuk').DataTable( {
     	"paging": true, 
-		"search":true,  
+		"search":true,
+                "scrollX":true,
 		"ordering": true, 
 		"responsive": false,
 		"processing":true, 
@@ -58,11 +60,13 @@ $(document).ready(function() {
 		},
 		"columns": [
                 { "data": "jsm_nama_jenis" },
+                { "data": "jsm_keterangan" },
                 { "data": "aksi" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 1 },
-				{ "visible":false, "targets": [<?php if($role > 1) echo"1"; ?>]}
+                             
+				{ "searchable": false, "orderable":false, "targets": 2 },
+				{ "visible":false, "targets": [<?php if($role > 1) echo"2"; ?>]}
 			],
 		"order": [[ 0, "asc" ]],
 		"drawCallback": function( settings ) {

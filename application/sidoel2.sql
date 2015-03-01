@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2015 at 03:04 AM
+-- Generation Time: Mar 01, 2015 at 10:42 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `chat` (
   `message` text NOT NULL,
   `sent` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `recd` int(10) unsigned NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `chat`
@@ -126,7 +126,9 @@ INSERT INTO `chat` (`id`, `from`, `to`, `message`, `sent`, `recd`) VALUES
 (14, 'admin', 'umum', 'gff', '2015-02-21 14:08:26', 1),
 (15, 'admin', 'umum', 'hai', '2015-02-21 15:12:40', 1),
 (16, 'admin', 'umum', 'hlo', '2015-02-21 15:12:43', 1),
-(17, 'admin', 'junta', 'hey', '2015-02-25 12:55:46', 1);
+(17, 'admin', 'junta', 'hey', '2015-02-25 12:55:46', 1),
+(18, 'ampas', 'admini', 'tes', '2015-03-01 11:54:28', 0),
+(19, 'ampas', 'admini', 'OI', '2015-03-01 14:49:52', 0);
 
 -- --------------------------------------------------------
 
@@ -487,19 +489,20 @@ INSERT INTO `t_jabatan` (`jbt_id`, `jbt_nama`, `jbt_departemen`) VALUES
 
 CREATE TABLE IF NOT EXISTS `t_jenis_surat_masuk` (
 `jsm_id` int(20) NOT NULL,
-  `jsm_nama_jenis` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `jsm_nama_jenis` varchar(255) DEFAULT NULL,
+  `jsm_keterangan` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_jenis_surat_masuk`
 --
 
-INSERT INTO `t_jenis_surat_masuk` (`jsm_id`, `jsm_nama_jenis`) VALUES
-(1, 'Sangat Rahasia'),
-(2, 'Rahasia'),
-(3, 'Biasa'),
-(4, 'Pribadi'),
-(5, 'Paket');
+INSERT INTO `t_jenis_surat_masuk` (`jsm_id`, `jsm_nama_jenis`, `jsm_keterangan`) VALUES
+(1, 'Sangat Rahasia', 'Surat ini umumnya berupa surat yang berhubungan erat dengan keamanan negara dan biasanya dikeluarkan oleh dinas-dinas rahasia negara, seperti Badan Intelijen Negara (BIN) atau dinas-dinas rahasia lainnya yang berada di bawah instansi kepolisian atau kejak'),
+(2, 'Rahasia', 'Surat yang bersifat RHS atau R (rahasia) hanya boleh dibaca oleh pihak yang dituju dalam surat itu. Hampir serupa dengan surat rahasia, dikenal dengan surat konfidental, yakni surat yang isinya hanya boleh diketahui atau dibaca oleh pejabat yang bersangku'),
+(3, 'Biasa', 'Surat ini bila dibaca pihak lain tidak merugikan penerima maupun pengirimnya. Hal ini karena walaupun isi surat tersebut diketahui banyak orang, tidak akan merugikan penerima maupun pengirimnya. Yang termasuk ke dalam jenis surat ini antara lain surat und'),
+(4, 'Pribadi', 'Jenis surat ini diperuntukkan bagi surat ataupun paket yang ditujukan kepada pegawai secara personal, tidak ada hubungannya dengan kedinasan.'),
+(5, 'Paket', 'Jenis ini digunakan untuk pengiriman yang diterima berupa paket bagi unit kerja, dan berhubungan dengan kedinasan.\r\n');
 
 -- --------------------------------------------------------
 
@@ -513,7 +516,7 @@ CREATE TABLE IF NOT EXISTS `t_log` (
   `log_aksi` varchar(100) DEFAULT NULL,
   `log_tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `log_user` int(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `t_log`
@@ -574,7 +577,14 @@ INSERT INTO `t_log` (`log_id`, `log_nama_tabel`, `log_aksi`, `log_tanggal`, `log
 (52, 'Jenis Surat Masuk', 'Create', '2015-02-25 13:13:48', 1),
 (53, 'Jenis Surat Masuk', 'Create', '2015-02-25 13:14:06', 1),
 (54, 'Jenis Surat Masuk', 'Create', '2015-02-25 13:14:20', 1),
-(55, 'Surat Masuk', 'Create', '2015-03-01 01:46:18', 1);
+(55, 'Surat Masuk', 'Create', '2015-03-01 01:46:18', 1),
+(56, 'Jenis Surat Masuk', 'Update', '2015-03-01 08:56:13', 1),
+(57, 'Jenis Surat Masuk', 'Create', '2015-03-01 08:56:59', 1),
+(58, 'Jenis Surat Masuk', 'Delete', '2015-03-01 08:57:09', 1),
+(59, 'Jenis Surat Masuk', 'Update', '2015-03-01 08:58:08', 1),
+(60, 'Jenis Surat Masuk', 'Update', '2015-03-01 08:58:30', 1),
+(61, 'Jenis Surat Masuk', 'Update', '2015-03-01 08:59:07', 1),
+(62, 'Jenis Surat Masuk', 'Update', '2015-03-01 08:59:31', 1);
 
 -- --------------------------------------------------------
 
@@ -844,7 +854,7 @@ ALTER TABLE `t_user`
 -- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `tr_disposisi_instruksi`
 --
@@ -889,12 +899,12 @@ MODIFY `jbt_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 -- AUTO_INCREMENT for table `t_jenis_surat_masuk`
 --
 ALTER TABLE `t_jenis_surat_masuk`
-MODIFY `jsm_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `jsm_id` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `t_log`
 --
 ALTER TABLE `t_log`
-MODIFY `log_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=56;
+MODIFY `log_id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `t_role`
 --

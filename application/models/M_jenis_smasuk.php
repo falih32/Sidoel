@@ -27,13 +27,13 @@ class M_jenis_smasuk extends CI_Model{
     
 	function ajaxProcess(){
 		$this->datatables
-		->select('jsm_id, jsm_nama_jenis')
+		->select('jsm_id, jsm_nama_jenis, jsm_keterangan')
 		->from('t_jenis_surat_masuk')
 		->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
 			"<a class='btn btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='jenissmasuk/delete_jmasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
-			"<a class='btn btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='jenisstmasuk/edit_jmasuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"<a class='btn btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='jenissmasuk/edit_jmasuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
 			"</div>".
 			"</form>".
 		"",'jsm_id');

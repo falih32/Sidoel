@@ -4,7 +4,7 @@
     	<div class="panel panel-primary">
             <div class="panel-heading">
                 <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Unit Terusan 
-                <?php if($role <= 2){?>
+                <?php if($role <= 1){?>
                 <a class="btn btn-success" href="<?php echo base_url()."UnitTerusan/";?>tambah_unit_terusan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <?php } ?>
                 </h3>

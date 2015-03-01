@@ -47,7 +47,7 @@ class JenisSMasuk extends CI_Controller {
     function postVariabel(){
 	
 	$data['jsm_nama_jenis']    = $this->input->post('jsm_nama_jenis');
-
+        $data['jsm_keterangan']    = $this->input->post('jsm_keterangan');
         return $data;
     }
     
@@ -68,7 +68,7 @@ class JenisSMasuk extends CI_Controller {
     
     public function edit_jmasuk($id){
 		$this->limitRole(1);
-        $data['dataJenis'] = $this->m_jenis_surat_masuk->selectById($id)->row();
+        $data['dataJenis'] = $this->m_jenis_smasuk->selectById($id)->row();
 		$data['id'] = $id;
 		$data['mode'] = 'edit';
 		$data['content'] = 'f_jenissmasuk';
@@ -80,14 +80,14 @@ class JenisSMasuk extends CI_Controller {
 		$this->limitRole(1);
         $data = $this->postVariabel();
         $id_edit=$this->input->post('id');
-        $this->m_jenis_surat_masuk->update($id_edit, $data);
+        $this->m_jenis_smasuk->update($id_edit, $data);
 		$this->writeLog('Jenis Surat Masuk','Update');
         redirect(site_url('jenissmasuk'));
     }
     
     public function delete_jmasuk($id){
 		$this->limitRole(1);
-        $this->m_jenis_surat_masuk->delete($id);
+        $this->m_jenis_smasuk->delete($id);
 		$this->writeLog('Jenis Surat Masuk','Delete');
         redirect('jenissmasuk');
     }

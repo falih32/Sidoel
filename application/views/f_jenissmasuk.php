@@ -2,11 +2,12 @@
 	if($mode == 'edit'){
 		$id = $dataJenis->jsm_id;
 		$jsm_nama_jenis = $dataJenis-> jsm_nama_jenis;
-                
+                $jsm_keterangan = $dataJenis-> jsm_keterangan;
 			}
 	else{
 		
 		$jsm_nama_jenis = "";
+                $jsm_keterangan ="";
 			}
 ?>
 <div class="container-fluid">
@@ -26,7 +27,13 @@
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
-              
+                    <div class="form-group">
+                              <label for="jsm_keterangan" class="col-sm-4 control-label text-left">Keterangan</label>
+                              <div class="col-sm-8">
+                                      <textarea class="form-control" id="jsm_keterangan" name="jsm_keterangan" placeholder="Keterangan Jenis Surat Masuk" value="<?php echo $jsm_keterangan; ?>" required></textarea>
+                                  <div class="help-block with-errors"></div>
+                              </div>
+                          </div>
                     </div>
                 
                 <div class="col-md-12 text-center"><hr>

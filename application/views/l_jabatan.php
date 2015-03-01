@@ -4,7 +4,7 @@
     	<div class="panel panel-primary">
             <div class="panel-heading">
                 <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Jabatan
-                <?php if($role <= 2){?>
+                <?php if($role <= 1){?>
                 <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Jabatan' href="<?php echo base_url()."Jabatan/";?>tambah_jabatan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
                 <?php } ?>
                 </h3>
@@ -48,7 +48,8 @@ $(document).ready(function() {
 	
 	var table = $('#tabel-jabatan').DataTable( {
     	"paging": true, 
-		"search":true,  
+		"search":true,
+                "scrollX":true,
 		"ordering": true, 
 		"responsive": false,
 		"processing":true, 
@@ -63,8 +64,8 @@ $(document).ready(function() {
                 { "data": "aksi" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 1 },
-				{ "visible":false, "targets": [<?php if($role > 1) echo"1"; ?>]}
+				{ "searchable": false, "orderable":false, "targets": 2 },
+				{ "visible":false, "targets": [<?php if($role > 1) echo"2"; ?>]}
 			],
 		"order": [[ 0, "asc" ]],
 		"drawCallback": function( settings ) {
