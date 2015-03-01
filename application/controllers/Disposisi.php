@@ -22,6 +22,7 @@ class Disposisi extends CI_Controller{
 			$this->load->model('m_disposisi_instruksi');
 			$this->load->model('m_disposisi_unit_terusan');
 			$this->load->model('m_disposisi_user');
+			$this->load->model('m_departemen');
 		}
     }
 	
@@ -80,7 +81,7 @@ class Disposisi extends CI_Controller{
 		foreach($dispo as $row){
 			if(!in_array($row->fds_pengirim, $users)){
 				array_push($users, $row->fds_pengirim);
-				array_push($nodes, array('id' => $row->fds_pengirim, 'label' => $row->usr_username));
+				array_push($nodes, array('id' => $row->fds_pengirim, 'label' => $row->usr_nama."\n(".$row->jbt_nama.")"));
 			}
 			$tujuan = $this->m_disposisi_user->selectByDisposisi($row->fds_id)->result();
 			foreach($tujuan as $row2){
@@ -88,7 +89,7 @@ class Disposisi extends CI_Controller{
 					$stat = $row2->dus_status;
 					if($stat == '1'){$group = 'finished';} else{$group = 'unfinished';}
 					array_push($users, $row2->dus_user);
-					array_push($nodes, array('id' => $row2->dus_user, 'label' => $row2->usr_username, 'group' => $group));
+					array_push($nodes, array('id' => $row2->dus_user, 'label' => $row2->usr_nama."\n(".$row2->jbt_nama.")", 'group' => $group));
 				}
 				array_push($edges, array('from' => $row->fds_pengirim, 'to' => $row2->dus_user));
 			}
@@ -190,10 +191,10 @@ class Disposisi extends CI_Controller{
 		$data['disposisiInstruksi'] = '';
 		$data['disposisiUnitTerusan'] = '';
 		$data['userList'] = $this->m_user->selectAll()->result();
-		$data['user_dep1'] = $this->m_user->selectByDept(1)->result();
-		$data['user_dep2'] = $this->m_user->selectByDept(2)->result();
-		$data['user_dep3'] = $this->m_user->selectByDept(3)->result();
-		$data['user_dep4'] = $this->m_user->selectByDept(4)->result();
+		$data['departemen'] = $this->m_departemen->selectAll()->result();
+		foreach($data['departemen'] as $row){
+			$data['user_dep'][$row->dpt_id] = $this->m_user->selectByDept($row->dpt_id)->result();
+		}
 		$data['disposisiUser'] = '';
 		$data['fds_id_parent'] = -99;
         $this->load->view('layout',$data);
@@ -212,10 +213,10 @@ class Disposisi extends CI_Controller{
 		$data['disposisiInstruksi'] = '';
 		$data['disposisiUnitTerusan'] = '';
 		$data['userList'] = $this->m_user->selectAll()->result();
-		$data['user_dep1'] = $this->m_user->selectByDept(1)->result();
-		$data['user_dep2'] = $this->m_user->selectByDept(2)->result();
-		$data['user_dep3'] = $this->m_user->selectByDept(3)->result();
-		$data['user_dep4'] = $this->m_user->selectByDept(4)->result();
+		$data['departemen'] = $this->m_departemen->selectAll()->result();
+		foreach($data['departemen'] as $row){
+			$data['user_dep'][$row->dpt_id] = $this->m_user->selectByDept($row->dpt_id)->result();
+		}
 		$data['disposisiUser'] = '';
 		$data['fds_id_parent'] = $id;
         $this->load->view('layout',$data);
@@ -286,7 +287,7 @@ class Disposisi extends CI_Controller{
     public function edit_disposisi($id){
 		$this->limitRole(3);
         $data['dataDisposisi'] = $this->m_disposisi->selectById($id)->row();
-		if($dataDisposisi->fds_pengirim == $this->session->userdata('id_user') || $this->session->userdata('id_role') == '1'){
+		if($data['dataDisposisi']->fds_pengirim == $this->session->userdata('id_user') || $this->session->userdata('id_role') == '1'){
 			$data['id'] = $id;
 			$data['mode'] = 'edit';
 			$data['content'] = 'f_disposisi';
@@ -295,10 +296,10 @@ class Disposisi extends CI_Controller{
 			$data['disposisiUnitTerusan'] = $this->m_disposisi_unit_terusan->selectByDisposisi($id)->result() ;
 			$data['userList'] = $this->m_user->selectAll()->result();
 			$data['disposisiUser'] = $this->m_disposisi_user->selectByDisposisi($id)->result();
-			$data['user_dep1'] = $this->m_user->selectByDept(1)->result();
-			$data['user_dep2'] = $this->m_user->selectByDept(2)->result();
-			$data['user_dep3'] = $this->m_user->selectByDept(3)->result();
-			$data['user_dep4'] = $this->m_user->selectByDept(4)->result();
+			$data['departemen'] = $this->m_departemen->selectAll()->result();
+			foreach($data['departemen'] as $row){
+				$data['user_dep'][$row->dpt_id] = $this->m_user->selectByDept($row->dpt_id)->result();
+			}
 			$data['unitTerusan'] = $this->getAllUnitTerusan();
 			$data['instruksi'] = $this->getAllInstruksi();
 			$this->load->view('layout', $data);

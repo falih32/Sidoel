@@ -7,6 +7,7 @@
     <link rel="icon" href="<?php echo base_url();?>assets/css/images/icon.ico">
     <link href="<?php echo base_url();?>assets/css/jquery-ui.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/sidoel.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/vis.min.css" rel="stylesheet" type="text/css">
@@ -21,6 +22,7 @@
     <script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/dataTables.bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/bootstrap-multiselect.js"></script>
     <script src="<?php echo base_url();?>assets/js/validator.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/Chart.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/vis.min.js"></script>

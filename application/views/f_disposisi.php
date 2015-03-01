@@ -94,96 +94,28 @@
                         </div>
                     </div>
                     
-                    <div class="form-group" role="tabpanel">
-                        <label for="tr_disposisi_user" class="col-sm-2 control-label text-left">Tujuan</label>
-                        <div class="col-md-10 tabs-wrapper">
-                            <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#dep1" aria-controls="home" role="tab" data-toggle="tab">TU Pimpinan</a></li>
-                                <li role="presentation"><a href="#dep2" aria-controls="home" role="tab" data-toggle="tab">Rumah Tangga</a></li>
-                                <li role="presentation"><a href="#dep3" aria-controls="home" role="tab" data-toggle="tab">Perlengkapan</a></li>
-                                <li role="presentation"><a href="#dep4" aria-controls="home" role="tab" data-toggle="tab">TU dan Persuratan</a></li>
-                            </ul>
-                            <div class="tab-content tab-content-chk">
-                                <div role="tabpanel" class="tab-pane active" id="dep1">
-                                    <div class="checkbox">
-                                        <?php foreach($user_dep1 as $row){ ?>
-                                        <div class="checkbox">
-                                        <label>
-                                        <input type="checkbox" id="tr_disposisi_user" name="tr_disposisi_user[<?php echo $row->usr_id; ?>]" value="<?php echo $row->usr_id?>"
-                                        <?php if ($row->usr_id == $this->session->userdata('id_user')){echo "disabled";}?>
-                                        <?php if ($disposisiUser != ''){ foreach($disposisiUser as $rowIn){?>
-                                            <?php 
-												if($row->usr_id == $rowIn->dus_user){echo "checked";}
-											?>
-                                        <?php }} ?>>
-                                        <?php echo $row->usr_nama." (".$row->jbt_nama.")"; ?>
-                                        </label>
-                                        </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="dep2">
-                                    <div class="checkbox">
-                                        <?php foreach($user_dep2 as $row){ ?>
-                                        <div class="checkbox">
-                                        <label>
-                                        <input type="checkbox" id="tr_disposisi_user" name="tr_disposisi_user[<?php echo $row->usr_id; ?>]" value="<?php echo $row->usr_id?>"
-                                        <?php if ($disposisiUser != ''){ foreach($disposisiUser as $rowIn){?>
-                                            <?php if($row->usr_id == $rowIn->dus_user){echo "checked";}?>
-                                        <?php }} ?>>
-                                        <?php echo $row->usr_nama." (".$row->jbt_nama.")"; ?>
-                                        </label>
-                                        </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="dep3">
-                                    <div class="checkbox">
-                                        <?php foreach($user_dep3 as $row){ ?>
-                                        <div class="checkbox">
-                                        <label>
-                                        <input type="checkbox" id="tr_disposisi_user" name="tr_disposisi_user[<?php echo $row->usr_id; ?>]" value="<?php echo $row->usr_id?>"
-                                        <?php if ($disposisiUser != ''){ foreach($disposisiUser as $rowIn){?>
-                                            <?php if($row->usr_id == $rowIn->dus_user){echo "checked";}?>
-                                        <?php }} ?>>
-                                        <?php echo $row->usr_nama." (".$row->jbt_nama.")"; ?>
-                                        </label>
-                                        </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane" id="dep4">
-                                    <div class="checkbox">
-                                        <?php foreach($user_dep4 as $row){ ?>
-                                        <div class="checkbox">
-                                        <label>
-                                        <input type="checkbox" id="tr_disposisi_user" name="tr_disposisi_user[<?php echo $row->usr_id; ?>]" value="<?php echo $row->usr_id?>"
-                                        <?php if ($disposisiUser != ''){ foreach($disposisiUser as $rowIn){?>
-                                            <?php if($row->usr_id == $rowIn->dus_user){echo "checked";}?>
-                                        <?php }} ?>>
-                                        <?php echo $row->usr_nama." (".$row->jbt_nama.")"; ?>
-                                        </label>
-                                        </div>
-                                        <?php } ?>
-                                    </div>
-                                </div>
-                              </div>
-                          </div>
-                    </div>
-                    <!--<div class="form-group">
-                        <label for="utr_unitTerusan" class="col-sm-2 control-label">Unit terusan</label>
-                        <div class="col-sm-10 checkbox">
-                        	<?php foreach($utr_unitTerusan as $row){?>
-                            <label class="checkbox">
-	                        <input type="checkbox" class="form-control" id="utr_unitTerusan" name="utr_unitTerusan[<?php echo $row->utr_id; ?>]" value="<?php echo $row->utr_id?>"
-							<?php if($disposisiUnitTerusan != ''){ foreach($disposisiUnitTerusan as $rowUt){?>
-                            	<?php if($row->utr_id == $rowUt->dut_id_unit_terusan){echo "checked";}?>
-							<?php } }?>>
-							<?php echo $row->utr_nama_unit_trsn; ?>
-                            </label>
-                            <?php } ?>
+                    <div class="form-group">
+                        <label for="tr_disposisi_user" class="col-md-2 control-label text-left">Tujuan</label>
+                        <div class="col-md-10">
+                            <!-- Departemen 1 -->
+                            <?php foreach($departemen as $rowDep){?>
+                            <select id="tr_disposisi_user_<?php echo $rowDep->dpt_id; ?>" name="tr_disposisi_user[]" multiple="multiple">
+                                <?php foreach($user_dep[$rowDep->dpt_id] as $row){ ?>
+                                <option value="<?php echo $row->usr_id?>"
+                                <?php if ($row->usr_id == $this->session->userdata('id_user')){echo "disabled";}?>
+                                <?php if ($disposisiUser != ''){ foreach($disposisiUser as $rowIn){?>
+                                    <?php 
+                                        if($row->usr_id == $rowIn->dus_user){echo "selected='selected'";}
+                                    ?>
+                                <?php }} ?>>
+                                <?php echo $row->usr_nama." (".$row->jbt_nama.")"; ?>
+                                </option>
+                                <?php } ?>
+                            </select>
+                            <br />
+							<?php } ?>
                         </div>
-                    </div>-->
+                    </div>
                     <div class="form-group">
                         <label for="fds_catatan" class="col-sm-2 control-label text-left">Catatan</label>
                         <div class="col-sm-10">
@@ -206,3 +138,22 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+<?php foreach ($departemen as $row) {?>
+	$('#tr_disposisi_user_<?php echo $row->dpt_id?>').multiselect({
+		includeSelectAllOption: true,
+		buttonWidth: '200px',
+		maxHeight: 200,
+		buttonText: function(options, select) {
+			return '<?php echo $row->dpt_nama?>';
+		},
+		buttonTitle: function(options, select) {
+			var labels = [];
+			options.each(function () {
+			labels.push($(this).text());
+		});
+		return labels.join(' - ');
+	}
+	});
+<?php } ?>
+</script>

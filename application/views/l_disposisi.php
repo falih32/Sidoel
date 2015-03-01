@@ -15,6 +15,9 @@
                           var options = {
                             width: document.getElementById('conchart').offsetWidth * 0.9,
                             height: '500px',
+							clickToUse : true,
+							zoomable : false,
+							layout : 'direction',
                             edges:{
                                 color: 'red',
                                 style: 'arrow'
@@ -31,6 +34,9 @@
 								},
 								fontColor: 'black'
 							  }
+							},
+							hierarchicalLayout: {
+							  direction: "UD"
 							}
                           };
 						  

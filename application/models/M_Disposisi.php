@@ -131,6 +131,8 @@ class M_disposisi extends CI_Model{
 		->where('fds_deleted','0')
 		->where('fds_id_surat',$id_surat)
 		->join('t_user', 't_user.usr_id = t_form_disposisi.fds_pengirim','left')
+		->join('t_jabatan', 't_jabatan.jbt_id = t_user.usr_jabatan','left')
+		->join('t_departemen', 't_departemen.dpt_id = t_user.usr_departemen', 'left')
 		->order_by('fds_id_parent', 'acs');
 		return $this->db->get()->result();
 	}
