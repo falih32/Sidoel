@@ -76,7 +76,6 @@
             	<thead>
                 <tr>
                 	<th>No. Surat</th>
-                	<th>Kepada</th>
                 	<th>Dari</th>
                 	<th>Catatan</th>
                 	<th>Tgl. Disposisi</th>
@@ -142,7 +141,6 @@ $(document).ready(function() {
 		},
 		"columns": [
                 { "data": "sms_nomor_surat" },
-                { "data": "fds_kasubbag" },
                 { "data": "usr_nama" },
                 { "data": "fds_catatan" },
                 { "data": "fds_tgl_disposisi" },
@@ -150,11 +148,11 @@ $(document).ready(function() {
 				{ "data": "fds_id" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 5 },
-				{ "visible":false, "targets": [1, 6]},
-				{ "visible":false, "targets": [<?php if($mode == "normal"&& $role > 2) echo"5"; ?>]}
+				{ "searchable": false, "orderable":false, "targets": 4 },
+				{ "visible":false, "targets": [5]},
+				{ "visible":false, "targets": [<?php if($mode == "normal"&& $role > 2) echo"4"; ?>]}
 			],
-		"order": [[ 6, "desc" ]],
+		"order": [[ 5, "desc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			makeTooltip();

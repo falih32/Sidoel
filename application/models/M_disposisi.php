@@ -33,7 +33,7 @@ class M_disposisi extends CI_Model{
 	
 	function selectAjax($min, $max){
 		$this->datatables
-			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, usr_nama, fds_catatan, DATE_FORMAT(fds_tgl_disposisi, "%d-%m-%Y") as fds_tgl_disposisi, sms_id')
+			->select('fds_id, sms_nomor_surat, usr_username, usr_nama, fds_catatan, DATE_FORMAT(fds_tgl_disposisi, "%d-%m-%Y") as fds_tgl_disposisi, sms_id')
 			->from('t_form_disposisi')
 			->where('fds_deleted','0')
 			->where('fds_tgl_disposisi >= ', $min)
@@ -56,7 +56,7 @@ class M_disposisi extends CI_Model{
 	
 	function selectAjaxByUserMasuk($min, $max, $user){
 		$this->datatables
-			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, usr_nama, fds_catatan,  DATE_FORMAT(fds_tgl_disposisi, "%d-%m-%Y") as fds_tgl_disposisi, sms_id')
+			->select('fds_id, sms_nomor_surat, usr_username, usr_nama, fds_catatan,  DATE_FORMAT(fds_tgl_disposisi, "%d-%m-%Y") as fds_tgl_disposisi, sms_id')
 			->from('t_form_disposisi')
 			->where('fds_deleted','0')
 			->where('fds_tgl_disposisi >= ', $min)
@@ -79,7 +79,7 @@ class M_disposisi extends CI_Model{
 	
 	function selectAjaxByUserKeluar($min, $max, $user){
 		$this->datatables
-			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, usr_nama, fds_catatan,  DATE_FORMAT(fds_tgl_disposisi, "%d-%m-%Y") as fds_tgl_disposisi, sms_id')
+			->select('fds_id, sms_nomor_surat, usr_username, usr_nama, fds_catatan,  DATE_FORMAT(fds_tgl_disposisi, "%d-%m-%Y") as fds_tgl_disposisi, sms_id')
 			->from('t_form_disposisi')
 			->where('fds_deleted','0')
 			->where('fds_tgl_disposisi >= ', $min)
@@ -103,7 +103,7 @@ class M_disposisi extends CI_Model{
 	
 	function selectAjaxBySurat($min, $max, $surat){
 		$this->datatables
-			->select('fds_id, sms_nomor_surat, fds_kasubbag, usr_username, usr_nama, fds_catatan,  DATE_FORMAT(fds_tgl_disposisi, "%d-%m-%Y") as fds_tgl_disposisi, sms_id')
+			->select('fds_id, sms_nomor_surat, usr_username, usr_nama, fds_catatan,  DATE_FORMAT(fds_tgl_disposisi, "%d-%m-%Y") as fds_tgl_disposisi, sms_id')
 			->from('t_form_disposisi')
 			->where('fds_deleted','0')
 			->where('fds_tgl_disposisi >= ', $min)

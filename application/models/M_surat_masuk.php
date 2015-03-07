@@ -23,7 +23,7 @@ class M_surat_masuk extends CI_Model{
     
 	function selectAjax($min, $max){
 		$this->datatables
-			->select('sms_id, sms_no_agenda, sms_nomor_surat, sms_tgl_srt, sms_pengirim, sms_perihal, DATE_FORMAT(sms_tgl_srt_diterima,"%d-%m-%Y") as sms_tgl_srt_diterima, DATE_FORMAT(sms_tgl_srt_dtlanjut,"%d-%m-%Y") as sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, usr_userName, usr_nama')
+			->select('sms_id, sms_no_agenda, sms_nomor_surat, sms_tgl_srt, sms_pengirim, sms_perihal, DATE_FORMAT(sms_tgl_srt_diterima,"%d-%m-%Y") as sms_tgl_srt_diterima, DATE_FORMAT(sms_tgl_srt_dtlanjut,"%d-%m-%Y") as sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, sms_confirm_status, usr_userName, usr_nama')
 			->from('t_surat_msk')
 			->where('sms_deleted','0')
 			->where('sms_tgl_srt_diterima >= ', $min)
@@ -32,6 +32,7 @@ class M_surat_masuk extends CI_Model{
 		$this->datatables->add_column('no_tgl', '$1<br>$2', 'sms_nomor_surat, sms_tgl_srt');
 		$this->datatables->add_column('pengirim_perihal', '$1<br>$2', 'sms_pengirim, sms_perihal');
 		$this->datatables->add_column('terima_tenggat', '$1<br>$2', 'sms_tgl_srt_diterima, sms_tgl_srt_dtlanjut');
+		$this->datatables->add_column('sms_confirm', '<?php if($2 == 1){echo "fak";}?><a class="btn btn-danger btn-sm" href="SuratMasuk/konfirmasi/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>', 'sms_id, sms_confirm_status');
 		$this->datatables->edit_column('sms_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
@@ -79,28 +80,15 @@ class M_surat_masuk extends CI_Model{
     }
     function selectById($id){
         // ganti pake procedure
-//        $this->db->select('*');
-//        $this->db->from('t_surat_masuk');
-//        $this->db->where('sms_id', $id);
-//        return $this->db->get();
-        $data = $this->db->query("SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
-			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
-			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat, 
-			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan,t_surat_msk.sms_indek,t_surat_msk.sms_kode,t_surat_msk.sms_lampiran, 
-			t_surat_msk.sms_edited_by, t_surat_msk.sms_status_terkirim, t_surat_msk.sms_file, 
-			t_surat_msk.sms_pengirim, t_surat_msk.sms_deleted,
-			t_unit_tujuan.utj_unit_tujuan, t_jenis_surat_masuk.jsm_nama_jenis, 
-			t_user.usr_userName		
-	FROM t_surat_msk
-	LEFT JOIN t_jenis_surat_masuk
-	ON t_surat_msk.sms_jenis_surat = t_jenis_surat_masuk.jsm_id
-	LEFT JOIN t_unit_tujuan
-	ON t_surat_msk.sms_unit_tujuan = t_unit_tujuan.utj_id
-	LEFT JOIN t_user
-	ON t_surat_msk.sms_unit_tujuan = t_user.usr_id
-	WHERE t_surat_msk.sms_id = '$id' 
-	AND t_surat_msk.sms_deleted = '0'")->row();
-        return $data;
+        $this->db
+		->select('*')
+        ->from('t_surat_msk')
+        ->where('sms_id', $id)
+		->where('sms_deleted', '0')
+		->join('t_jenis_surat_masuk', 't_surat_msk.sms_jenis_surat = t_jenis_surat_masuk.jsm_id', 'left')
+		->join('t_unit_tujuan', 't_surat_msk.sms_unit_tujuan = t_unit_tujuan.utj_id', 'left')
+		->join('t_user','t_surat_msk.sms_unit_tujuan = t_user.usr_id', 'left');
+        return $this->db->get()->row();
     }
      
     function update($id, $data){

@@ -26,6 +26,7 @@
                 	<th>Pengirim</th>
                 	<th>Perihal</th>
                 	<th>Direkam oleh</th>
+                    <th>Diterima</th>
                 	<th>Aksi</th>
                 </tr>
                 </thead>
@@ -91,10 +92,11 @@ $(document).ready(function() {
                 { "data": "sms_pengirim" },
                 { "data": "sms_perihal" },
                 { "data": "usr_nama" },
+                { "data": "sms_confirm" },
                 { "data": "<?php if($role > 2) {echo"sms_view";} else{echo "sms_aksi";}?>" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": [7] },
+				{ "searchable": false, "orderable":false, "targets": [8] },
 				{ "searchable": false, "visible":false, "targets": [0]}
 			],
 		"order": [[ 0, "desc" ]],

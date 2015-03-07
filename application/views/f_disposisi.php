@@ -47,7 +47,7 @@
             <input type="hidden" name="fds_id_surat" value="<?php echo $fds_id_surat; ?>">
                 <div class="col-md-5">
                     <div class="form-group">
-                        <label for="dummy" class="col-sm-2 control-label text-left">Detail Surat</label>
+                        <label for="dummy" class="col-sm-2 control-label text-left">Detail Surat Masuk</label>
                         <div class="col-sm-10">
 	                        <p class="form-control-static"><a class="btn btn-default" href="<?php echo base_url()."SuratMasuk/detail_surat_masuk/".$fds_id_surat; ?>" target="_blank"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span> Lihat detail</a></p>
                         </div>
@@ -86,14 +86,6 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <div class="form-group">
-                        <label for="fds_tgl_disposisi" class="col-sm-2 control-label text-left">Tgl. disposisi</label>
-                        <div class="col-sm-3">
-	                        <input type="text" class="form-control tgl" id="fds_tgl_disposisi" name="fds_tgl_disposisi" placeholder="yyyy-mm-dd" value="<?php echo $fds_tgl_disposisi; ?>" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    
                     <div class="form-group">
                         <label for="tr_disposisi_user" class="col-md-2 control-label text-left">Tujuan</label>
                         <div class="col-md-10">

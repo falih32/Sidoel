@@ -179,6 +179,15 @@ class SuratMasuk extends CI_Controller{
 		$this->writeLog('Surat Masuk','Delete');
         redirect('SuratMasuk');
     }
+	
+	public function konfirmasi($id){
+		$this->limitRole(1);
+		$data['sms_confirm_by'] = $this->session->userdata("id_user");
+		$data['sms_confirm_status'] = '1';
+		$this->m_surat_masuk->update($id, $data);
+		$red = "SuratMasuk/detail_surat_masuk/".$id;
+		redirect($red);
+	}
     
     public function disposisi_cetak($id) {
                 $data['suratMasuk']=  $this->m_surat_masuk->selectById($id);

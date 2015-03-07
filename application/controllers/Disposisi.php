@@ -152,10 +152,8 @@ class Disposisi extends CI_Controller{
     
     function postVariabel_fds(){
 		$data_fds['fds_id_surat']       = $this->input->post('fds_id_surat');
-		$data_fds['fds_kasubbag']		= $this->input->post('fds_kasubbag');
 		$data_fds['fds_catatan']	    = $this->input->post('fds_catatan');
 		$data_fds['fds_pengirim']		= $this->session->userdata('id_user');
-		$data_fds['fds_tgl_disposisi']	= $this->input->post('fds_tgl_disposisi');
 		$data_fds['fds_id_parent']		= $this->input->post('fds_id_parent');
 		$data_fds['fds_id']        		= $this->input->post('fds_id');
 		$data_fds['fds_file']        	= $this->input->post('fds_file_2');

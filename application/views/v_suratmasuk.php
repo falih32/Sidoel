@@ -1,5 +1,5 @@
 <?php
-
+		$sms_id = $dataSurat->sms_id;
 		$sms_nomor_surat = $dataSurat-> sms_nomor_surat;
 		$sms_pengirim = $dataSurat-> sms_pengirim;
 		$sms_tgl_srt = $dataSurat-> sms_tgl_srt;
@@ -14,6 +14,7 @@
         $sms_file =$dataSurat-> sms_file;
 		$utj_unit_tujuan = $dataSurat->utj_unit_tujuan;
 		$jsm_nama_jenis = $dataSurat->jsm_nama_jenis;
+		$sms_confirm = $dataSurat->sms_confirm_status;
 ?>
 <div class="container-fluid">
     <div class="row-fluid">
@@ -68,6 +69,7 @@
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
                         	<a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                        	<a class="btn btn-lg btn-success" href="<?php echo site_url('SuratMasuk/konfirmasi')."/".$sms_id; ?>" id="set_status" data-confirm='Anda yakin telah mendapatkan form disposisi dari operator?' <?php if($sms_confirm == '1'){echo "disabled";}?>><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Konfirmasi</a>
                         </div>
                     </div>
                 </div>
@@ -75,3 +77,22 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$('[data-toggle="tooltip"]').tooltip({});
+	
+	var deleteLinks = document.querySelectorAll('#set_status');
+	for (var i = 0, length = deleteLinks.length; i < length; i++) {
+		deleteLinks[i].addEventListener('click', function(event) {
+			event.preventDefault();
+		
+			var choice = confirm(this.getAttribute('data-confirm'));
+		
+			if (choice) {
+				window.location.href = this.getAttribute('href');
+			}
+		});
+	}
+});
+</script>
