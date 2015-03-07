@@ -69,7 +69,6 @@
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
                         	<a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
-                        	<a class="btn btn-lg btn-success" href="<?php echo site_url('SuratMasuk/konfirmasi')."/".$sms_id; ?>" id="set_status" data-confirm='Anda yakin telah mendapatkan form disposisi dari operator?' <?php if($sms_confirm == '1'){echo "disabled";}?>><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Konfirmasi</a>
                         </div>
                     </div>
                 </div>

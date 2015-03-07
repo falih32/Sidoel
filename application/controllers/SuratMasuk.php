@@ -185,8 +185,8 @@ class SuratMasuk extends CI_Controller{
 		$data['sms_confirm_by'] = $this->session->userdata("id_user");
 		$data['sms_confirm_status'] = '1';
 		$this->m_surat_masuk->update($id, $data);
-		$red = "SuratMasuk/detail_surat_masuk/".$id;
-		redirect($red);
+		//$red = "SuratMasuk/detail_surat_masuk/".$id;
+		//redirect($red);
 	}
     
     public function disposisi_cetak($id) {

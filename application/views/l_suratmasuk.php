@@ -16,7 +16,7 @@
                     <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                 </div>
             </div>
-            <table class="table table-hover table-striped" id="tabel-suratmasuk">
+            <table class="table table-hover table-striped table-bordered" id="tabel-suratmasuk">
             	<thead>
                 <tr>
                 	<th>ID surat</th>
@@ -35,36 +35,6 @@
     </div>
 </div>
 <script type="text/javascript">
-<!--
-function makeConfirmation(){
-	var deleteLinks = document.querySelectorAll('.delete');
-	for (var i = 0, length = deleteLinks.length; i < length; i++) {
-		deleteLinks[i].addEventListener('click', function(event) {
-			event.preventDefault();
-		
-			var choice = confirm(this.getAttribute('data-confirm'));
-		
-			if (choice) {
-				window.location.href = this.getAttribute('href');
-			}
-		});
-	}
-}
-
-function makeTooltip(){
-	$('[data-toggle="tooltip"]').tooltip({});
-}
-
-function moveSearch(){
-	var newParent = document.getElementById('tabel-suratmasuk_filter');
-	var oldParent = document.getElementById('date_search');
-	
-	while (oldParent.childNodes.length > 0) {
-		newParent.appendChild(oldParent.childNodes[0]);
-	}
-}
-//-->
-
 $(document).ready(function() {
 	
 	var table = $('#tabel-suratmasuk').DataTable( {
@@ -97,14 +67,20 @@ $(document).ready(function() {
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": [8] },
-				{ "searchable": false, "visible":false, "targets": [0]}
+				{ "searchable": false, "visible":false, "targets": [0]},
+				{ "className": "dt-body-center", "targets": [7] }
 			],
 		"order": [[ 0, "desc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			makeTooltip();
-			moveSearch();
-		}
+			moveSearch()
+		},
+		"createdRow": function ( row, data, index ) {
+            if ( data.sms_confirm_status == "1") {
+                $('td', row).eq(6).html('<a class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Konfirmasi terima form disposisi"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
+            }
+        }
 	} );
 	
 	// refresh event listener
@@ -112,6 +88,53 @@ $(document).ready(function() {
 	refreshLink.addEventListener('click', function(event){
 		table.draw();
 	});
+	
+	<!--
+function makeConfirmation(){
+	var deleteLinks = document.querySelectorAll('.delete');
+	for (var i = 0, length = deleteLinks.length; i < length; i++) {
+		deleteLinks[i].addEventListener('click', function(event) {
+			event.preventDefault();
+		
+			var choice = confirm(this.getAttribute('data-confirm'));
+		
+			if (choice) {
+				window.location.href = this.getAttribute('href');
+			}
+		});
+	}
+	
+	var confirmLinks = document.querySelectorAll('.confirm');
+	for (var i = 0, length = confirmLinks.length; i < length; i++) {
+		confirmLinks[i].addEventListener('click', function(event) {
+			event.preventDefault();
+		
+			var choice = confirm(this.getAttribute('data-confirm'));
+		
+			if (choice) {
+				$.ajax({
+					url: this.getAttribute('data-href'),
+					type: "POST",
+					success: function(){table.draw();}
+				});
+			}
+		});
+	}
+}
+
+function makeTooltip(){
+	$('[data-toggle="tooltip"]').tooltip({});
+}
+
+function moveSearch(){
+	var newParent = document.getElementById('tabel-suratmasuk_filter');
+	var oldParent = document.getElementById('date_search');
+	
+	while (oldParent.childNodes.length > 0) {
+		newParent.appendChild(oldParent.childNodes[0]);
+	}
+}
+//-->
 });
 
 

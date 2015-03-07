@@ -34,15 +34,15 @@ class M_surat_masuk extends CI_Model{
 		$this->datatables->add_column('no_tgl', '$1<br>$2', 'sms_nomor_surat, sms_tgl_srt');
 		$this->datatables->add_column('pengirim_perihal', '$1<br>$2', 'sms_pengirim, sms_perihal');
 		$this->datatables->add_column('terima_tenggat', '$1<br>$2', 'sms_tgl_srt_diterima, sms_tgl_srt_dtlanjut');
-		$this->datatables->add_column('sms_confirm', '<?php if($2 == 1){echo "fak";}?><a class="btn btn-danger btn-sm" href="SuratMasuk/konfirmasi/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>', 'sms_id, sms_confirm_status');
+		$this->datatables->add_column('sms_confirm', '<?php if($2 == 1){echo "fak";}?><a class="btn btn-danger btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Konfirmasi terima form disposisi" data-confirm="Anda yakin telah mendapatkan form disposisi dari operator?" data-href="SuratMasuk/konfirmasi/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>', 'sms_id, sms_confirm_status');
 		$this->datatables->edit_column('sms_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a class='btn btn-sm btn-primary' data-toggle='tooltip' data-placement='top' title='Lihat detail' href='SuratMasuk/detail_surat_masuk/$1'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span> Detail</a>".
-			"<a class='btn btn-sm btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='SuratMasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'> Delete</span></a>".
-			"<a class='btn btn-sm btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='SuratMasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Edit</a>".
-			"<a class='btn btn-sm btn-success' data-toggle='tooltip' data-placement='top' title='Buat Disposisi' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>  Disposisi</a>".
-			"<a target= '_blank' class='btn btn-sm btn-warning' data-toggle='tooltip' data-placement='top' title='Print' href='SuratMasuk/disposisi_cetak/$1'><span class='glyphicon glyphicon-print' aria-hidden='true'></span>  Cetak</a>".
+			"<a class='btn btn-sm btn-primary' data-toggle='tooltip' data-placement='top' title='Lihat detail' href='SuratMasuk/detail_surat_masuk/$1'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
+			"<a class='btn btn-sm btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='SuratMasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
+			"<a class='btn btn-sm btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='SuratMasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
+			"<a class='btn btn-sm btn-success' data-toggle='tooltip' data-placement='top' title='Buat Disposisi' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
+			"<a target= '_blank' class='btn btn-sm btn-warning' data-toggle='tooltip' data-placement='top' title='Print' href='SuratMasuk/disposisi_cetak/$1'><span class='glyphicon glyphicon-print' aria-hidden='true'></span></a>".
                         "</div>".
 			"</form>".
 		"",'sms_id');
