@@ -35,11 +35,11 @@ class M_surat_masuk extends CI_Model{
 		$this->datatables->edit_column('sms_aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='Lihat detail' href='SuratMasuk/detail_surat_masuk/$1'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span></a>".
-			"<a class='btn btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='SuratMasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>".
-			"<a class='btn btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='SuratMasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>".
-			"<a class='btn btn-success' data-toggle='tooltip' data-placement='top' title='Buat Disposisi' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span></a>".
-			"<a target= '_blank' class='btn btn-warning' data-toggle='tooltip' data-placement='top' title='Print' href='SuratMasuk/disposisi_cetak/$1'><span class='glyphicon glyphicon-print' aria-hidden='true'></span></a>".
+			"<a class='btn btn-sm btn-primary' data-toggle='tooltip' data-placement='top' title='Lihat detail' href='SuratMasuk/detail_surat_masuk/$1'><span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span> Detail</a>".
+			"<a class='btn btn-sm btn-danger delete' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Are you sure to delete this item?' href='SuratMasuk/delete_smasuk/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'> Delete</span></a>".
+			"<a class='btn btn-sm btn-info' data-toggle='tooltip' data-placement='top' title='Edit' href='SuratMasuk/edit_surat_masuk/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Edit</a>".
+			"<a class='btn btn-sm btn-success' data-toggle='tooltip' data-placement='top' title='Buat Disposisi' href='disposisi/buat_disposisi/$1'><span class='glyphicon glyphicon-share-alt' aria-hidden='true'></span>  Disposisi</a>".
+			"<a target= '_blank' class='btn btn-sm btn-warning' data-toggle='tooltip' data-placement='top' title='Print' href='SuratMasuk/disposisi_cetak/$1'><span class='glyphicon glyphicon-print' aria-hidden='true'></span>  Cetak</a>".
                         "</div>".
 			"</form>".
 		"",'sms_id');
@@ -61,7 +61,7 @@ class M_surat_masuk extends CI_Model{
         $data = $this->db->query("SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
 			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
 			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat, 
-			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan, 
+			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan,t_surat_msk.sms_indek,t_surat_msk.sms_kode,t_surat_msk.sms_lampiran, 
 			t_surat_msk.sms_edited_by, t_surat_msk.sms_status_terkirim, t_surat_msk.sms_file, 
 			t_surat_msk.sms_pengirim, t_surat_msk.sms_deleted,
 			t_unit_tujuan.utj_unit_tujuan, t_jenis_surat_masuk.jsm_nama_jenis, 
@@ -86,7 +86,7 @@ class M_surat_masuk extends CI_Model{
         $data = $this->db->query("SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
 			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
 			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat, 
-			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan, 
+			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan,t_surat_msk.sms_indek,t_surat_msk.sms_kode,t_surat_msk.sms_lampiran, 
 			t_surat_msk.sms_edited_by, t_surat_msk.sms_status_terkirim, t_surat_msk.sms_file, 
 			t_surat_msk.sms_pengirim, t_surat_msk.sms_deleted,
 			t_unit_tujuan.utj_unit_tujuan, t_jenis_surat_masuk.jsm_nama_jenis, 

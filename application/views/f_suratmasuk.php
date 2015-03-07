@@ -12,6 +12,9 @@
 		$sms_agenda = $dataSurat-> sms_no_agenda;
 		$sms_unit_tujuan = $dataSurat-> sms_unit_tujuan;
 		$sms_keterangan = $dataSurat-> sms_keterangan;
+                $sms_indek = $dataSurat-> sms_indek;
+                $sms_kode = $dataSurat-> sms_kode;
+                $sms_lampiran = $dataSurat-> sms_lampiran;
 	}
 	else{
 		$mode = 'add';
@@ -26,6 +29,9 @@
 		$sms_agenda = "";
 		$sms_unit_tujuan = "";
 		$sms_keterangan = "";
+                $sms_indek = "";
+                $sms_kode = "";
+                $sms_lampiran ="";
 	}
 ?>
 <div class="container-fluid">
@@ -113,7 +119,7 @@
                         </div>
                     </div>-->
                     <div class="form-group">
-                        <label for="file_upload" class="col-sm-2 control-label text-left">Upload file</label>
+                        <label for="file_upload" class="col-sm-2 control-label text-left">Upload File Surat</label>
                         <div class="col-sm-10">
 	                        <input type="file" class="" id="file_upload" name="sms_file" >
                             <p class="help-block"><i>Format: JPG, JPEG, PNG, GIF, PDF <br>Max dimension: 3000x3000 px | Max file size: 2000KB.</i></p>
@@ -126,6 +132,27 @@
 	                        <textarea rows="5" class="form-control" id="keterangan" name="sms_keterangan" required><?php echo $sms_keterangan; ?></textarea>
                         </div>
                     </div>-->
+                    <div class="form-group">
+                        <label for="indek" class="col-sm-2 control-label text-left">Indek</label>
+                        <div class="col-sm-10">
+	                        <input type="text" class="form-control" id="indek" name="sms_indek" placeholder="Indek" value="<?php echo $sms_indek; ?>">
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="kode" class="col-sm-2 control-label text-left">Kode</label>
+                        <div class="col-sm-10">
+	                        <input type="text" class="form-control" id="kode" name="sms_kode" placeholder="Kode" value="<?php echo $sms_kode; ?>" >
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="lampiran" class="col-sm-2 control-label text-left">Lampiran</label>
+                        <div class="col-sm-10">
+	                        <input type="text" class="form-control" id="lampiran" name="sms_lampiran" placeholder="Lampiran" value="<?php echo $sms_lampiran; ?>" >
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">

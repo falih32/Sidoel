@@ -274,3 +274,4 @@ function sanitize($text)
 function destroy(){
     session_destroy();
 }
+mysql_close($dbh);

@@ -95,7 +95,9 @@ class SuratMasuk extends CI_Controller{
 		$data['sms_status_terkirim']    = $this->input->post('sms_status_terkirim');
 		$data['sms_file']               = $this->input->post('sms_file');
 		$data['sms_pengirim']           = $this->input->post('sms_pengirim');
-        
+                $data['sms_indek']              = $this->input->post('sms_indek');
+                $data['sms_kode']               = $this->input->post('sms_kode');
+                $data['sms_lampiran']           = $this->input->post('sms_lampiran');
         return $data;
     }
     

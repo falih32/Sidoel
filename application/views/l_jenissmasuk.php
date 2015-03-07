@@ -55,7 +55,7 @@ $(document).ready(function() {
 		"processing":true, 
 		"serverSide": true,
 		"ajax":{
-			"url":"<?php echo site_url('jenissmasuk/ajaxProcess');?>",
+			"url":"<?php echo site_url('jenisSMasuk/ajaxProcess');?>",
 			"type":"POST"
 		},
 		"columns": [

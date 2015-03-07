@@ -6,21 +6,23 @@
 <html>
 <head>
 <style type="text/css" media="print">
-	table {border: solid 1px #000; border-collapse: collapse; width: 100%;margin: 0px;padding: 0px}
+	body {font-family: Arial, Helvetica, sans-serif; font-size: 12px}
+        table {border: solid 1px #000; border-collapse: collapse; width: 100%;margin: 0px;padding: 0px}
 	tr { border: solid 1px #000;margin: 0px;padding: 0px}
 	td { padding: 7px 0px; margin: 0px;}
 </style>
 <style type="text/css" media="screen">
+    	body {font-family: Arial, Helvetica, sans-serif; font-size: 12px}
 	table {border: solid 1px #000; border-collapse: collapse; width: 60%;margin: 0px;padding: 0px}
 	tr { border: solid 1px #000;margin: 0px;padding: 0px}
 	td { padding: 7px 0px; margin: 0px;}
 </style>
 </head>
 
-<body>
+<body onload="window.print()">
     <table border="1">
     	<tr>
-            <td style="text-align: center" colspan="4"><h3>Kementerian Kelautan dan Perikanan</h3>
+            <td style="text-align: center" colspan="4"><h3><b>Kementerian Kelautan dan Perikanan</b></h3>
                 <h3>Sekretariat Jenderal</h3>
                 <h3>BIRO UMUM</h3>
                 <h3>Lembar Disposisi</h3>
