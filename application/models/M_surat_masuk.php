@@ -22,8 +22,10 @@ class M_surat_masuk extends CI_Model{
     }
     
 	function selectAjax($min, $max){
+                $this->db->query("SET lc_time_names = 'id_ID'");
+                //setlocale(LC_ALL, 'IND');
 		$this->datatables
-			->select('sms_id, sms_no_agenda, sms_nomor_surat, sms_tgl_srt, sms_pengirim, sms_perihal, DATE_FORMAT(sms_tgl_srt_diterima,"%d-%m-%Y") as sms_tgl_srt_diterima, DATE_FORMAT(sms_tgl_srt_dtlanjut,"%d-%m-%Y") as sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, sms_confirm_status, usr_userName, usr_nama')
+			->select('sms_id, sms_no_agenda, sms_nomor_surat, DATE_FORMAT(sms_tgl_srt,"%e %M %Y") as sms_tgl_srt, sms_pengirim, sms_perihal, DATE_FORMAT(sms_tgl_srt_diterima,"%e %M %Y") as sms_tgl_srt_diterima, DATE_FORMAT(sms_tgl_srt_dtlanjut,"%e-%M-%Y") as sms_tgl_srt_dtlanjut, sms_keterangan, sms_status_terkirim, sms_confirm_status, usr_userName, usr_nama')
 			->from('t_surat_msk')
 			->where('sms_deleted','0')
 			->where('sms_tgl_srt_diterima >= ', $min)
@@ -59,6 +61,7 @@ class M_surat_masuk extends CI_Model{
 //        $this->db->select('*');
 //        $this->db->from('t_surat_masuk');
 //		$this->db->order_by('sms_id', 'desc');
+         $this->db->query("SET lc_time_names = 'id_ID'");
         $data = $this->db->query("SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
 			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
 			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat, 
@@ -80,8 +83,9 @@ class M_surat_masuk extends CI_Model{
     }
     function selectById($id){
         // ganti pake procedure
+        $this->db->query("SET lc_time_names = 'id_ID'");
         $this->db
-		->select('*')
+		->select('*, DATE_FORMAT(sms_tgl_srt,"%e %M %Y") as sms_tgl_srt, DATE_FORMAT(sms_tgl_srt_diterima,"%e %M %Y") as sms_tgl_srt_diterima')
         ->from('t_surat_msk')
         ->where('sms_id', $id)
 		->where('sms_deleted', '0')
@@ -111,6 +115,7 @@ class M_surat_masuk extends CI_Model{
 //        if ($limit != NULL)
 //        $this->db->limit($limit['perpage'], $limit['offset']);
 //        return $this->db->get();
+         $this->db->query("SET lc_time_names = 'id_ID'");
         $lmt = $limit['perpage'];
         $ofs = $limit['offset']; 
         $data = $this->db->query("SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
@@ -138,6 +143,7 @@ class M_surat_masuk extends CI_Model{
     function searchSuratMasuk($search, $dateAwal, $dateAkhir, $limit=array()){
         $lmt = $limit['perpage'];
         $ofs = $limit['offset'];
+         $this->db->query("SET lc_time_names = 'id_ID'");
         $data = $this->db->query("SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
 			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
 			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat, 

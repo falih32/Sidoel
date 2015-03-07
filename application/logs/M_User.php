@@ -7,6 +7,7 @@ class M_user extends CI_Model{
     }
      function insert($data){
         $this->db->insert('t_user', $data);
+        
     }
     
     function delete($id){

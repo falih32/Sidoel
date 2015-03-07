@@ -70,6 +70,7 @@
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>-->
+                    <?php if ($mode == "new" && $_SESSION["id_role"] == '1'){?>
                     <div class="form-group">
                         <label for="ins_instruksi" class="col-sm-2 control-label">Instruksi</label>
                         <div class="col-sm-10 checkbox text-left">
@@ -84,6 +85,7 @@
                             <?php } ?>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
                 <div class="col-md-7">
                     <div class="form-group">
